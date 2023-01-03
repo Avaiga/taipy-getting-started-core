@@ -16,7 +16,7 @@ def count_values(df):
 
 
 historical_data_cfg = Config.configure_csv_data_node(id="historical_data",
-                                                     default_path="time_series.csv")
+                                                     default_path="src/time_series.csv")
 month_values_cfg =  Config.configure_data_node(id="month_data")
 nb_of_values_cfg = Config.configure_data_node(id="nb_of_values")
 
@@ -50,3 +50,6 @@ scenario_1.submit()
 scenario_2 = tp.create_scenario(scenario_cfg, creation_date=dt.datetime(2022,10,7), name="Scenario 2022/10/7")
 scenario_2.submit()
 
+
+print("Nb of values of scenario 1:", scenario_1.nb_of_values.read())
+print("Nb of values of scenario 2:", scenario_2.nb_of_values.read())
