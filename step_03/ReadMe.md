@@ -123,6 +123,9 @@ scenario_1.submit()
 
 scenario_2 = tp.create_scenario(scenario_cfg, creation_date=dt.datetime(2022,10,7), name="Scenario 2022/10/7")
 scenario_2.submit()
+
+print("Nb of values of scenario 1:", scenario_1.nb_of_values.read())
+print("Nb of values of scenario 2:", scenario_2.nb_of_values.read())
 ```
 Results:
 ```
@@ -130,4 +133,7 @@ Results:
     [2022-12-22 16:20:03,510][Taipy][INFO] job JOB_count_values_90c9b3c7-91e7-49ef-9064-69963d60f52a is completed.
     [2022-12-22 16:20:03,755][Taipy][INFO] job JOB_filter_current_4adc91ee-cd64-4ebf-819b-8643da0282fd is completed.
     [2022-12-22 16:20:03,901][Taipy][INFO] job JOB_count_values_968c8c34-2ed4-4f89-995c-a4137af82beb is completed.
+    
+    Nb of values of scenario 1: 896
+    Nb of values of scenario 2: 896
 ```
