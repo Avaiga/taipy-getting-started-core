@@ -84,6 +84,7 @@ def double(nb):
     scenario_cfg = Config.configure_scenario("my_scenario", [pipeline_cfg])
     ```
 
+The code below presents how you can create scenarios and submit them. First of all, Taipy has to be run `tp.Core().run()`, it will create a service that will act as a job scheduler. Creating a scenario/pipeline (`tp.create_scenario(<Scenario Config>)`/`tp.create_pipeline(<Pipeline Config>)` will create all the related entities. These entities are being created thanks to the previous configuration but no code is being run yet. `tp.submit(<Scenario>)` is line of code that will run all the related pipelines and tasks. Note that a pipeline or a task can also be submit (`tp.submit(<Pipeline>)`/`tp.submit(<Task>)`).
 
 ```python
 # Run of the Core
@@ -100,3 +101,5 @@ Results:
     [2022-12-22 16:20:02,740][Taipy][INFO] job JOB_double_699613f8-7ff4-471b-b36c-d59fb6688905 is completed.
     Value at the end of task 42
 ```    
+
+Data is being store by default in a '.data' folder meaning that data, scenarios, pipelines, jobs and tasks are persisted between two runs.
