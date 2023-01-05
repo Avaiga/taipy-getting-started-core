@@ -27,7 +27,7 @@ def double(nb):
 
 ![](config_01.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
-- Two Data Nodes are being configured ('input' and 'output'). The 'input' Data Node has a _default_data_ put at 21. They will be stored as Pickle files by default, and are unique to their scenario.
+- Two Data Nodes are being configured ('input' and 'output'). The 'input' Data Node has a _default_data_ put at 21. They will be stored as Pickle files by default, and are unique to their scenario. To clarify, the names given to the Data Nodes are arbitrary. They could have been named something else like 'first_data' and 'last_data'. To make the code work, all appeareances of 'input' and 'output' should be changed respectively to 'first_data' and 'last_data'.
 
 - The task links the two Data Nodes through the Python function _double_.
 
