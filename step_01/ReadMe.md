@@ -88,7 +88,7 @@ The code below presents how you can create scenarios and submit them.
 
 First of all, Taipy has to be run (`tp.Core().run()`). It will create a service that will act as a job scheduler.
 
-Creating a scenario/pipeline (`tp.create_scenario(<Scenario Config>)`/`tp.create_pipeline(<Pipeline Config>)` will create all the related entities. These entities are being created thanks to the previous configuration but no code is being run yet. `tp.submit(<Scenario>)` is line of code that will run all the related pipelines and tasks. Note that a pipeline or a task can also be submit (`tp.submit(<Pipeline>)`/`tp.submit(<Task>)`).
+Creating a scenario/pipeline (`tp.create_scenario(<Scenario Config>)`/`tp.create_pipeline(<Pipeline Config>)` will create all the related entities. These entities are being created thanks to the previous configuration but no code is being run yet. `tp.submit(<Scenario>)` is line of code that will run all the related pipelines and tasks. Note that a pipeline or a task can also be submit (`tp.submit(<Pipeline>)`, `tp.submit(<Task>)`).
 
 ```python
 # Run of the Core
