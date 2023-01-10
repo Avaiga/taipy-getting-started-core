@@ -13,14 +13,6 @@ Options of _submit_:
 No difficulty >> do it yourself >> search code here
 
 ```python
-from taipy.core.config import Config
-import taipy as tp
-import datetime as dt
-import pandas as pd
-import time
-```
-
-```python
 # Normal function used by Taipy
 def double(nb):
     return nb * 2
