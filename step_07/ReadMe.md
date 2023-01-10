@@ -9,6 +9,9 @@ Options of _submit_:
 - _wait_: if wait is True, the submit is synchronous and will wait for the end of all the jobs (if timeout is not defined)
 - _timeout_: if wait is True, Taipy will wait for the end of the submit until a certain amount of time
 
+
+No difficulty >> do it yourself >> search code here
+
 ```python
 from taipy.core.config import Config
 import taipy as tp
@@ -29,63 +32,6 @@ def add(nb):
 ```
 
 ![](config_07.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
-
-
-=== "Taipy Studio/TOML configuration"
-
-    - Create new file: 'config_07.toml'
-    - Open Taipy Studio view
-    - Go to the 'Config files' section of Taipy Studio
-    - Right click on the right configuration
-    - Choose 'Taipy: Show View'
-    - Add your first Data Node by clicking the button on the right above corner of the windows
-    - Create a name for it and change its details in the 'Details' section of Taipy Studio
-            - name: input
-    - Do the same for the intermediate and output
-            - name: output
-            - Details: storage_type:pickle, cacheable=True
-    - Add a task and choose a function to associate with `<module>.<name>:function`
-            -name: double
-            -Details: function=`__main__.double:function`
-    - Do the same for add
-    - Link the Data Nodes and the tasks
-    - Add a pipeline and link it to the tasks
-    - Add a scenario and link to the pipeline
-
-    ```python
-    Config.load('config_07.toml')
-
-    # my_scenario is the id of the scenario configured
-    scenario_cfg = Config.scenarios('my_scenario')
-    ```
-
-=== "Python configuration"
-
-    ```python
-
-    # Configuration of Data Nodes
-    input_data_node_cfg = Config.configure_data_node("input", default_data=21)
-    intermediate_data_node_cfg = Config.configure_data_node("intermediate")
-    output_data_node_cfg = Config.configure_data_node("output")
-
-    # Configuration of tasks
-    first_task_cfg = Config.configure_task("double",
-                                        double,
-                                        input_data_node_cfg,
-                                        intermediate_data_node_cfg)
-
-    second_task_cfg = Config.configure_task("add",
-                                        add,
-                                        intermediate_data_node_cfg,
-                                        output_data_node_cfg)
-
-    # Configuration of the pipeline and scenario
-    pipeline_cfg = Config.configure_pipeline("my_pipeline", [first_task_cfg, second_task_cfg])
-    scenario_cfg = Config.configure_scenario("my_scenario", [pipeline_cfg])
-
-    #scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
-    #                                                    task_configs=[first_task_cfg, second_task_cfg])
-    ```
 
 
 
