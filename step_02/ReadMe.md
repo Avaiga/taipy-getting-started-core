@@ -4,11 +4,11 @@ Let's discuss the basic functions that come along with Taipy.
 
 - `<Data Node>.write(<new value>)`: this is how data can be changed through Taipy. _write_ will change the _last_edit_date_ of the data node, which will influence if a task can be skipped or not.
 
--`tp.get_scenarios()`: this function returns a list of all the scenarios
+- `tp.get_scenarios()`: this function returns a list of all the scenarios
 
--`tp.get(<Taipy object ID>)`: this function returns an entity based on the id of the entity
+- `tp.get(<Taipy object ID>)`: this function returns an entity based on the id of the entity
 
--`tp.delete(<Taipy object ID>)`: this function deletes the entity and nested elements based on the id of the entity
+- `tp.delete(<Taipy object ID>)`: this function deletes the entity and nested elements based on the id of the entity
 
 ## Utility of having scenarios
 
