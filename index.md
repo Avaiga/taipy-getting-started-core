@@ -18,8 +18,6 @@ Taipy Core is one of the components of Taipy to facilitate pipeline orchestratio
 
 - Taipy Core provides easy management of multiple pipelines and end-user scenarios, which comes in handy in the context of Machine Learning or Mathematical optimization.
 
-To apprehend the Scenario Management aspect of Taipy, you need to understand four essential concepts.
-
 Each step of the **"Getting Started"** will focus on basic concepts of *Taipy*. Note that every step is dependent on 
 the code of the previous one. After completing the last step, you will have the skills to develop your own Taipy 
 application. 
