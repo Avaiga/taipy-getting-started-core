@@ -6,8 +6,7 @@ This step reuses the configuration provided in the previous step except for the 
 
 ## Callback on scenarios
 
-To have an action after the change of a job status, we can subscribe a function to a scenario. This function will be called each time a job has its status changed.
-
+To have an action after the change of a job status, we can subscribe a function to a scenario. This function will be called each time a job has its status changed. I can be used to create logs or create an event for Taipy GUI.
 ```python
 def callback_scenario(scenario, job):
     """All the scenarios are subscribed to the callback_scenario_state function. It means whenever a job is done, it is called.
