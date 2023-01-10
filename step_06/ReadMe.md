@@ -2,30 +2,14 @@
 
 Skippable/Caching is an important feature of Taipy. Tasks can be skipped if input Data Nodes of tasks have changed or not. If none of the input Data Nodes have been changed after a first submission, tasks will be skipped. Time and ressources are saved thanks to this mechanism.
 
-```python
-def filter_by_month(df, month):
-    df['Date'] = pd.to_datetime(df['Date']) 
-    df = df[df['Date'].dt.month == month]
-    return df
 
-def count_values(df):
-    return len(df)
-```
 
 ![](config_06.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 
 === "Taipy Studio/TOML configuration"
 
-    - Create new file: 'config_06.toml'
-    - Open Taipy Studio view
-    - Go to the 'Config files' section of Taipy Studio
-    - Right click on the right configuration
-    - Choose 'Taipy: Show View'
-    - Add your first Data Node by clicking the button on the right above corner of the windows
-    - Create a name for it and change its details in the 'Details' section of Taipy Studio
-            - name: historical_data
-            - Details: default_path=xxxx/yyyy.csv, storage_type=csv, cacheable=True:bool
+
     - Do the same for the month_data and nb_of_values
             - name: output
             - Details: storage_type:pickle, cacheable=True
@@ -33,10 +17,7 @@ def count_values(df):
             -name: filter_current
             -Details: function=`__main__.filter_current:function`
     - Do the same for count_values
-    - Link the Data Nodes and the tasks
-    - Add a pipeline and link it to the tasks
-    - Add a scenario and link to the pipeline
-    - Add the frequency property and put "WEEKLY:FREQUENCY" (DAILY, WEEKLY, MONTHLY, YEARLY)
+
 
     ```python
     Config.load('config_06.toml')
@@ -48,39 +29,12 @@ def count_values(df):
 === "Python configuration"
 
     ```python
-    historical_data_cfg = Config.configure_csv_data_node(id="historical_data",
-                                                     default_path="time_series.csv",
-                                                     scope=Scope.GLOBAL)
-    month_cfg =  Config.configure_data_node(id="month", scope=Scope.CYCLE)
     month_values_cfg =  Config.configure_data_node(id="month_data",
                                                    scope=Scope.CYCLE,
                                                    cacheable=True)
 
     nb_of_values_cfg = Config.configure_data_node(id="nb_of_values",
                                                   cacheable=True)
-
-
-    task_filter_by_month_cfg = Config.configure_task(id="filter_by_month",
-                                                     function=filter_by_month,
-                                                     input=[historical_data_cfg, month_cfg],
-                                                     output=month_values_cfg)
-
-    task_count_values_cfg = Config.configure_task(id="count_values",
-                                                     function=count_values,
-                                                     input=month_values_cfg,
-                                                     output=nb_of_values_cfg)
-
-    pipeline_cfg = Config.configure_pipeline(id="my_pipeline",
-                                             task_configs=[task_filter_by_month_cfg,
-                                                           task_count_values_cfg])
-
-    scenario_cfg = Config.configure_scenario(id="my_scenario",
-                                             pipeline_configs=[pipeline_cfg],
-                                             frequency=Frequency.MONTHLY)
-
-    #scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
-    #                                                    task_configs=[task_filter_by_month_cfg,
-    #                                                    task_count_values_cfg])
     ```
 
 The configuration is the same. `cacheabable=True` are added to the output Data Nodes that we want to be cached.
