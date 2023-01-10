@@ -22,7 +22,7 @@ def callback_scenario(scenario, job):
 
 ```
 
-## Comparison of funtions
+## Comparison of scenarios
 
 Taipy provides a way to compare scenarios by providing a function directly into the configuration of the scenario.
 
