@@ -1,5 +1,5 @@
 
-# Cycles :
+# Step 4: Cycles :
 
 So far, we have talked about how having different scenarios helps us to oversee our assumptions about the future. For example, in business, it is critical to weigh different options to come up with an optimal solution. However, this decision-making process isn’t just a one-time task but rather a recurrent operation that happens over a time period. This is why we want to introduce Cycles.
 
