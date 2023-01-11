@@ -24,7 +24,6 @@ def filter_by_month(df, month):
         - Recreate the config of the previous step
         - Add the frequency property for the scenario and put "WEEKLY:FREQUENCY" (DAYLY, WEEKLY, MONTHLY, YEARLY)
 
-
     ```python
     Config.load('config_04.toml')
 
