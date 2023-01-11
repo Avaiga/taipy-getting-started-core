@@ -38,23 +38,24 @@ second_task_cfg = Config.configure_task("add",
 pipeline_cfg = Config.configure_pipeline("my_pipeline", [first_task_cfg, second_task_cfg])
 
 
-def compare_function(*data_node_results):
-    compare_result= {}
-    current_res_i = 0
-    for current_res in data_node_results:
-        compare_result[current_res_i]={}
-        next_res_i = 0
-        for next_res in data_node_results:
-            print(f"comparing result {current_res_i} with result {next_res_i}")
-            compare_result[current_res_i][next_res_i] = next_res - current_res
-            next_res_i += 1
-        current_res_i += 1
-    return compare_result
+
+def callback_scenario_state(scenario, job):
+    """All the scenarios are subscribed to the callback_scenario_state function. It means whenever a job is done, it is called.
+    Depending on the job and the status, it will update the message stored in a json that is then displayed on the GUI.
+
+    Args:
+        scenario (Scenario): the scenario of the job changed
+        job (_type_): the job that has its status changed
+    """
+    print(scenario.name)
+    if job.status.value == 7:
+        for data_node in job.task.output.values():
+            print(data_node.read())
+
 
 
 scenario_cfg = Config.configure_scenario("my_scenario",
-                                         [pipeline_cfg],
-                                         comparators={intermediate_data_node_cfg.id: compare_function})
+                                         [pipeline_cfg])
 
 #scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
 #                                                    task_configs=[task_filter_by_month_cfg,
@@ -65,6 +66,7 @@ Config.export("src/config_08.toml")
 if __name__=="__main__":
     tp.Core().run()
     scenario_1 = tp.create_scenario(scenario_cfg)
+    scenario_1.subscribe(callback_scenario_state)
 
     scenario_1.submit(wait=True)
     scenario_1.submit(wait=True, timeout=5)
