@@ -48,26 +48,15 @@ def count_values(df):
 
 === "Taipy Studio/TOML configuration"
 
-    - Create new file: 'config_03.toml'
-    - Open Taipy Studio view
-    - Go to the 'Config files' section of Taipy Studio
-    - Right click on the right configuration
-    - Choose 'Taipy: Show View'
-    - Add your first Data Node by clicking the button on the right above corner of the windows
+    - Create the beginning of the Config with Data Nodes
     - Create a name for it and change its details in the 'Details' section of Taipy Studio
             - name: historical_data
             - Details: default_path='xxxx/yyyy.csv', storage_type=csv
     - Do the same for the month_data and nb_of_values
             - name: output
             - Details: storage_type=pickle
-    - Add a task and choose a function to associate with `<module>.<name>:function`
-            -name: filter_current
-            -Details: function=__main__.filter_current:function
-    - Do the same for count_values
-    - Link the Data Nodes and the tasks
-    - Add a pipeline and link it to the tasks
-    - Add a scenario and link to the pipeline
-
+    - Add tasks: filter_current and count_values
+    - Finish the Config by connecting tasks and Data Nodes and creating the pipeline and scenario
 
 
     ```python
