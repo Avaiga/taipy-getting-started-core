@@ -1,5 +1,5 @@
 
-# Different types of Data Nodes:
+# Step 3: Different types of Data Nodes:
 
 - *[Pickle](https://docs.taipy.io/en/latest/manuals/core/config/data-node-config/#pickle)* (default): Taipy can store and read anykind of data that can be serializable.
 
