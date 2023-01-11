@@ -64,11 +64,6 @@ Config.export("src/config_08.toml")
 
 if __name__=="__main__":
     tp.Core().run()
-    scenario_1 = tp.create_scenario(scenario_cfg)
-
-    scenario_1.submit(wait=True)
-    scenario_1.submit(wait=True, timeout=5)
-     
 
     scenario_1 = tp.create_scenario(scenario_cfg)
     scenario_2 = tp.create_scenario(scenario_cfg)
@@ -76,16 +71,9 @@ if __name__=="__main__":
     scenario_1.input.write(10)
     scenario_2.input.write(8)
 
-    print("\nScenario 1: submit")
     scenario_1.submit()
-    print("Value", scenario_1.output.read())
-
-    print("\nScenario 2: first submit")
     scenario_2.submit()
-    print("Value", scenario_2.output.read())
-
-
+    
     print(tp.compare_scenarios(scenario_1, scenario_2))
-
 
     tp.Rest().run()

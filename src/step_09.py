@@ -16,7 +16,6 @@ def add(nb):
     time.sleep(10)
     return nb + 10
 
-Config.configure_job_executions(mode="standalone", max_nb_of_workers=2)
 
 # Configuration of Data Nodes
 input_data_node_cfg = Config.configure_data_node("input", default_data=21)
@@ -69,25 +68,5 @@ if __name__=="__main__":
     scenario_1.subscribe(callback_scenario_state)
 
     scenario_1.submit(wait=True)
-    scenario_1.submit(wait=True, timeout=5)
-     
-
-    scenario_1 = tp.create_scenario(scenario_cfg)
-    scenario_2 = tp.create_scenario(scenario_cfg)
-
-    scenario_1.input.write(10)
-    scenario_2.input.write(8)
-
-    print("\nScenario 1: submit")
-    scenario_1.submit()
-    print("Value", scenario_1.output.read())
-
-    print("\nScenario 2: first submit")
-    scenario_2.submit()
-    print("Value", scenario_2.output.read())
 
 
-    print(tp.compare_scenarios(scenario_1, scenario_2))
-
-
-    tp.Rest().run()
