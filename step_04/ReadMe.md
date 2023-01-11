@@ -142,8 +142,8 @@ Also, as you can see every scenario has been submitted and executed entirely. Ho
 
 - `get_primary_scenarios()`: will return a list of all primary scenarios
 
-- `get_scenarios(cycle=<Cycle>)`: will return all the scenarios in the cycle
+- `get_scenarios(cycle=<Cycle>)`: will return all the scenarios in the Cycle
 
--  `get_cycles()`: will return the list of cycles
+-  `get_cycles()`: will return the list of Cycles
 
--  `get_primary(<Cycle>)`: will return the primary scenario of the cycle
+-  `get_primary(<Cycle>)`: will return the primary scenario of the Cycle
