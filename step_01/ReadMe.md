@@ -1,4 +1,7 @@
 # Step 1: Configuration and execution
+
+Before going directly into the code and examples, some concept and terms have to be defined.
+
 ## Four fundamental concepts in Taipy Core:
 - Data Nodes: are the translation of variables in Taipy. Data Nodes don't contain the data but know how to retrieve it. They can refer to any data: any Python object (string, int, list, dict, model, dataframe, etc), a Pickle file, a CSV file, an SQL database, etc. They know how to read and write data. You can even write your own custom Data Node if needed to access a particular data format.
 
@@ -11,10 +14,10 @@
 
 ## What is a configuration?
 
-Configuration is the structure or model of what is our scenario. It represents our Direct Acyclic Graph but also how we want our data to be stored or how our code is run. Taipy is able to create multiple instances of this structure with different data thus, we need a way to define it through this configuration step.
+Configuration is the structure of what is our scenario. It represents our Direct Acyclic Graph but also how we want our data to be stored or how our code is run. Taipy is able to create multiple instances of this structure with different data thus, we need a way to define it through this configuration step.
 
 
-Let's create our first configuration and then create our entities to submit through Taipy Studio or direct Python Code.
+Let's create our first configuration through Taipy Studio or direct Python Code and then create our entities to submit.
 
 ```python
 from taipy import Config
@@ -88,7 +91,7 @@ The code below presents how you can create scenarios and submit them.
 
 First of all, Taipy has to be run (`tp.Core().run()`). It will create a service that will act as a job scheduler.
 
-Creating a scenario/pipeline (`tp.create_scenario(<Scenario Config>)`/`tp.create_pipeline(<Pipeline Config>)` will create all the related entities. These entities are being created thanks to the previous configuration but no code is being run yet. `tp.submit(<Scenario>)` is line of code that will run all the related pipelines and tasks. Note that a pipeline or a task can also be submit (`tp.submit(<Pipeline>)`, `tp.submit(<Task>)`).
+Creating a scenario/pipeline (`tp.create_scenario(<Scenario Config>)`/`tp.create_pipeline(<Pipeline Config>)` will create all the related entities. These entities are being created thanks to the previous configuration but no code is being run yet. `tp.submit(<Scenario>)` is the line of code that will run all the related pipelines and tasks. Note that a pipeline or a task can also be submit (`tp.submit(<Pipeline>)`, `tp.submit(<Task>)`).
 
 ```python
 # Run of the Core
