@@ -35,6 +35,7 @@ def filter_by_month(df, month):
 
 
 === "Python configuration"
+    
     The configuration is the same as the last step except for the configuration of the scenario. A new parameter is added for the frequency.
     
     ```python
