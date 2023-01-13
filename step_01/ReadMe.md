@@ -1,6 +1,6 @@
 # Step 1: Configuration and execution
 
-Before going directly into the code and examples, some concept and terms have to be defined.
+Before going directly into the code and examples, some concept and terms have to be defined. Taipy Core revolves around four marjor concepts.
 
 ## Four fundamental concepts in Taipy Core:
 - Data Nodes: are the translation of variables in Taipy. Data Nodes don't contain the data but know how to retrieve it. They can refer to any data: any Python object (string, int, list, dict, model, dataframe, etc), a Pickle file, a CSV file, an SQL database, etc. They know how to read and write data. You can even write your own custom Data Node if needed to access a particular data format.
