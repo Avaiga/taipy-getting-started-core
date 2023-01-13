@@ -27,11 +27,6 @@ The execution graph used to explain the different concepts is quite simple.
 ![](config_03.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 ```python
-import datetime as dt
-import pandas as pd
-```
-
-```python
 def filter_current(df):
     current_month = dt.datetime.now().month
     df['Date'] = pd.to_datetime(df['Date']) 
