@@ -9,7 +9,7 @@
 
 - *[SQL](https://docs.taipy.io/en/latest/manuals/core/config/data-node-config/#sql)*: Taipy can read and store a table or data base.
 
-- *[Generic](https://docs.taipy.io/en/latest/manuals/core/config/data-node-config/#generic)*: Taipy provides a generic Data Node that can read and store any data based on the reding and writing function created by the user.
+- *[Generic](https://docs.taipy.io/en/latest/manuals/core/config/data-node-config/#generic)*: Taipy provides a generic Data Node that can read and store any data based on a _reading_ and _writing_ function created by the user.
 
 The execution graph used to explain the different concepts is quite simple.
 
