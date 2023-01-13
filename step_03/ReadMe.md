@@ -19,8 +19,8 @@ The execution graph used to explain the different concepts is quite simple.
     - _nb_of_values_: number of values in this month (int as a Pickle file)
 
 2) Two tasks linking these Data Nodes:
-- _filter_: filters on the months of the dataframe
-- _count_values_: calculates the number of elements in this month
+    - _filter_: filters on the months of the dataframe
+    - _count_values_: calculates the number of elements in this month
 
 3) One pipeline in a scenario gathering these two tasks.
 
