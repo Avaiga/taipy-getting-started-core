@@ -51,7 +51,7 @@ def filter_by_month(df, month):
 
 
 
-As you can see, a Cycle can be made very easily once you have the desired frequency. In this snippet of code, since we have specified frequency=Frequency.MONTHLY, the corresponding scenario will be automatically attached to the correct period (month) once it is created.
+As you can see, a Cycle can be made very easily once you have the desired frequency. In this snippet of code, since we have specified `frequency=Frequency.MONTHLY`, the corresponding scenario will be automatically attached to the correct period (month) once it is created.
 
 
 
