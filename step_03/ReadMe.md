@@ -51,9 +51,6 @@ def count_values(df):
     - Create a name for it and change its details in the 'Details' section of Taipy Studio
             - name: historical_data
             - Details: default_path='xxxx/yyyy.csv', storage_type=csv
-    - Do the same for the month_data and nb_of_values
-            - name: output
-            - Details: storage_type=pickle
     - Add tasks: filter_current and count_values
     - Finish the Config by connecting tasks and Data Nodes and creating the pipeline and scenario
 
