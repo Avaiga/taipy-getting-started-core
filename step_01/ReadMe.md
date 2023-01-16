@@ -110,3 +110,11 @@ Results:
 ```    
 
 Data is being store by default in a '.data' folder meaning that data, scenarios, pipelines, jobs and tasks are persisted between two runs.
+
+## Ways of executing the code: Versioning
+
+- Development: the default way of executing the code. Data of a previous Development run is erased.
+
+- Experiment:  data are stored after each run and a identifier is attached to each run. This identifier can be decided by the user in order to run with the data of a previous run.
+
+- Production: data are stored after each run. This identifier can be decided by the user in order to run with the data of a previous run.
