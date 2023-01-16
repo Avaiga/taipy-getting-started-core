@@ -69,7 +69,7 @@ print([s.name for s in tp.get_scenarios()])
 
 Results:
 ```
-    [...]
+    ["Scenario"]
 ```
 
 - Get an entity from its id
