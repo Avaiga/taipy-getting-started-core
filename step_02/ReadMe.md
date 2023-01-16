@@ -64,12 +64,12 @@ Results:
 - How to access all the scenarios
 
 ```python
-print([s.input.read() for s in tp.get_scenarios()])
+print([s.name for s in tp.get_scenarios()])
 ```
 
 Results:
 ```
-    [21, 54]
+    [..., ...]
 ```
 
 - Get an entity from its id
