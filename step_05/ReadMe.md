@@ -26,7 +26,7 @@ Scoping determines how Data Nodes are shared between cycles, scenarios, and pipe
     Config.load('config_05.toml')
 
     # my_scenario is the id of the scenario configured
-    scenario_cfg = Config.scenarios('my_scenario')
+    scenario_cfg = Config.scenarios['my_scenario']
     ```
     
 === "Python configuration"

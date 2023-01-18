@@ -22,7 +22,7 @@ Config.load('config_08.toml')
 Config.configure_job_executions(mode="standalone", max_nb_of_workers=2)
 
 # my_scenario is the id of the scenario configured
-scenario_cfg = Config.scenarios('my_scenario')
+scenario_cfg = Config.scenarios['my_scenario']
 
 def callback_scenario_state(scenario, job):
     """All the scenarios are subscribed to the callback_scenario_state function. It means whenever a job is done, it is called.

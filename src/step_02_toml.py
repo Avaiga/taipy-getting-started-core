@@ -9,7 +9,7 @@ def double(nb):
 Config.load('config_02.toml')
 
 # my_scenario is the id of the scenario configured
-scenario_cfg = Config.scenarios('my_scenario')
+scenario_cfg = Config.scenarios['my_scenario']
 
 tp.Core().run()
 

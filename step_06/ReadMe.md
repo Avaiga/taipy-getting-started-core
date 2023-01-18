@@ -23,7 +23,7 @@ Skippable/Caching is an important feature of Taipy. Tasks can be skipped if inpu
     Config.load('config_06.toml')
 
     # my_scenario is the id of the scenario configured
-    scenario_cfg = Config.scenarios('my_scenario')
+    scenario_cfg = Config.scenarios['my_scenario']
     ```
 
 === "Python configuration"

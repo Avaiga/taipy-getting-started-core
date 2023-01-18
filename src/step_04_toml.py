@@ -17,7 +17,7 @@ def count_values(df):
 Config.load('config_04.toml')
 
 # my_scenario is the id of the scenario configured
-scenario_cfg = Config.scenarios('my_scenario')
+scenario_cfg = Config.scenarios['my_scenario']
 
 
 tp.Core().run()
