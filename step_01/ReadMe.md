@@ -113,7 +113,7 @@ Data is being store by default in a '.data' folder meaning that data, scenarios,
 
 ## Ways of executing the code: Versioning
 
-Taipy Core provides a system of versioning in order to keep track of different config versions. `python main.py -h` opens an helper to understand the different options of the versioning. Here are the principle ways to run the code with versioning:
+Taipy Core provides a versioning system in order to keep track of different config versions. `python main.py -h` opens an helper to understand the different options of the versioning. Here are the principle ways to run the code with versioning:
 
 - Development: the default way of executing the code. Data of a previous Development run is erased. `python main.py` will run it.
 
