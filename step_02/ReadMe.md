@@ -61,7 +61,7 @@ Results:
     
 ## Other useful functions
 
-- How to access all the scenarios. It returns the list of scenarios.
+- `tp.get_scenarios` access all the scenarios by returning a list.
 
 ```python
 print([s.name for s in tp.get_scenarios()])
@@ -72,13 +72,13 @@ Results:
     ["Scenario"]
 ```
 
-- Get an entity from its id
+- Get an entity from its id:
 
 ```python
 scenario = tp.get(scenario.id)
 ```
 
-- Delete an entity through its id. Example: how to delete a scenario.
+- Delete an entity through its id. For example, to delete a scenario:
 
 ```python
 tp.delete(scenario.id)
