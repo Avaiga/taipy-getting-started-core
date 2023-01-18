@@ -61,7 +61,7 @@ Results:
     
 ## Other useful functions
 
-- How to access all the scenarios
+- How to access all the scenarios. It returns the list of scenarios.
 
 ```python
 print([s.name for s in tp.get_scenarios()])
