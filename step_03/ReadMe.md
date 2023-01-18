@@ -9,9 +9,9 @@
 
 - *[SQL](https://docs.taipy.io/en/latest/manuals/core/config/data-node-config/#sql)*: Taipy can read and store a table or data base.
 
-- [Mongo](https://docs.taipy.io/en/develop/manuals/core/config/data-node-config/#mongo-collection)): Taipy can read and store into a Mongo Collection
+- *[Mongo](https://docs.taipy.io/en/develop/manuals/core/config/data-node-config/#mongo-collection)*: Taipy can read and store into a Mongo Collection
 
-- [Parquet](): Taipy can read and store data frames in a Parquet format
+- *[Parquet]()*: Taipy can read and store data frames in a Parquet format
 
 - *[Generic](https://docs.taipy.io/en/latest/manuals/core/config/data-node-config/#generic)*: Taipy provides a generic Data Node that can read and store any data based on a _reading_ and _writing_ function created by the user.
 
