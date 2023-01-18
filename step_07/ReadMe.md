@@ -10,8 +10,6 @@ Options of _submit_:
 - _timeout_: if wait is True, Taipy will wait for the end of the submit until a certain amount of time
 
 
-No difficulty >> do it yourself >> search code here
-
 ```python
 # Normal function used by Taipy
 def double(nb):
