@@ -1,6 +1,6 @@
 # Skippable/Caching
 
-Skippable/Caching is an important feature of Taipy. Tasks can be skipped if input Data Nodes of tasks have not changed. If none of the input Data Nodes have been changed after a first submission, tasks will be skipped. Time and ressources are saved thanks to this mechanism.
+Skippable/Caching is an essential feature of Taipy. Taipy scheduler can skip tasks if their input Data Nodes have not changed. If none of the input Data Nodes have been changed after the first submission, Taipy will skip tasks. Time and resources are saved thanks to this mechanism.
 
 
 
@@ -37,7 +37,7 @@ Skippable/Caching is an important feature of Taipy. Tasks can be skipped if inpu
                                                   cacheable=True)
     ```
 
-The configuration is the same. `cacheabable=True` are added to the output Data Nodes that we want to be cached.
+The configuration is the same. `cacheabable=True` are added to the output Data Nodes we want to be cached.
 
 Here we create three different scenarios with different creation dates and names. Scenario 1 and scenario 2 belong to the same cycle.
 
@@ -58,7 +58,7 @@ scenario_3 = tp.create_scenario(scenario_cfg,
 
 
 ```python
-# scenario 1 and 2 belongs to the same cycle so 
+# scenario 1 and 2 belong to the same cycle, so 
 # defining the month for scenario 1 defines the month for the scenarios in the cycle
 scenario_1.month.write(10)
 print("Scenario 1: month", scenario_1.month.read())
@@ -71,7 +71,7 @@ Results:
     Scenario 2: month 10
 ```
 
- No task has already been submitted so everything will be completed.
+ Every task has yet to be submitted, so everything will be completed.
 
 ```python
 print("Scenario 1: submit")
@@ -88,11 +88,11 @@ Results:
     Value 849
 ```
 
-When the second scenario is being executed, the first task will be skipped. Indeed, the two scenarios shares the same input Data Nodes for this task and it hasn't been changed.
+The scheduler will skip the first task of the second scenario. Indeed, the two scenarios share the same input Data Nodes for this task, and it hasn't been changed.
 
 
 ```python
-# first task has already been executed by scenario 1 because scenario 2 shares the same data node for this task
+# the first task has already been executed by scenario 1
 print("Scenario 2: first submit")
 scenario_2.submit()
 print("Value", scenario_2.nb_of_values.read())
@@ -106,10 +106,10 @@ Results:
     Value 849
 ```
 
-Resubmitting the same scenario without any change will just skip every task.
+Resubmitting the same scenario without any change will skip every task.
 
 ```python
-# every task has already been executed so everything will be skipped
+# every task has already been executed, so the scheduler will skip everything
 print("Scenario 2: second submit")
 scenario_2.submit()
 print("Value", scenario_2.nb_of_values.read())
@@ -123,11 +123,11 @@ Results:
     Value 849
 ```
 
-This scenario is not in the same cycle. We change the month to 9 and every task will be completed. 
+This scenario is not in the same cycle. We change the month to 9, and the scheduler will complete every task. 
 
 
 ```python
-# scenario 3 has no connection to the other scenarios so everything will be executed
+# scenario 3 has no connection to the other scenarios, so everything will be executed
 print("Scenario 3: submit")
 scenario_3.month.write(9)
 scenario_3.submit()
@@ -142,11 +142,11 @@ Results:
     Value 1012
 ```  
 
-Here, we change the input Data Node of the pipeline so Taipy will re run the correct tasks to make sure that everything is up-to-date.
+Here, we change the input Data Node of the pipeline so Taipy will re-run the correct tasks to ensure that everything is up-to-date.
 
 
 ```python
-# changing an input data node will make the task be reexecuted
+# changing an input data node will make the task be executed
 print("Scenario 3: change in historical data")
 scenario_3.historical_data.write(pd.read_csv('time_series_2.csv'))
 scenario_3.submit()
