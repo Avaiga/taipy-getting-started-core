@@ -40,6 +40,7 @@ def double(nb):
 
 
 === "Taipy Studio/TOML configuration"
+
     Note: Remember to save the file after each change.
     - Create new file: 'config_01.toml'
     - Open Taipy Studio view
