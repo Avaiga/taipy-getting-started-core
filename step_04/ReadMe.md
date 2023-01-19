@@ -21,7 +21,7 @@ def filter_by_month(df, month):
 
 === "Taipy Studio/TOML configuration"
 
-        - Recreate the config of the previous step
+        - Recreate the config of the previous step but change the task accordingly.
         - Add the frequency property for the scenario and put "WEEKLY:FREQUENCY" (DAYLY, WEEKLY, MONTHLY, YEARLY)
 
     ```python
@@ -36,9 +36,15 @@ def filter_by_month(df, month):
 
 === "Python configuration"
     
-    The configuration is the same as the last step except for the configuration of the scenario. A new parameter is added for the frequency.
+    The configuration is the same as the last step except for the configuration of the scenario and the task. A new parameter is added for the frequency.
     
     ```python
+    task_filter_by_month_cfg = Config.configure_task(id="filter_by_month",
+                                                 function=filter_by_month,
+                                                 input=[historical_data_cfg, month_cfg],
+                                                 output=month_values_cfg)
+
+    
     scenario_cfg = Config.configure_scenario(id="my_scenario",
                                              pipeline_configs=[pipeline_cfg],
                                              frequency=Frequency.MONTHLY)
