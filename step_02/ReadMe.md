@@ -31,7 +31,7 @@ Results:
 
 ## _write_ function
 
-Data of a Data Node can be changed using _write_. The syntax is `<Scenario>.<Pipeline>.<Data Node>.write(value)`. If there is just one pipeline, we can write `<Scenario>.<Data Node>.write(value)`.
+Data of a Data Node can be changed using _write_. The syntax is `<Scenario>.<Pipeline>.<Data Node>.write(value)`. If there is just one pipeline, we can just write `<Scenario>.<Data Node>.write(value)`.
 
 
 ```python
