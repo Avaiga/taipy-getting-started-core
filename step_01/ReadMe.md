@@ -116,8 +116,8 @@ Data is being store by default in a '.data' folder meaning that data, scenarios,
 
 Taipy Core provides a versioning system in order to keep track of different Configurations (DAG, execution modes, ...). `python main.py -h` opens an helper to understand the different options of the versioning. Here are the principle ways to run the code with versioning:
 
-- Development: is the default way of executing the code. Data of a previous Development run is erased. `python main.py` will run it.
+- _Development_: is the default way of executing the code. Data of a previous Development run is erased. `python main.py` will run it.
 
-- Experiment: data are stored after each run and an identifier is attached to each run. `python main.py --experiment` will excute the code in Experiment mode. The identifier can be decided by the user in order to run with the data of a previous run.  This is the use of the version number can be given: `python main.py --experiment --version-number 1`.
+- _Experiment_: data are stored after each run and an identifier is attached to each run. `python main.py --experiment` will excute the code in Experiment mode. The identifier can be decided by the user in order to run with the data of a previous run.  This is the use of the version number can be given: `python main.py --experiment --version-number 1`.
 
-- Production: data are stored after each run. This identifier can be decided by the user in order to run with the data of a previous run. `python main.py --experiment` will excute the code in Experiment mode or `python main.py --experiment --version-number 1` to run it with a specific version.
+- _Production_: data are stored after each run. This identifier can be decided by the user in order to run with the data of a previous run. `python main.py --experiment` will excute the code in Experiment mode or `python main.py --experiment --version-number 1` to run it with a specific version.
