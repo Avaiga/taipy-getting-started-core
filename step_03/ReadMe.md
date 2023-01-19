@@ -1,13 +1,12 @@
-
 # Step 3: Different types of Data Nodes:
 
-- *[Pickle](https://docs.taipy.io/en/latest/manuals/core/config/data-node-config/#pickle)* (default): Taipy can store and read anykind of data that can be serializable.
+- *[Pickle](https://docs.taipy.io/en/latest/manuals/core/config/data-node-config/#pickle)* (default): Taipy can store and read any data that can be serializable.
 
-- *[CSV](https://docs.taipy.io/en/latest/manuals/core/config/data-node-config/#csv)*: Taipy can read and store any dataframe as a CSV.
+- *[CSV](https://docs.taipy.io/en/latest/manuals/core/config/data-node-config/#csv)*: Taipy can read and store any data frame as a CSV.
 
 - *[JSON](https://docs.taipy.io/en/latest/manuals/core/config/data-node-config/#json)*: Taipy can read and store any JSONable data as a JSON file.
 
-- *[SQL](https://docs.taipy.io/en/latest/manuals/core/config/data-node-config/#sql)*: Taipy can read and store a table or data base.
+- *[SQL](https://docs.taipy.io/en/latest/manuals/core/config/data-node-config/#sql)*: Taipy can read and store a table or database.
 
 - *[Mongo](https://docs.taipy.io/en/develop/manuals/core/config/data-node-config/#mongo-collection)*: Taipy can read and store into a Mongo Collection
 
@@ -23,7 +22,7 @@ The execution graph used to explain the different concepts is quite simple.
     - _nb_of_values_: number of values in this month (int as a Pickle file)
 
 2) Two tasks linking these Data Nodes:
-    - _filter_: filters on the months of the dataframe
+    - _filter_: filters on the months of the data frame
     - _count_values_: calculates the number of elements in this month
 
 3) One pipeline in a scenario gathering these two tasks.
