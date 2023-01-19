@@ -47,8 +47,8 @@ def count_values(df):
 
 === "Taipy Studio/TOML configuration"
 
-    - Create the beginning of the Config with Data Nodes
-    - Create a name for it and change its details in the 'Details' section of Taipy Studio
+    - Create the beginning of the Config with Data Nodes following the graph.
+    - Change the details of*_historical_data* in the 'Details' section of Taipy Studio
             - name: historical_data
             - Details: default_path='xxxx/yyyy.csv', storage_type=csv
     - Add tasks: filter_current and count_values
