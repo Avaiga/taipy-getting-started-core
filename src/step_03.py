@@ -21,7 +21,7 @@ month_values_cfg =  Config.configure_data_node(id="month_data")
 nb_of_values_cfg = Config.configure_data_node(id="nb_of_values")
 
 
-task_filter_current_cfg = Config.configure_task(id="filter_current",
+task_filter_cfg = Config.configure_task(id="filter_current",
                                                  function=filter_current,
                                                  input=historical_data_cfg,
                                                  output=month_values_cfg)
@@ -32,7 +32,7 @@ task_count_values_cfg = Config.configure_task(id="count_values",
                                                  output=nb_of_values_cfg)
 
 pipeline_cfg = Config.configure_pipeline(id="my_pipeline",
-                                         task_configs=[task_filter_current_cfg,
+                                         task_configs=[task_filter_cfg,
                                                        task_count_values_cfg])
 
 scenario_cfg = Config.configure_scenario(id="my_scenario",
