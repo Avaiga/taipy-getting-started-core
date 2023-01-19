@@ -1,10 +1,10 @@
-## Step 8: Comparison of scenarios
+# Step 8: Comparison of scenarios
 
 This step reuses the configuration provided in the previous step except for the scenario configuration.
 
 ![](config_08.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
-Taipy provides a way to compare scenarios by providing a function directly into the configuration of the scenario.
+Taipy provides a way to compare scenarios by providing a function directly into the scenario's configuration.
 
 _data_node_results_ is a list of data nodes from all scenarios passed in the comparator. We iterate through it to compare scenarios.
 
@@ -24,7 +24,7 @@ def compare_function(*data_node_results):
     return compare_result
 ```
 
-The Data Node that will be compared here is the 'month' Data Node. It is indicated in the comparators parameter of the _configure_scenario_.
+Taipy compares the Data Nodes, which is here the 'month' Data Node. It is indicated in the comparators parameter of the _configure_scenario_.
 
 
 
@@ -61,7 +61,7 @@ print(tp.compare_scenarios(scenario_1, scenario_2))
 
 ## Taipy Rest
 
-Taipy Rest allows the user to navigate through the entities of the application but also create and submit scenarios. Commands that can be used with Taipy Rest are referenced [here](https://docs.taipy.io/en/latest/manuals/reference_rest/).
+Taipy Rest allows the user to navigate through the entities of the application but also create and submit scenarios. Taipy Rest commands are referenced [here](https://docs.taipy.io/en/latest/manuals/reference_rest/).
 
 ```python
 tp.Rest().run()
