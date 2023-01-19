@@ -1,14 +1,13 @@
-
 # Step 4: Cycles :
 
-So far, we have talked about how having different scenarios helps us to oversee our assumptions about the future. For example, in business, it is critical to weigh different options to come up with an optimal solution. However, this decision-making process isn’t just a one-time task but rather a recurrent operation that happens over a time period. This is why we want to introduce Cycles.
+So far, we have discussed how having different scenarios helps us oversee our future assumptions. For example, in business, it is critical to weight options to come up with an optimal solution. However, this decision-making process is not just a one-time task but rather a recurrent operation that happens over a time period. This is why we want to introduce Cycles.
 
-A cycle can be thought of as a place to store different and recurrent scenarios within a time frame. In Taipy Core, each Cycle will have a unique primary scenario representing the reference scenario for a time period.
+A cycle can be considered a place to store different and recurrent scenarios within a time frame. In Taipy Core, each Cycle will have a unique primary scenario representing the reference scenario for a time period.
 
 
-In the step's example, scenarios are attached to a MONTHLY cycle. Using Cycles is useful because some specific Taipy's functions exist to navigate through these Cycles. Taipy can get all the scenarios created in a month by providing the Cycle. You can also get every primary scenario ever made to see their progress over time quickly.
+In the step's example, scenarios are attached to a MONTHLY cycle. Using Cycles is helpful because some specific Taipy's functions exist to navigate through these Cycles. Taipy can get all the scenarios created in a month by providing the Cycle. You can also get every primary scenario ever made to see their progress over time quickly.
 
-We change the function to filter in order to have the month as argument.
+We change the filter function to have the month as argument.
 ```python
 def filter_by_month(df, month):
     df['Date'] = pd.to_datetime(df['Date']) 
@@ -36,7 +35,7 @@ def filter_by_month(df, month):
 
 === "Python configuration"
     
-    The configuration is the same as the last step except for the configuration of the scenario and the task. A new parameter is added for the frequency.
+    The configuration is the same as the last step except for the scenario and task configuration. A new parameter is added for the frequency.
     
     ```python
     task_filter_cfg = Config.configure_task(id="filter_by_month",
@@ -58,7 +57,7 @@ def filter_by_month(df, month):
 
 
 
-As you can see, a Cycle can be made very easily once you have the desired frequency. In this snippet of code, since we have specified `frequency=Frequency.MONTHLY`, the corresponding scenario will be automatically attached to the correct period (month) once it is created.
+As you can see, a Cycle can be easily made once you have the desired frequency. In this code snippet, since we have specified `frequency=Frequency.MONTHLY`, the corresponding scenario will be automatically attached to the correct period (month) once it is created.
 
 
 
@@ -73,7 +72,7 @@ scenario_2 = tp.create_scenario(scenario_cfg,
                                 name="Scenario 2022/10/5")
 ```
 
-Scenario 1 and 2 belongs to the same cycle but they don't share the same data node. Each one have a Data Node by itself.
+Scenario 1 and 2 belong to the same Cycle, but they don't share the same data node. Each one has a Data Node by itself.
 
 
 ```python
@@ -103,7 +102,7 @@ Results:
 
 ## Primary scenarios
 
-In each cycle, there is a primary scenario. Having a primary scenario is interesting because it will be the important one of the cycle, the one that is the reference. By default, the first scenario created for a cycle will be primary. `tp.set_primary(<Scenario>)` allows to change which scenario is the primary scenario in a cycle. `<Scenario>.is_primary` will return a boolean whether the scenario is primary or not.
+In each Cycle, there is a primary scenario. Having a primary scenario is interesting because it will be the important one of the Cycle, the one that is the reference. By default, the first scenario created for a cycle will be primary. `tp.set_primary(<Scenario>)` allows changing the primary scenario in a Cycle. `<Scenario>.is_primary` will return a boolean whether the scenario is primary or not.
 
 ```python
 print("Scenario 1 before", scenario_1.is_primary)
@@ -144,7 +143,7 @@ Results:
     Is scenario 3 primary? True
 ```
 
-Also, as you can see every scenario has been submitted and executed entirely. However, the result for these tasks are all the same. Caching will help to skip certain redundant task.
+Also, as you can see, every scenario has been submitted and executed entirely. However, the results for these tasks are all the same. Caching will help to skip a redundant task.
 
 ## Useful functions concerning cycles
 
