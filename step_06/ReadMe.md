@@ -1,6 +1,6 @@
 # Skippable/Caching
 
-Skippable/Caching is an important feature of Taipy. Tasks can be skipped if input Data Nodes of tasks have changed or not. If none of the input Data Nodes have been changed after a first submission, tasks will be skipped. Time and ressources are saved thanks to this mechanism.
+Skippable/Caching is an important feature of Taipy. Tasks can be skipped if input Data Nodes of tasks have not changed. If none of the input Data Nodes have been changed after a first submission, tasks will be skipped. Time and ressources are saved thanks to this mechanism.
 
 
 
