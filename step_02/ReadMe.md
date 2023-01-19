@@ -1,8 +1,8 @@
 # Step 2: Basic functions
 
-Let's discuss the basic functions that come along with Taipy.
+Let's discuss the essential functions that come along with Taipy.
 
-- `<Data Node>.write(<new value>)`: this is how data can be changed through Taipy. _write_ will change the _last_edit_date_ of the data node, which will influence if a task can be skipped or not.
+- `<Data Node>.write(<new value>)`: this instruction changes the data of a Data Node. It also changes the _last_edit_date_ of the Data Node, influencing whether a task can be skipped.
 
 - `tp.get_scenarios()`: this function returns a list of all the scenarios
 
@@ -31,7 +31,7 @@ Results:
 
 ## _write_ function
 
-Data of a Data Node can be changed using _write_. The syntax is `<Scenario>.<Pipeline>.<Data Node>.write(value)`. If there is just one pipeline, we can just write `<Scenario>.<Data Node>.write(value)`.
+Data of a Data Node can be changed using _write_. The syntax is `<Scenario>.<Pipeline>.<Data Node>.write(value)`. If there is just one pipeline, we can write `<Scenario>.<Data Node>.write(value)`.
 
 
 ```python
