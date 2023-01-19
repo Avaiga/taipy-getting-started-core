@@ -1,10 +1,10 @@
 # Callback on scenarios
 
-This step reuses the configuration provided in the step 7 except for the scenario configuration.
+This step reuses the configuration provided in step 7 except for the scenario configuration.
 
 ![](config_09.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
-To have an action after the change of a job status, we can subscribe a function to a scenario. This function will be called each time a job has its status changed. I can be used to create logs or create an event for Taipy GUI.
+To have an action after changing a job status, we can subscribe a function to a scenario. A status change will call this function. This feature allows the creation of logs or particular events for Taipy GUI.
 
 ```python
 def callback_scenario(scenario, job):
