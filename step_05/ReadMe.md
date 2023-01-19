@@ -1,4 +1,3 @@
-
 # Step 5: Scoping 
 
 Scoping determines how Data Nodes are shared between cycles, scenarios, and pipelines. Indeed, multiple scenarios can have their own Data Nodes or share the same one. For example, the initial/historical dataset is usually shared by all the scenarios/pipelines/cycles. It has a Global Scope and will be unique in the entire application.
@@ -7,13 +6,13 @@ Scoping determines how Data Nodes are shared between cycles, scenarios, and pipe
 
 - **Scenario** scope: pipelines share the same Data Node within a scenario. 
 
-- **Cycle** scope: scenarios from the same cycle share the same Data Node.
+- **Cycle** scope: scenarios from the same Cycle share the same Data Node.
 
 - **Global** scope: unique Data Node for all the scenarios/pipelines/cycles.
 
 === "Taipy Studio/TOML configuration"
 
-    Only the configuration of Data Nodes will change by adding a Scope to them. Other than that, the configuration is taken in the previous step so you can directly copy the previous TOML Config file.
+    Only the configuration of Data Nodes will change by adding a Scope. The configuration is taken in the previous step, so you can directly copy the last TOML Config file.
     
     - Change the Scope of historical_data to be global
             - name: historical_data
@@ -31,7 +30,7 @@ Scoping determines how Data Nodes are shared between cycles, scenarios, and pipe
     
 === "Python configuration"
 
-    Only the configuration of Data Nodes will change by adding a Scope to them. Other than that, the configuration is taken in the previous step so you can directly copy the previous code.
+    Only the configuration of Data Nodes will change by adding a Scope. The configuration is taken in the previous step so you can copy the previous code directly.
 
     ```python
     historical_data_cfg = Config.configure_csv_data_node(id="historical_data",
@@ -58,7 +57,7 @@ scenario_3 = tp.create_scenario(scenario_cfg,
                                 name="Scenario 2021/9/1")
 ```
 
-Scenario 1 and 2 belongs to the same cycle so we can define the month just once for scenario 1 and 2 because month has a Cycle scope.
+Scenario 1 and 2 belongs to the same Cycle, so we can define the month just once for scenario 1 and 2 because _month_ has a Cycle scope.
 
 ![](sommething.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
@@ -77,4 +76,4 @@ Results:
     Scenario 3: month 9
 ```
 
-Defining the month of scenario 1 wil also define the month of scenario because their share the same Data Node. However, because `nb_of_values` is of Scenario Scope,  each `nb_of_values` has their own value for each scenario. This value can also be identical.
+Defining the month of scenario 1 will also determine the month of scenario 2 because they share the same Data Node. However, because `nb_of_values` is of Scenario Scope,  each `nb_of_values` has its own value for each scenario. This value can also be identical.
