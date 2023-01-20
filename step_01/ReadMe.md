@@ -14,7 +14,7 @@ Before going directly into the code and examples, some concepts and terms must b
 
 ## What is a configuration?
 
-Configuration is the structure of what is our scenario. It represents our Direct Acyclic Graph but also how we want our data to be stored or how our code is run. Taipy can create multiple instances of this structure with different data. Thus, we need a way to define it through this configuration step.
+Configuration is the structure of what is our scenario. It represents our Direct Acyclic Graph but also how we want our data to be stored or how our code is run. Taipy can create multiple instances of this structure with different data called scenarios. Thus, we need a way to define it through this configuration step.
 
 
 Let's create our first configuration through Taipy Studio or direct Python Code and then create our entities to submit.
