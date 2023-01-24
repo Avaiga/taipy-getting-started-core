@@ -21,7 +21,7 @@ def filter_by_month(df, month):
 === "Taipy Studio/TOML configuration"
 
         - Recreate the config of the previous step but change the task accordingly.
-        - Add the frequency property for the scenario and put "WEEKLY:FREQUENCY" (DAYLY, WEEKLY, MONTHLY, YEARLY)
+        - Add the frequency property for the scenario and put "MONTHLY:FREQUENCY" (DAYLY, WEEKLY, MONTHLY, YEARLY)
 
     ```python
     Config.load('config_04.toml')
