@@ -44,10 +44,8 @@ def double(nb):
     **Note**: Remember to save the file after each change.
     - Create a new file: 'config_01.toml'
     - Open Taipy Studio view
-    - Go to the 'Config files' section of Taipy Studio
-    - Right-click on the right configuration
-    - Choose 'Taipy: Show View'
-    - Add your first Data Node by clicking the button on the right corner of the windows
+    - Right-click on the right configuration and choose 'Taipy: Show View'
+    - Add your first Data Node by clicking the button on the right corner of the window
     - Create a name for it and change its details in the 'Details' section of Taipy Studio
             - name: input
             - Details: default_data=21, storage_type=pickle
