@@ -39,12 +39,12 @@ outputs = []
 
 [TASK.filter_current]
 inputs = [ "historical_data:SECTION",]
-function = "<function filter_current at 0x000002237AA03E20>"
+function = "__main__.filter_current:function"
 outputs = [ "month_data:SECTION",]
 
 [TASK.count_values]
 inputs = [ "month_data:SECTION",]
-function = "<function count_values at 0x000002237AF09870>"
+function = "__main__.count_values:function"
 outputs = [ "nb_of_values:SECTION",]
 
 [PIPELINE.default]
@@ -62,3 +62,5 @@ pipelines = [ "my_pipeline:SECTION",]
 [SCENARIO.default.comparators]
 
 [SCENARIO.my_scenario.comparators]
+
+
