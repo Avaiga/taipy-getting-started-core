@@ -10,6 +10,8 @@ Scoping determines how Data Nodes are shared between cycles, scenarios, and pipe
 
 - **Global** scope: unique Data Node for all the scenarios/pipelines/cycles.
 
+![](config_05.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
+
 === "Taipy Studio/TOML configuration"
 
     Only the configuration of Data Nodes will change by adding a Scope. The configuration is taken in the previous step, so you can directly copy the last TOML Config file.
