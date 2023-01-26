@@ -99,7 +99,7 @@ Results:
 
 ## Primary scenarios
 
-In each Cycle, there is a primary scenario. Having a primary scenario is interesting because it will be the important one of the Cycle, the one that is the reference. By default, the first scenario created for a cycle will be primary. `tp.set_primary(<Scenario>)` allows changing the primary scenario in a Cycle. `<Scenario>.is_primary` will return a boolean whether the scenario is primary or not.
+In each Cycle, there is a primary scenario. Having a primary scenario is interesting because it represents the important scenario of the Cycle, the reference. By default, the first scenario created for a cycle will be primary. `tp.set_primary(<Scenario>)` allows changing the primary scenario in a Cycle. `<Scenario>.is_primary` will return a boolean whether the scenario is primary or not.
 
 ```python
 print("Scenario 1 before", scenario_1.is_primary)
