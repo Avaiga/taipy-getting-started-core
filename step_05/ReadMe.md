@@ -42,7 +42,7 @@ Scoping determines how Data Nodes are shared between cycles, scenarios, and pipe
     ```
 
 
-Cycles are created depending on the _creation_date_ of scenarios. In the example below, _creation_data_ are defined but their value is normally the date of when the scenario was created.
+Cycles are created depending on the _creation_date_ of scenarios. In the example below, _creation_date_ are defined but their value is normally the date of when the scenario was created.
 
 ```python
 tp.Core().run()
