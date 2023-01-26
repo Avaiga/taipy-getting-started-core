@@ -37,7 +37,9 @@ if __name__=="__main__":
     time.sleep(30)
 ```
 
-Options of _submit_:
+Jobs from the two submissions are being simultaneously. If `max_nb_of_workers` was greater, we could execute multiple scenarios at the same time and multiple tasks of a scenario at the same time.
+
+Some options for the _submit_ function exist:
 - _wait_: if _wait_ is True, the submit is synchronous and will wait for the end of all the jobs (if _timeout_ is not defined)
 - _timeout_: if _wait_ is True, Taipy will wait for the end of the submission until a certain amount of time
 
