@@ -33,6 +33,9 @@ def filter_by_month(df, month):
     The configuration is the same as the last step except for the scenario and task configuration. A new parameter is added for the frequency.
     
     ```python
+    month_cfg =  Config.configure_data_node(id="month")
+
+    
     task_filter_cfg = Config.configure_task(id="filter_by_month",
                                                  function=filter_by_month,
                                                  input=[historical_data_cfg, month_cfg],
