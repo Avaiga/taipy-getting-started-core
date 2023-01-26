@@ -39,7 +39,7 @@ Skipping tasks is an essential feature of Taipy. If none of the input Data Nodes
                                                      skippable=True)
     ```
 
-The configuration is the same. `cacheabable=True` are added to the output Data Nodes we want to be cached.
+The configuration is alsmost the same. `skippable=True` are added to the tasks we want to be skipped.
 
 Here we create three different scenarios with different creation dates and names. Scenario 1 and scenario 2 belong to the same cycle.
 
