@@ -1,6 +1,6 @@
 # Skipping tasks
 
-Skipping tasks is an essential feature of Taipy. If none of the input Data Nodes of a task have been changed, the Taipy scheduler can decide wether or not to skip it (if this feature is on). Time and resources are saved thanks to this mechanism.
+Skipping tasks is an essential feature of Taipy. Running twice a function with the same input parameter will most of the time create the same output. Executing this sort of function is a waste of time and ressources. This is why if none of the input Data Nodes of a task have been changed, Taipy scheduler can decide to skip it if this feature is on. Time and resources are saved thanks to this mechanism.
 
 
 
