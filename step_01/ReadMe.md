@@ -120,4 +120,4 @@ Taipy Core provides a versioning system to keep track of different Configuration
 
 - _Experiment_: data are stored after each run, and an identifier is attached to each run. `python main.py --experiment` will execute the code in Experiment mode. The user can decide the identifier to run with the data of a previous run. This version number can be given like this: `python main.py --experiment 1`.
 
-- _Production_: data are stored after each run. The user can decide the identifier to run with the data of a previous run. `python main.py --experiment` will execute the code in Experiment mode, or `python main.py --experiment 1` to run it with a specific version.
+- _Production_: data are stored after each run. The user can decide the identifier to ru. `python main.py --experiment` will execute the code in Experiment mode, or `python main.py --experiment 1` to run it with a specific version.
