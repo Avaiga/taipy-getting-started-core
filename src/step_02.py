@@ -23,7 +23,7 @@ tp.Core().run()
 
 scenario = tp.create_scenario(scenario_cfg, name="Scenario")
 tp.submit(scenario)
-print("First submit", scenario.output.read())
+print("Output of First submit:", scenario.output.read())
 
 print("Before write", scenario.input.read())
 scenario.input.write(54)
