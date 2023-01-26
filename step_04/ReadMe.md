@@ -34,7 +34,6 @@ def filter_by_month(df, month):
     
     ```python
     month_cfg =  Config.configure_data_node(id="month")
-
     
     task_filter_cfg = Config.configure_task(id="filter_by_month",
                                                  function=filter_by_month,
