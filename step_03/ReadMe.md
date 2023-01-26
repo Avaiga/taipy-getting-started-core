@@ -56,6 +56,7 @@ def count_values(df):
     - Add tasks: filter_current and count_values
     - Finish the Config by connecting tasks and Data Nodes and creating the pipeline and scenario
 
+    To use this configuration in our code (`main.py` for example), we must load it and retrieve the `scenario_cfg`. This `scenario_cfg` is the basis to instantiate our scenarios.
 
     ```python
     Config.load('config_03.toml')
