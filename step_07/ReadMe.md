@@ -1,9 +1,9 @@
 
 # Execution modes
 
-Taipy has different ways to execute the code. There are two different job execution modes:
-- _standalone_ mode: asynchronous. Jobs can be run in parallel depending on the graph of execution if _max_nb_of_workers_ > 1
-- _development_ mode: synchronous
+Taipy has different ways to execute the code. Changing the execution mode can be useful to run multiple tasks in parallel. There are two different job execution modes:
+- _standalone_ mode: asynchronous. Jobs can be run in parallel depending on the graph of execution if _max_nb_of_workers_ > 1.
+- _development_ mode: synchronous.
 
 ```python
 # Normal function used by Taipy
