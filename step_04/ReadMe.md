@@ -119,7 +119,7 @@ Results:
     Scenario 2 after True
 ```
 
-Scenario 3 will be alone in another Cycle due to its creation date and will be the default primary scenario.
+Scenario 3 is alone in another Cycle due to its creation date and is the default primary scenario.
 
 ```python
 scenario_3 = tp.create_scenario(scenario_cfg,
