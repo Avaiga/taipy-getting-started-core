@@ -12,9 +12,7 @@ Let's discuss the essential functions that come along with Taipy.
 
 ## Utility of having scenarios
 
-Taipy lets the user create multiple instances of the same configuration. Data can differ between instances and can be used to compare different scenarios.
-
-Data can naturally differ depending on the input Data Nodes or the randomness of functions. Moreover, the user can change them with the _write_ function.
+Taipy lets the user create multiple instances of the same configuration. Data can differ between instances and can be used to compare different scenarios. Data can naturally modified depending on the input Data Nodes or the randomness of functions. Moreover, the user can change them with the _write_ function.
 
 ![](config_02.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
