@@ -59,6 +59,8 @@ def double(nb):
     - Add a pipeline and link it to the task
     - Add a scenario and link to the pipeline
 
+    To use this configuration in our code (`main.py` for example), we must load it and retrieve the `scenario_cfg`. This `scenario_cfg` is the basis to instantiate our scenarios.
+
     ```python
     Config.load('config_01.toml')
 
