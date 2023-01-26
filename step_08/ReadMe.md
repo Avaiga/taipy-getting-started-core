@@ -24,7 +24,7 @@ def compare_function(*data_node_results):
     return compare_result
 ```
 
-Taipy compares the Data Nodes, which is here the 'month' Data Node. It is indicated in the comparators parameter of the _configure_scenario_.
+Taipy compares the Data Nodes, which is here the '_month_' Data Node. It is indicated in the comparators parameter of the _configure_scenario_.
 
 
 
