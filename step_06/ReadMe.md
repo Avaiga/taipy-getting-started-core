@@ -1,6 +1,6 @@
-# Skippable/Caching
+# Skipping redondant tasks
 
-Skippable/Caching is an essential feature of Taipy. Taipy scheduler can skip tasks if their input Data Nodes have not changed. If none of the input Data Nodes have been changed after the first submission, Taipy will skip tasks. Time and resources are saved thanks to this mechanism.
+Skipping tasks is an essential feature of Taipy. Taipy scheduler can skip tasks if their input Data Nodes have not changed. If none of the input Data Nodes have been changed after the first submission, Taipy will not execute the related functions. Time and resources are saved thanks to this mechanism.
 
 
 
@@ -10,13 +10,9 @@ Skippable/Caching is an essential feature of Taipy. Taipy scheduler can skip tas
 
 === "Taipy Studio/TOML configuration"
 
-
-    - Do the same for the month_data and nb_of_values
-            - name: output
-            - Details: storage_type:pickle, cacheable=True
-    - Add a task and choose a function to associate with `<module>.<name>:function`
+    - Add the skippable to the tasks
             -name: filter_current
-            -Details: function=`__main__.filter_current:function`
+            -Details: function=`__main__.filter_current:function`, skippable=True:bool
     - Do the same for count_values
 
 
@@ -30,12 +26,17 @@ Skippable/Caching is an essential feature of Taipy. Taipy scheduler can skip tas
 === "Python configuration"
 
     ```python
-    month_values_cfg =  Config.configure_data_node(id="month_data",
-                                                   scope=Scope.CYCLE,
-                                                   cacheable=True)
+    task_filter_cfg = Config.configure_task(id="filter_by_month",
+                                                 function=filter_by_month,
+                                                 input=[historical_data_cfg, month_cfg],
+                                                 output=month_values_cfg,
+                                                 skippable=True)
 
-    nb_of_values_cfg = Config.configure_data_node(id="nb_of_values",
-                                                  cacheable=True)
+    task_count_values_cfg = Config.configure_task(id="count_values",
+                                                     function=count_values,
+                                                     input=month_values_cfg,
+                                                     output=nb_of_values_cfg,
+                                                     skippable=True)
     ```
 
 The configuration is the same. `cacheabable=True` are added to the output Data Nodes we want to be cached.
