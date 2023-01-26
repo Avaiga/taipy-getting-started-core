@@ -40,7 +40,7 @@ if __name__=="__main__":
 Options of _submit_:
 - _wait_: if _wait_ is True, the submit is synchronous and will wait for the end of all the jobs (if _timeout_ is not defined)
 - _timeout_: if _wait_ is True, Taipy will wait for the end of the submission until a certain amount of time
-- 
+
 ```python
 if __name__=="__main__":
     tp.Core().run()
