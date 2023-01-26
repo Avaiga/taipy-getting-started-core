@@ -69,7 +69,7 @@ scenario_2 = tp.create_scenario(scenario_cfg,
                                 name="Scenario 2022/10/5")
 ```
 
-Scenario 1 and 2 belong to the same Cycle, but they don't share the same data node. Each one has a Data Node by itself.
+Scenario 1 and 2 belong to the same Cycle, but they don't share the same data node. Each one has a Data Node by itself. the Scope concept will solve this issue in the next step.
 
 
 ```python
