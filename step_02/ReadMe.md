@@ -19,12 +19,12 @@ Taipy lets the user create multiple instances of the same configuration. Data ca
 ```python
 scenario = tp.create_scenario(scenario_cfg, name="Scenario")
 tp.submit(scenario)
-print("First submit", scenario.output.read())
+print("Output of First submit:", scenario.output.read())
 ```
 Results:
 ```
     [2022-12-22 16:20:02,874][Taipy][INFO] job JOB_double_a5ecfa4d-1963-4776-8f68-0859d22970b9 is completed.
-    First submit 42
+    Output of First submit: 42
 ```
 
 ## _write_ function
