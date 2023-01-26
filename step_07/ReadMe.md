@@ -20,7 +20,7 @@ def add(nb):
 
 
 
-This line of code will change the execution mode. The default execution mode is _development_. Changing it to _standalone_ will make Taipy Core asynchronous. Here a maximum of two tasks will be able to run simultaneously.
+This line of code will change the execution mode (the default execution mode is _development_). Changing it to _standalone_ will make Taipy Core asynchronous. Here a maximum of two tasks will be able to run simultaneously.
 
 ```python
 Config.configure_job_executions(mode="standalone", max_nb_of_workers=2)
