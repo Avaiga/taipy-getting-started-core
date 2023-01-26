@@ -23,13 +23,7 @@ def filter_by_month(df, month):
 
         - Recreate the config of the previous step but change the task accordingly.
         - Add the frequency property for the scenario and put "MONTHLY:FREQUENCY" (DAYLY, WEEKLY, MONTHLY, YEARLY)
-
-    ```python
-    Config.load('config_04.toml')
-
-    # my_scenario is the id of the scenario configured
-    scenario_cfg = Config.scenarios['my_scenario']
-    ```
+        - Load the new configuration in the code
 
 
 
