@@ -25,7 +25,6 @@ Scoping determines how Data Nodes are shared between cycles, scenarios, and pipe
     - Change the Scope of month_data and month to be Cycle
             - name: output
             - Details: storage_type:pickle, scope=CYCLE:SCOPE
-
     - Load the new configuration in the code
     
 === "Python configuration"
