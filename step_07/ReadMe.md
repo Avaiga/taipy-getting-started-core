@@ -5,6 +5,7 @@ Taipy has different ways to execute the code. Changing the execution mode can be
 - _standalone_ mode: asynchronous. Jobs can be run in parallel depending on the graph of execution if _max_nb_of_workers_ > 1.
 - _development_ mode: synchronous.
 
+A new configuration and functions are written to showcase execution modes.
 ```python
 # Normal function used by Taipy
 def double(nb):
