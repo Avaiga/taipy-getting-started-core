@@ -144,9 +144,9 @@ Results:
     Is scenario 3 primary? True
 ```
 
-Also, as you can see, every scenario has been submitted and executed entirely. However, the results for these tasks are all the same. Caching will help to skip a redundant task.
+Also, as you can see, every scenario has been submitted and executed entirely. However, the results for these tasks are all the same. Skipping Tasks (defined in subsequent steps) will help optimize your executions by skipping the execution of redundant tasks.
 
-## Useful functions concerning cycles
+## Useful functions on cycles
 
 - `tp.get_primary_scenarios()`: returns a list of all primary scenarios
 
