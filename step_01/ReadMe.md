@@ -1,23 +1,30 @@
 # Step 1: Configuration and execution
 
-Before going directly into the code and examples, some concepts and terms must be defined. Taipy Core revolves around four major concepts.
+Before looking at some code and examples, let’s define some basic terms used by Taipy Core. Taipy Core revolves around four major concepts.
 
 ## Four fundamental concepts in Taipy Core:
-- Data Nodes: are the translation of variables in Taipy. Data Nodes don't contain the data but know how to retrieve it. They can refer to any data: any Python object (string, int, list, dict, model, dataframe, etc), a Pickle file, a CSV file, a SQL database, etc. They know how to read and write data. You can even write your own custom Data Node if needed to access a particular data format.
+- Data Nodes are the translation of _variables_ in Taipy. Data Nodes don't contain the data but know how to retrieve it. They can refer to any data: any Python object (string, int, list, dict, model, dataframe, etc), a Pickle file, a CSV file, a SQL database, etc. They know how to read and write data. You can even write your own custom Data Node to access a particular data format.
 
-- Tasks: are the translation of functions in Taipy.
+- Tasks are the translation of _functions_ in Taipy.
 
-- Pipelines: are a list of tasks executed with intelligent scheduling created automatically by Taipy. They usually represent a sequence of Tasks/functions corresponding to different algorithms like a simple baseline Algorithm or a more sophisticated Machine-Learning pipeline.
+- Pipelines are a list of tasks executed with intelligent scheduling created automatically by Taipy. They usually represent a sequence of Tasks/functions ranging from data processing steps to simple baseline Algorithms all the way to more sophisticated pipelines: Machine-Learning, Mathematical models, Simulation, etc.
 
-- Scenarios: End-Users very often require modifying various parameters to reflect different business situations. Taipy Scenarios will provide the framework to "play"/"execute" pipelines under different conditions/variations (i.e., data/parameters modified by the end-user)
+- Scenarios End-Users very often require modifying various parameters to reflect different business situations. Taipy Scenarios provide the framework to "play"/"execute" pipelines under different conditions/variations (i.e., data/parameters modified by the end-user)
 
 
 ## What is a configuration?
 
-Configuration is the structure of what is our scenario. It represents our Direct Acyclic Graph but also how we want our data to be stored or how our code is run. Taipy can create multiple instances of this structure with different data called scenarios. Thus, we need a way to define it through this configuration step.
+A configuration is the structure to define scenarios and pipelines. It represents our Direct Acyclic Graph(s), it models the data sources, parameters and tasks. Once defined, a configuration acts like a superclass, it is used to generate different instances of scenarios.
 
 
-Let's create our first configuration through Taipy Studio or direct Python Code and then create our entities to submit.
+Let's create our first configuration. For this, we have two alternatives:
+
+- Using Taipy Studio
+- Or directly coding in Python.
+
+Once the scenario configuration is defined, we will be able to create instances, aka *'entities'* of scenarios, that can be submitted for execution. create our entities to submit. In fact, entities are created from all configuration objects: scenario config, pipeline config, tasks, and data node configs. We will be referring to them as _scenario entities_, _pipeline entities_, _task entities_, and _Data Node entities_. Since this is very much like the mechanism of class and instances present in object programming, we will be using the word entity and instance interchangeably. 
+Let’s consider the simplest possible pipeline: a single function taking as input an integer and generating an integer output (doubling the input number). See below:
+
 
 ```python
 from taipy import Config
@@ -30,16 +37,19 @@ def double(nb):
 
 ![](config_01.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
-- Two Data Nodes are being configured ('input' and 'output'). The 'input' Data Node has a _default_data_ put at 21. They will be stored as Pickle files by default and are unique to their scenario. To clarify, the names given to the Data Nodes are arbitrary. They could have been named something else like 'first_data' and 'last_data'; every appearance of these names should also be changed accordingly.
+- Two Data Nodes are being configured ('input' and 'output'). The 'input' Data Node has a _default_data_ set at 21. They will be stored as Pickle files (default storage format) and will be unique to each scenario entity/instance (this is the concept of scope which is covered later’). To clarify, the names given to the Data Nodes are arbitrary. The task links the two Data Nodes through the Python function double.
 
-- The task links the two Data Nodes through the Python function _double_.
+- The pipeline contains this one task, and the scenario includes this single pipeline.
 
-- The pipeline will contain this one task, and the scenario will include this one pipeline.
+=== "Taipy Studio/TOML configuration"
+
+    ## Alternative 1: Configuration using Taipy Studio
+    
+    By watching the animation below, you can have a feel of how this configuration gets created using Taipy Studio. Once created, the configuration can be saved as a TOML file (see below)
+
 
 ![](config_01.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
-
-=== "Taipy Studio/TOML configuration"
 
     **Note**: Remember to save the file after each change.
     - Create a new file: 'config_01.toml'
@@ -70,6 +80,8 @@ def double(nb):
 
 === "Python configuration"
 
+    ## Alternative 2: Configuration using Python Code
+
     Here is the code to configure a simple scenario.
 
     ```python
@@ -88,11 +100,11 @@ def double(nb):
     scenario_cfg = Config.configure_scenario("my_scenario", [pipeline_cfg])
     ```
 
-The code below presents how you can create scenarios and submit them.
+TThe code below presents how you can create scenarios and submit them.
 
-First of all, Taipy has to be run (`tp.Core().run()`). It will create a service that will act as a job scheduler.
+First of all, Taipy Core has to be launched(`tp.Core().run()`). It will create a service that acts as a job scheduler.
 
-Creating a scenario/pipeline (`tp.create_scenario(<Scenario Config>)`/`tp.create_pipeline(<Pipeline Config>)` will create all the related entities. These entities are being created thanks to the previous configuration, but no code is being run yet. `tp.submit(<Scenario>)` is the line of code that will run all the related pipelines and tasks. Note that a pipeline or a task can also be submitted (`tp.submit(<Pipeline>)`, `tp.submit(<Task>)`).
+Creating a scenario/pipeline (`tp.create_scenario(<Scenario Config>)`/`tp.create_pipeline(<Pipeline Config>)`) will create all its related entities (_tasks_, _Data Nodes_, etc). These entities are being created thanks to the previous configuration, but no scenario has been run yet. `tp.submit(<Scenario>)` is the line of code that will run all the scenario related pipelines and tasks. Note that a pipeline or a task can also be submitted directly (`tp.submit(<Pipeline>)`, `tp.submit(<Task>)`).
 
 ```python
 # Run of the Core
@@ -110,14 +122,14 @@ Results:
     Value at the end of task 42
 ```    
 
-'/.data' is the default storage folder for Taipy Core. It contains data, scenarios, pipelines, jobs, and tasks. These entities are persisted between two runs depending on how the code is run.
+'/.data' is the default storage folder for Taipy Core. It contains data, scenarios, pipelines, jobs, and tasks. These entities can be persisted between two runs depending on how the code is run.
 
 ## Ways of executing the code: Versioning
 
-Taipy Core provides a versioning system to keep track of different Configurations (DAG, execution modes, ...). `python main.py -h` opens a helper to understand the versioning options. Here are the principal ways to run the code with versioning:
+Taipy Core provides a versioning system to keep track of the changes that a configuration will experience over time: new data sources, new parameters, new version of your Machine Learning engine, etc. python main.py -h opens a helper to understand the versioning options. Here are the principal ways to run the code with versioning:
 
-- _Development_: is the default way of executing the code. Data of a previous Development run is erased. `python main.py` will run it.
+- _Development_: is the default way of executing the code. When running a Taipy Core application in development mode, Taipy can’t  access all entities created from a previous Development run. Launching your Taipy code as `python main.py` executes it in Development mode.
 
-- _Experiment_: data are stored after each run, and an identifier is attached to each run. `python main.py --experiment` will execute the code in Experiment mode. The user can decide the identifier to run with the data of a previous run. This version number can be given like this: `python main.py --experiment 1`.
-
-- _Production_: data are stored after each run. The user can decide the identifier to ru. `python main.py --experiment` will execute the code in Experiment mode, or `python main.py --experiment 1` to run it with a specific version.
+- _Experiment_: all Taipy Core entities from previous run are kept, but each new run will ignore them. An identifier is attached to each run. 
+`python main.py --experiment` will execute the code in Experiment mode. The user is then able to reexecute a previous run (by selecting a previously used identifier). This version number is provided  like this: `python main.py --experiment 1`.
+- _Production_: When running a Taipy Core application in production mode, Taipy can access all entities attached to the current version or another production version. It corresponds to the case where the application is stable and running in a production environment.The user can decide the identifier to use. `python main.py --production` will execute the code in Experiment mode, or `python main.py --production 1` to run it with a specific version.
