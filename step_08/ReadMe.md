@@ -1,3 +1,5 @@
+> You can download the code of this step [here](../src/step_08.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started-core/tree/develop/src).
+
 # Step 8: Comparison of scenarios
 
 This step reuses the configuration provided in the previous step except for the scenario configuration.
