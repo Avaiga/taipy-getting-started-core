@@ -4,10 +4,21 @@ This step reuses the configuration provided in the previous step except for the 
 
 ![](config_08.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
-Taipy provides a way to compare scenarios by providing a function directly into the scenario's configuration.
+Taipy provides a mechanism to compare scenarios by providing a function directly into the scenario's configuration.
 
-_data_node_results_ is a list of data nodes from all scenarios passed in the comparator. We iterate through it to compare scenarios.
+## Step 1: The first step consists in declaring on which data nodes to apply the comparison functions:
 
+Taipy can compares Data Nodes. In this example, we want a comparison applied to the '_output_' Data Node. It is indicated in the comparators parameter of the `configure_scenario()`.
+
+```python
+scenario_cfg = Config.configure_scenario("multiply_scenario",
+                                        [pipeline_cfg],
+                                        comparators={output_cfg.id: compare_function},
+                                        frequency=Frequency.MONTHLY)
+```
+## Step 2: Implement the comparison function (`compare_function()`) used above.
+
+_data_node_results_ is the list of the Output Data Nodes from all scenarios passed in the comparator. We iterate through it to compare scenarios.
 
 ```python
 def compare_function(*data_node_results):
@@ -24,17 +35,7 @@ def compare_function(*data_node_results):
     return compare_result
 ```
 
-Taipy compares the Data Nodes, which are here the '_output_' Data Nodes. It is indicated in the comparators parameter of the _configure_scenario_.
-
-
-
-```python
-scenario_cfg = Config.configure_scenario("multiply_scenario",
-                                        [pipeline_cfg],
-                                        comparators={output_cfg.id: compare_function},
-                                        frequency=Frequency.MONTHLY)
-```
-
+Now, the `compare_scenarios()` can be used within Taipy.
 
 ```python
 tp.Core().run()
