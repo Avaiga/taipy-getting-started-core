@@ -11,9 +11,10 @@ Taipy provides a mechanism to compare scenarios by providing a function directly
 Taipy can compares Data Nodes. In this example, we want a comparison applied to the '_output_' Data Node. It is indicated in the comparators parameter of the `configure_scenario()`.
 
 ```python
-scenario_cfg = Config.configure_scenario("multiply_scenario",
-                                        [pipeline_cfg],
-                                        comparators={output_cfg.id: compare_function},
+scenario_cfg = Config.configure_scenario(id="multiply_scenario",
+                                        name="my_scenario",
+                                        pipeline_configs=[pipeline_cfg],
+                                        comparators={output_data_node_cfg.id: compare_function},
                                         frequency=Frequency.MONTHLY)
 ```
 ## Step 2: Implement the comparison function (`compare_function()`) used above.

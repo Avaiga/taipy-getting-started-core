@@ -1,38 +1,31 @@
-#  Taipy Core Data nodes - CSV, pickle
 from taipy.core.config import Config, Frequency
 import taipy as tp
-import datetime as dt
-import time
 
 
-Config.configure_job_executions(mode="standalone", max_nb_of_workers=2)
 
 # Normal function used by Taipy
 def double(nb):
     return nb * 2
 
 def add(nb):
-    print("Wait 10 seconds in add function")
-    time.sleep(10)
     return nb + 10
 
-Config.configure_job_executions(mode="standalone", max_nb_of_workers=2)
 
 # Configuration of Data Nodes
-input_data_node_cfg = Config.configure_data_node("input", default_data=21)
-intermediate_data_node_cfg = Config.configure_data_node("intermediate")
-output_data_node_cfg = Config.configure_data_node("output")
+input_cfg = Config.configure_data_node("input", default_data=21)
+intermediate_cfg = Config.configure_data_node("intermediate")
+output_cfg = Config.configure_data_node("output")
 
 # Configuration of tasks
 first_task_cfg = Config.configure_task("double",
                                     double,
-                                    input_data_node_cfg,
-                                    intermediate_data_node_cfg)
+                                    input_cfg,
+                                    intermediate_cfg)
 
 second_task_cfg = Config.configure_task("add",
                                     add,
-                                    intermediate_data_node_cfg,
-                                    output_data_node_cfg)
+                                    intermediate_cfg,
+                                    output_cfg)
 
 # Configuration of the pipeline and scenario
 pipeline_cfg = Config.configure_pipeline("my_pipeline", [first_task_cfg, second_task_cfg])
@@ -52,15 +45,13 @@ def compare_function(*data_node_results):
     return compare_result
 
 
-scenario_cfg = Config.configure_scenario("my_scenario",
-                                         [pipeline_cfg],
-                                         comparators={intermediate_data_node_cfg.id: compare_function})
+scenario_cfg = Config.configure_scenario(id="multiply_scenario",
+                                        name="my_scenario",
+                                        pipeline_configs=[pipeline_cfg],
+                                        comparators={output_cfg.id: compare_function},
+                                        frequency=Frequency.MONTHLY)
 
-#scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
-#                                                    task_configs=[task_filter_by_month_cfg,
-#                                                                  task_count_values_cfg])
-
-Config.export("src/config_08.toml")
+Config.export("config_08.toml")
 
 if __name__=="__main__":
     tp.Core().run()

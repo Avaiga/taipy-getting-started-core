@@ -35,7 +35,7 @@ second_task_cfg = Config.configure_task("add",
 pipeline_cfg = Config.configure_pipeline("my_pipeline", [first_task_cfg, second_task_cfg])
 scenario_cfg = Config.configure_scenario("my_scenario", [pipeline_cfg])
 
-Config.export("src/config_07.toml")
+Config.export("config_07.toml")
 
 if __name__=="__main__":
     tp.Core().run()
@@ -43,10 +43,6 @@ if __name__=="__main__":
     scenario_1.submit()
     scenario_1.submit()
 
-
-
-if __name__=="__main__":
-    tp.Core().run()
     scenario_1 = tp.create_scenario(scenario_cfg)
     scenario_1.submit(wait=True)
     scenario_1.submit(wait=True, timeout=5)

@@ -1,4 +1,3 @@
-#  Taipy Core Data nodes - CSV, pickle
 from taipy.core.config import Config
 import taipy as tp
 import datetime as dt
@@ -17,15 +16,15 @@ def count_values(df):
 
 Config.load('config_03.toml')
 
-# my_scenario is the id of the scenario configured
-scenario_cfg = Config.scenarios['my_scenario']
+if __name__ == '__main__':
+    # my_scenario is the id of the scenario configured
+    scenario_cfg = Config.scenarios['my_scenario']
 
+    tp.Core().run()
 
-tp.Core().run()
+    scenario_1 = tp.create_scenario(scenario_cfg, creation_date=dt.datetime(2022,10,7), name="Scenario 2022/10/7")
+    scenario_1.submit()
 
-scenario_1 = tp.create_scenario(scenario_cfg, creation_date=dt.datetime(2022,10,7), name="Scenario 2022/10/7")
-scenario_1.submit()
-
-scenario_2 = tp.create_scenario(scenario_cfg, creation_date=dt.datetime(2022,10,7), name="Scenario 2022/10/7")
-scenario_2.submit()
+    scenario_2 = tp.create_scenario(scenario_cfg, creation_date=dt.datetime(2022,10,7), name="Scenario 2022/10/7")
+    scenario_2.submit()
 

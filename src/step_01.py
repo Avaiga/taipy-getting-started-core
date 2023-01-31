@@ -19,12 +19,14 @@ task_cfg = Config.configure_task("double",
 pipeline_cfg = Config.configure_pipeline("my_pipeline", [task_cfg])
 scenario_cfg = Config.configure_scenario("my_scenario", [pipeline_cfg])
 
+Config.export('config_01.toml')
 
-# Run of the Core
-tp.Core().run()
+if __name__ == '__main__':
+    # Run of the Core
+    tp.Core().run()
 
-# Creation of the scenario and execution
-scenario = tp.create_scenario(scenario_cfg)
-tp.submit(scenario)
+    # Creation of the scenario and execution
+    scenario = tp.create_scenario(scenario_cfg)
+    tp.submit(scenario)
 
-print("Value at the end of task", scenario.output.read())
+    print("Value at the end of task", scenario.output.read())

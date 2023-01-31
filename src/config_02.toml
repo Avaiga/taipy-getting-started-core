@@ -1,52 +1,22 @@
 [TAIPY]
-root_folder = "./taipy/"
-storage_folder = ".data/"
-clean_entities_enabled = "ENV[TAIPY_CLEAN_ENTITIES_ENABLED]"
-repository_type = "filesystem"
-
-[JOB]
-mode = "development"
-max_nb_of_workers = "1:int"
-
-[gui]
-
-[DATA_NODE.default]
-storage_type = "pickle"
-scope = "SCENARIO:SCOPE"
-cacheable = "False:bool"
 
 [DATA_NODE.input]
-storage_type = "pickle"
 scope = "SCENARIO:SCOPE"
-cacheable = "False:bool"
 default_data = "21:int"
 
 [DATA_NODE.output]
-storage_type = "pickle"
 scope = "SCENARIO:SCOPE"
-cacheable = "False:bool"
-
-[TASK.default]
-inputs = []
-outputs = []
 
 [TASK.double]
 inputs = [ "input:SECTION",]
-function = "<function double at 0x0000021641BA3E20>"
+function = "__main__.double:function"
 outputs = [ "output:SECTION",]
-
-[PIPELINE.default]
-tasks = []
+skippable = "False:bool"
 
 [PIPELINE.my_pipeline]
 tasks = [ "double:SECTION",]
 
-[SCENARIO.default]
-pipelines = []
-
 [SCENARIO.my_scenario]
 pipelines = [ "my_pipeline:SECTION",]
-
-[SCENARIO.default.comparators]
 
 [SCENARIO.my_scenario.comparators]

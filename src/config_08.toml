@@ -1,63 +1,34 @@
 [TAIPY]
-root_folder = "./taipy/"
-storage_folder = ".data/"
-clean_entities_enabled = "ENV[TAIPY_CLEAN_ENTITIES_ENABLED]"
-repository_type = "filesystem"
-
-[JOB]
-mode = "standalone"
-max_nb_of_workers = "2:int"
-
-[gui]
-
-[DATA_NODE.default]
-storage_type = "pickle"
-scope = "SCENARIO:SCOPE"
-cacheable = "False:bool"
 
 [DATA_NODE.input]
-storage_type = "pickle"
 scope = "SCENARIO:SCOPE"
-cacheable = "False:bool"
 default_data = "21:int"
 
 [DATA_NODE.intermediate]
-storage_type = "pickle"
 scope = "SCENARIO:SCOPE"
-cacheable = "False:bool"
 
 [DATA_NODE.output]
-storage_type = "pickle"
 scope = "SCENARIO:SCOPE"
-cacheable = "False:bool"
-
-[TASK.default]
-inputs = []
-outputs = []
 
 [TASK.double]
 inputs = [ "input:SECTION",]
-function = "<function double at 0x000001D9EB9129E0>"
+function = "__main__.double:function"
 outputs = [ "intermediate:SECTION",]
+skippable = "False:bool"
 
 [TASK.add]
 inputs = [ "intermediate:SECTION",]
-function = "<function add at 0x000001D9EB912A70>"
+function = "__main__.add:function"
 outputs = [ "output:SECTION",]
-
-[PIPELINE.default]
-tasks = []
+skippable = "False:bool"
 
 [PIPELINE.my_pipeline]
 tasks = [ "double:SECTION", "add:SECTION",]
 
-[SCENARIO.default]
-pipelines = []
-
-[SCENARIO.my_scenario]
+[SCENARIO.multiply_scenario]
 pipelines = [ "my_pipeline:SECTION",]
+frequency = "MONTHLY:FREQUENCY"
+name = "my_scenario"
 
-[SCENARIO.default.comparators]
-
-[SCENARIO.my_scenario.comparators]
-intermediate = [ "<function compare_function at 0x000001D98F826200>",]
+[SCENARIO.multiply_scenario.comparators]
+output = [ "__main__.compare_function:function",]

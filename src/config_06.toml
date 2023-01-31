@@ -1,70 +1,40 @@
 [TAIPY]
-root_folder = "./taipy/"
-storage_folder = ".data/"
-clean_entities_enabled = "ENV[TAIPY_CLEAN_ENTITIES_ENABLED]"
-repository_type = "filesystem"
-
-[JOB]
-mode = "development"
-max_nb_of_workers = "1:int"
-
-[gui]
-
-[DATA_NODE.default]
-storage_type = "pickle"
-scope = "SCENARIO:SCOPE"
-cacheable = "False:bool"
 
 [DATA_NODE.historical_data]
 storage_type = "csv"
 scope = "GLOBAL:SCOPE"
-cacheable = "False:bool"
 default_path = "time_series.csv"
 has_header = "True:bool"
 exposed_type = "pandas"
 
 [DATA_NODE.month]
-storage_type = "pickle"
 scope = "CYCLE:SCOPE"
-cacheable = "False:bool"
 
 [DATA_NODE.month_data]
-storage_type = "pickle"
 scope = "CYCLE:SCOPE"
 cacheable = "True:bool"
 
 [DATA_NODE.nb_of_values]
-storage_type = "pickle"
 scope = "SCENARIO:SCOPE"
 cacheable = "True:bool"
 
-[TASK.default]
-inputs = []
-outputs = []
-
 [TASK.filter_by_month]
 inputs = [ "historical_data:SECTION", "month:SECTION",]
-function = "<function filter_by_month at 0x0000019509BC3E20>"
+function = "__main__.filter_by_month:function"
 outputs = [ "month_data:SECTION",]
+skippable = "True:bool"
 
 [TASK.count_values]
 inputs = [ "month_data:SECTION",]
-function = "<function count_values at 0x000001950A0C9870>"
+function = "__main__.count_values:function"
 outputs = [ "nb_of_values:SECTION",]
-
-[PIPELINE.default]
-tasks = []
+skippable = "True:bool"
 
 [PIPELINE.my_pipeline]
 tasks = [ "filter_by_month:SECTION", "count_values:SECTION",]
 
-[SCENARIO.default]
-pipelines = []
-
 [SCENARIO.my_scenario]
 pipelines = [ "my_pipeline:SECTION",]
 frequency = "MONTHLY:FREQUENCY"
-
-[SCENARIO.default.comparators]
 
 [SCENARIO.my_scenario.comparators]

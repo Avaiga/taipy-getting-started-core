@@ -10,7 +10,7 @@ def callback_scenario(scenario, job):
         scenario (Scenario): the scenario of the job changed
         job (_type_): the job that has its status changed
     """
-    print(scenario.name)
+    print("Name:", scenario.name)
     if job.status.value == 7:
         for data_node in job.task.output.values():
             print(data_node.read())

@@ -1,11 +1,8 @@
-#  Taipy Core Data nodes - CSV, pickle
 from taipy.core.config import Config, Frequency
 import taipy as tp
 import datetime as dt
 import time
 
-
-Config.configure_job_executions(mode="standalone", max_nb_of_workers=2)
 
 # Normal function used by Taipy
 def double(nb):
@@ -52,15 +49,12 @@ def callback_scenario_state(scenario, job):
             print(data_node.read())
 
 
+scenario_cfg = Config.configure_scenario(id="my_scenario",
+                                         name="my_scenario",
+                                         pipeline_configs=[pipeline_cfg])
 
-scenario_cfg = Config.configure_scenario("my_scenario",
-                                         [pipeline_cfg])
 
-#scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
-#                                                    task_configs=[task_filter_by_month_cfg,
-#                                                                  task_count_values_cfg])
-
-Config.export("src/config_08.toml")
+Config.export("config_09.toml")
 
 if __name__=="__main__":
     tp.Core().run()
@@ -68,5 +62,7 @@ if __name__=="__main__":
     scenario_1.subscribe(callback_scenario_state)
 
     scenario_1.submit(wait=True)
+    
+    tp.Rest().run()
 
 

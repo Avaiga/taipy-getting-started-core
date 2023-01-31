@@ -1,4 +1,3 @@
-#  Cycles
 from taipy.core.config import Config, Frequency
 import taipy as tp
 import datetime as dt
@@ -39,45 +38,41 @@ scenario_cfg = Config.configure_scenario(id="my_scenario",
                                          pipeline_configs=[pipeline_cfg],
                                          frequency=Frequency.MONTHLY)
 
+Config.export('config_04.toml')
 
-#scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
-#                                                    task_configs=[task_filter_by_month_cfg,
-#                                                    task_count_values_cfg])
+if __name__ == '__main__':
+    tp.Core().run()
 
-tp.Core().run()
+    scenario_1 = tp.create_scenario(scenario_cfg,
+                                    creation_date=dt.datetime(2022,10,7),
+                                    name="Scenario 2022/10/7")
+    scenario_2 = tp.create_scenario(scenario_cfg,
+                                    creation_date=dt.datetime(2022,10,5),
+                                    name="Scenario 2022/10/5")
 
-scenario_1 = tp.create_scenario(scenario_cfg,
-                                creation_date=dt.datetime(2022,10,7),
-                                name="Scenario 2022/10/7")
-scenario_2 = tp.create_scenario(scenario_cfg,
-                                creation_date=dt.datetime(2022,10,5),
-                                name="Scenario 2022/10/5")
+    # scenario 1 and 2 belongs to the same cycle so I can define the cycle_metadata just once for
+    # scenario 1 and 2 because cycle_metadata has a Cycle scope
+    scenario_1.month.write(10)
+    scenario_2.month.write(10)
 
-# scenario 1 and 2 belongs to the same cycle so I can define the cycle_metadata just once for
-# scenario 1 and 2 because cycle_metadata has a Cycle scope
-scenario_1.month.write(10)
-scenario_2.month.write(10)
+    print("Month Data Node of Scenario 1", scenario_1.month.read())
+    print("Month Data Node of Scenario 2", scenario_2.month.read())
 
+    scenario_1.submit()
+    scenario_2.submit()
 
-print("Month Data Node of Scenario 1", scenario_1.month.read())
-print("Month Data Node of Scenario 2", scenario_2.month.read())
+    print("Scenario 1 before", scenario_1.is_primary)
+    print("Scenario 2 before", scenario_1.is_primary)
 
-scenario_1.submit()
-scenario_2.submit()
+    tp.set_primary(scenario_2)
 
+    print("Scenario 1 after", scenario_1.is_primary)
+    print("Scenario 2 after", scenario_1.is_primary)
 
-print("Scenario 1 before", scenario_1.is_primary)
-print("Scenario 2 before", scenario_1.is_primary)
+    scenario_3 = tp.create_scenario(scenario_cfg,
+                                    creation_date=dt.datetime(2021,9,1),
+                                    name="Scenario 2022/9/1")
+    scenario_3.month.write(9)
+    scenario_3.submit()
 
-tp.set_primary(scenario_2)
-
-print("Scenario 1 after", scenario_1.is_primary)
-print("Scenario 2 after", scenario_1.is_primary)
-
-scenario_3 = tp.create_scenario(scenario_cfg,
-                                creation_date=dt.datetime(2021,9,1),
-                                name="Scenario 2022/9/1")
-scenario_3.month.write(9)
-scenario_3.submit()
-
-print("Is scenario 3 primary?", scenario_3.is_primary)
+    print("Is scenario 3 primary?", scenario_3.is_primary)

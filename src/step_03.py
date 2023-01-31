@@ -1,4 +1,3 @@
-#  Taipy Core Data nodes - CSV, pickle
 from taipy.core.config import Config
 import taipy as tp
 import datetime as dt
@@ -38,18 +37,16 @@ pipeline_cfg = Config.configure_pipeline(id="my_pipeline",
 scenario_cfg = Config.configure_scenario(id="my_scenario",
                                          pipeline_configs=[pipeline_cfg])
 
-#scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
-#                                                    task_configs=[task_filter_current_cfg,
-#                                                    task_count_values_cfg])
+Config.export('config_03.toml')
 
-tp.Core().run()
+if __name__ == '__main__':
+    tp.Core().run()
 
-scenario_1 = tp.create_scenario(scenario_cfg, creation_date=dt.datetime(2022,10,7), name="Scenario 2022/10/7")
-scenario_1.submit()
+    scenario_1 = tp.create_scenario(scenario_cfg, creation_date=dt.datetime(2022,10,7), name="Scenario 2022/10/7")
+    scenario_1.submit()
 
-scenario_2 = tp.create_scenario(scenario_cfg, creation_date=dt.datetime(2022,10,7), name="Scenario 2022/10/7")
-scenario_2.submit()
+    scenario_2 = tp.create_scenario(scenario_cfg, creation_date=dt.datetime(2022,10,7), name="Scenario 2022/10/7")
+    scenario_2.submit()
 
-
-print("Nb of values of scenario 1:", scenario_1.nb_of_values.read())
-print("Nb of values of scenario 2:", scenario_2.nb_of_values.read())
+    print("Nb of values of scenario 1:", scenario_1.nb_of_values.read())
+    print("Nb of values of scenario 2:", scenario_2.nb_of_values.read())
