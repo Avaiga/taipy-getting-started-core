@@ -1,3 +1,5 @@
+> You can download the code of this step [here](../src/step_09.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started-core/tree/develop/src).
+
 # Callback on scenarios
 
 This step reuses the configuration provided in step 7 except for the scenario configuration. To have an action after changing a job status, we can subscribe a function to a scenario. A status change will call this function. This feature allows the creation of logs or particular events for Taipy GUI.
