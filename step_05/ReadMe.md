@@ -1,14 +1,22 @@
 # Step 5: Scoping 
 
-Scoping determines how Data Nodes are shared between cycles, scenarios, and pipelines. Indeed, multiple scenarios can have their own Data Nodes or share the same one. For example, the initial/historical dataset is usually shared by all the scenarios/pipelines/cycles. It has a Global Scope and will be unique in the entire application.
+Scoping determines how Data Nodes are shared between cycles, scenarios, and pipelines. The developer may decide to:
+- Keep data nodes local to each pipeline
+- Extend the scope by sharing data nodes between all the pipelines of a given  scenario
+- Extend the scope further by sharing data nodes across all scenarios of a given cycle.
+- Finally, extend the scope globally (across all scenarios of all cycles)  For example, the initial/historical dataset is usually shared by all the scenarios/pipelines/cycles. It has a Global Scope and will be unique in the entire application.
 
-- **Pipeline** scope: two pipelines can reference different Data Nodes even if their names are the same. For example, we can have a _prediction_ Data Node of an ARIMA model (ARIMA pipeline) and a _prediction_ Data Node of a RandomForest model (RandomForest pipeline). A scenario can contain multiple pipelines.
+To summarize the different possible scopes are:
 
-- **Scenario** scope: pipelines share the same Data Node within a scenario. 
+- _Pipeline scope_: two pipelines can reference different Data Nodes even if their names are the same. For example, we can have a _prediction_ Data Node of an ARIMA model (ARIMA pipeline) and a _prediction_ Data Node of a RandomForest model (RandomForest pipeline). A scenario can contain multiple pipelines.
 
-- **Cycle** scope: scenarios from the same Cycle share the same Data Node.
+- _Scenario scope (default)_: pipelines share the same Data Node within a scenario. 
 
-- **Global** scope: unique Data Node for all the scenarios/pipelines/cycles.
+- _Cycle scope_: scenarios from the same Cycle share the same Data Node.
+
+- _Global scope_: Data Nodes shared across all the scenarios/pipelines/cycles.
+
+It is worth noting that the default scope for Data nodes is the Scenario scope.
 
 ![](config_05.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
@@ -17,7 +25,9 @@ Scoping determines how Data Nodes are shared between cycles, scenarios, and pipe
 
 === "Taipy Studio/TOML configuration"
 
-    Only the configuration of Data Nodes will change by adding a Scope. The configuration is taken in the previous step, so you can directly copy the last TOML Config file.
+    Modifying the scope of a Data Node is as simple as changing its Scope parameter in the configuration. 
+    
+    The configuration is taken in the previous step, so you can directly copy the last TOML Config file.
     
     - Change the Scope of historical_data to be global
             - name: historical_data
@@ -29,7 +39,9 @@ Scoping determines how Data Nodes are shared between cycles, scenarios, and pipe
     
 === "Python configuration"
 
-    Only the configuration of Data Nodes will change by adding a Scope. The configuration is taken in the previous step so you can copy the previous code directly.
+    Modifying the scope of a Data Node is as simple as changing its Scope parameter inside the configuration.
+    
+    The configuration is taken in the previous step so you can copy the previous code directly.
 
     ```python
     historical_data_cfg = Config.configure_csv_data_node(id="historical_data",
@@ -42,7 +54,7 @@ Scoping determines how Data Nodes are shared between cycles, scenarios, and pipe
     ```
 
 
-Cycles are created depending on the _creation_date_ of scenarios. In the example below, _creation_date_ are defined but their value is normally the date of when the scenario was created.
+Cycles are created based on the _creation_date_ of scenarios. In the example below, we force the creation_date to a given date (in real life, the actual creation date of the scenario gets used automatically).
 
 ```python
 tp.Core().run()
@@ -58,7 +70,7 @@ scenario_3 = tp.create_scenario(scenario_cfg,
                                 name="Scenario 2021/9/1")
 ```
 
-Scenario 1 and 2 belongs to the same Cycle, so we can define the month just once for scenario 1 and 2 because _month_ has a Cycle scope.
+Scenario 1 and 2 belong to the same Cycle: since month has now a **Cycle** scope, we can define _month_ just once for both scenario 1 and 2.
 
 ![](sommething.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
@@ -77,4 +89,6 @@ Results:
     Scenario 3: month 9
 ```
 
-Defining the month of scenario 1 will also determine the month of scenario 2 because they share the same Data Node. However, because `nb_of_values` is of Scenario Scope,  each `nb_of_values` has its own value for each scenario. This value can also be identical.
+Defining the _month_ of scenario 1 will also determine the _month_ of scenario 2 since they share the same Data Node. 
+
+This is not the case for _nb_of_values_ that are of Scenario scope, each _nb_of_values_ has its own value in each scenario.
