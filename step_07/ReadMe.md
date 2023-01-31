@@ -1,11 +1,12 @@
 
-# Execution modes
+# Step 7: Execution modes
 
 Taipy has different ways to execute the code. Changing the execution mode can be useful to run multiple tasks in parallel.
 - _standalone_ mode: asynchronous. Jobs can be run in parallel depending on the graph of execution if _max_nb_of_workers_ > 1.
 - _development_ mode: synchronous.
 
-A new configuration and functions are written to showcase execution modes.
+In this step, we define a new configuration and functions to showcase the two execution modes.
+
 ```python
 # Normal function used by Taipy
 def double(nb):
@@ -21,7 +22,7 @@ def add(nb):
 
 
 
-This line of code will change the execution mode (the default execution mode is _development_). Changing it to _standalone_ will make Taipy Core asynchronous. Here a maximum of two tasks will be able to run simultaneously.
+This line of code will change the execution mode (the default execution mode is _development_). Changing it to _standalone_ will make Taipy Core asynchronous. Here a maximum of two tasks will be able to run concurrently.
 
 ```python
 Config.configure_job_executions(mode="standalone", max_nb_of_workers=2)
@@ -42,7 +43,7 @@ Jobs from the two submissions are being executed simultaneously. If `max_nb_of_w
 
 Some options for the _submit_ function exist:
 - _wait_: if _wait_ is True, the submit is synchronous and will wait for the end of all the jobs (if _timeout_ is not defined).
-- _timeout_: if _wait_ is True, Taipy will wait for the end of the submission until a certain amount of time.
+- _timeout_: if _wait_ is True, Taipy will wait for the end of the submission up to a certain amount of time.
 
 ```python
 if __name__=="__main__":
