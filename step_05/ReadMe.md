@@ -46,6 +46,8 @@ It is worth noting that the default scope for Data nodes is the Scenario scope.
     The configuration is taken in the previous step so you can copy the previous code directly.
 
     ```python
+    from taipy.config import Scope, Frequency
+    
     historical_data_cfg = Config.configure_csv_data_node(id="historical_data",
                                                      default_path="time_series.csv",
                                                      scope=Scope.GLOBAL)
