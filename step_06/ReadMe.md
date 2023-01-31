@@ -1,7 +1,8 @@
-# Skipping tasks
+# Step 6: Skipping tasks
 
-Skipping tasks is an essential feature of Taipy. Running twice a function with the same input parameters will most of the time create the same output. Executing this sort of function is a waste of time and ressources. This is why if none of the input Data Nodes of a task have been changed, Taipy scheduler can decide to skip it if this feature is on. Time and resources are saved thanks to this mechanism.
+Skipping tasks is an essential feature of Taipy. For a given pipeline or scenario, Running twice a function with the same input parameters will most of the time create the same output. Executing this sort of function is a waste of time and resources.
 
+Taipy Core provides for each task the _skippable_ attribute. If this attribute is set to True, Taipy Core’s scheduler will automatically detect if changes have occured on any of the input data nodes of a task. If no changes have occured, it will automatically skip the execution of that task.By default; skippable is set to False. 
 
 
 ![](config_06.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
@@ -39,7 +40,7 @@ Skipping tasks is an essential feature of Taipy. Running twice a function with t
                                                      skippable=True)
     ```
 
-The configuration is alsmost the same. `skippable=True` are added to the tasks we want to be skipped.
+The configuration is almost the same. `skippable=True` are added to the tasks we want to be skipped.
 
 Here we create three different scenarios with different creation dates and names. Scenario 1 and scenario 2 belong to the same cycle.
 
@@ -73,7 +74,7 @@ Results:
     Scenario 2: month 10
 ```
 
- Every task has yet to be submitted, so everything will be completed.
+Every task has yet to be submitted, so when submitting scenario 1, all tasks will be executed.
 
 ```python
 print("Scenario 1: submit")
@@ -90,8 +91,7 @@ Results:
     Value 849
 ```
 
-The scheduler will skip the first task of the second scenario. Indeed, the two scenarios share the same input Data Nodes for this task, and it hasn't been changed.
-
+When submitting scenario 2, the scheduler will skip the first task of this second scenario. Indeed, the two scenarios share the same input Data Nodes for this task, and no changes have occured on these Data Nodes (since the last run of the task when we submitted scenario 1).
 
 ```python
 # the first task has already been executed by scenario 1
