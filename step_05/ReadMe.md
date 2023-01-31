@@ -1,10 +1,10 @@
 # Step 5: Scoping 
 
 Scoping determines how Data Nodes are shared between cycles, scenarios, and pipelines. The developer may decide to:
-- Keep data nodes local to each pipeline
-- Extend the scope by sharing data nodes between all the pipelines of a given  scenario
+- Keep Data Nodes local to each pipeline.
+- Extend the scope by sharing data nodes between all the pipelines of a given scenario.
 - Extend the scope further by sharing data nodes across all scenarios of a given cycle.
-- Finally, extend the scope globally (across all scenarios of all cycles)  For example, the initial/historical dataset is usually shared by all the scenarios/pipelines/cycles. It has a Global Scope and will be unique in the entire application.
+- Finally, extend the scope globally (across all scenarios of all cycles). For example, the initial/historical dataset is usually shared by all the scenarios/pipelines/cycles. It has a Global Scope and will be unique in the entire application.
 
 To summarize the different possible scopes are:
 
@@ -14,7 +14,7 @@ To summarize the different possible scopes are:
 
 - _Cycle scope_: scenarios from the same Cycle share the same Data Node.
 
-- _Global scope_: Data Nodes shared across all the scenarios/pipelines/cycles.
+- _Global scope_: Data Nodes are shared across all the scenarios/pipelines/cycles.
 
 It is worth noting that the default scope for Data nodes is the Scenario scope.
 
