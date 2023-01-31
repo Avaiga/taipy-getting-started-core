@@ -39,6 +39,8 @@ Then to introduce Cycles, you simply need to set the frequency (predefined attri
     The configuration is the same as the last step except for the scenario and task configuration. A new parameter is added for the frequency.
     
     ```python
+    from taipy.config import Scope
+    
     month_cfg =  Config.configure_data_node(id="month")
     
     task_filter_cfg = Config.configure_task(id="filter_by_month",
@@ -53,9 +55,6 @@ Then to introduce Cycles, you simply need to set the frequency (predefined attri
                                              frequency=Frequency.MONTHLY)
 
 
-    #scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
-    #                                                    task_configs=[task_filter_by_month_cfg,
-    #                                                                  task_count_values_cfg])
     ```
 
 
