@@ -1,10 +1,10 @@
 # Step 2: Basic functions
 
-Let's discuss the essential functions that come along with Taipy.
+Let's discuss some of the essential functions that come along with Taipy.
 
 - `<Data Node>.write(<new value>)`: this instruction changes the data of a Data Node. It also changes the _last_edit_date_ of the Data Node, influencing whether a task can be skipped.
 
-- `tp.get_scenarios()`: this function returns a list of all the scenarios
+- `tp.get_scenarios()`: this function returns the list of all the scenarios
 
 - `tp.get(<Taipy object ID>)`: this function returns an entity based on the id of the entity
 
@@ -12,7 +12,13 @@ Let's discuss the essential functions that come along with Taipy.
 
 ## Utility of having scenarios
 
-Taipy lets the user create multiple instances of the same configuration. Data can differ between instances and can be used to compare different scenarios. It can naturally be modified depending on the input Data Nodes or the randomness of functions. Moreover, the user can change them with the _write_ function.
+Taipy lets the user create multiple instances of the same configuration. Data can differ between different scenario instances. It is very important to detect/understand the difference in data between scenario instances: e.g. comparing the output/results of different instances... Such differences in behavior between different scenarios entities (from the same scenario configuration) can be due to:
+
+- Changing data from input data nodes, 
+- Randomness in a task (random algorithm), 
+- Different values from parameters set by the end-user, etc.
+
+The developer can directly change the data nodes entities with the _write_ function (see below).
 
 ![](config_02.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
@@ -29,7 +35,7 @@ Results:
 
 ## _write_ function
 
-Data of a Data Node can be changed using _write_. The syntax is `<Scenario>.<Pipeline>.<Data Node>.write(value)`. If there is just one pipeline, we can just write `<Scenario>.<Data Node>.write(value)`.
+Data of a Data Node can be changed using _write_. The syntax is `<Scenario>.<Pipeline>.<Data Node>.write(value)`. If the scenario contains a single  pipeline, we can just write `<Scenario>.<Data Node>.write(value)`.
 
 
 ```python
