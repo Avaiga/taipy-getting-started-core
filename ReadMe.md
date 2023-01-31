@@ -55,9 +55,10 @@ Want to be part of the _Taipy Getting Started Core_ community? Check out our [`C
 - `step_03`: Broader view of Data Nodes
 - `step_04`: Explanation of the concept of Cycles.
 - `step_05`: Scoping and its utility.
-- `step_06`: Caching
-- `step_07`: Execution modes ans asynchronisity.
-- `step_08`: Other useful features of Taipy Core (comparators and callbacks)
+- `step_06`: Skipping tasks
+- `step_07`: Execution modes and asynchronisity.
+- `step_08`: Compare scenarios
+- `step_09`: Attach a callback to a scenario
 - `CODE_OF_CONDUCT.md`: Code of conduct for members and contributors of _taipy-getting-started_.
 - `CONTRIBUTING.md`: Instructions to contribute to _taipy-getting-started_.
 - `index.md`: Landing page of the generated documentation. 
