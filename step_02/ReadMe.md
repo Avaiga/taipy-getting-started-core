@@ -1,3 +1,5 @@
+> You can download the code of this step [here](../src/step_05.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started-core/tree/develop/src).
+
 # Step 2: Basic functions
 
 Let's discuss some of the essential functions that come along with Taipy.
