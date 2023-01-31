@@ -1,3 +1,5 @@
+> You can download the code of this step [here](../src/step_06.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started-core/tree/develop/src).
+
 # Step 6: Skipping tasks
 
 Skipping tasks is an essential feature of Taipy. For a given pipeline or scenario, Running twice a function with the same input parameters will most of the time create the same output. Executing this sort of function is a waste of time and resources.
