@@ -1,3 +1,5 @@
+> You can download the code of this step [here](../src/step_05.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started-core/tree/develop/src).
+
 # Step 1: Configuration and execution
 
 Before looking at some code and examples, let’s define some basic terms used by Taipy Core. Taipy Core revolves around four major concepts.
