@@ -24,19 +24,15 @@ def compare_function(*data_node_results):
     return compare_result
 ```
 
-Taipy compares the Data Nodes, which is here the '_month_' Data Node. It is indicated in the comparators parameter of the _configure_scenario_.
+Taipy compares the Data Nodes, which are here the '_output_' Data Nodes. It is indicated in the comparators parameter of the _configure_scenario_.
 
 
 
 ```python
 scenario_cfg = Config.configure_scenario("multiply_scenario",
                                         [pipeline_cfg],
-                                        comparators={month_cfg.id: compare_function},
+                                        comparators={output_cfg.id: compare_function},
                                         frequency=Frequency.MONTHLY)
-
-#scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
-#                                                    task_configs=[task_filter_by_month_cfg,
-#                                                                  task_count_values_cfg])
 ```
 
 
