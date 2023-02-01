@@ -2,7 +2,7 @@
 
 # Step 8: Scenario comparison
 
-This step reuses the configuration provided in the previous step except for the scenario configuration.
+This step reuses the configuration provided in the previous step except for the [scenario configuration](https://docs.taipy.io/en/latest/manuals/core/entities/scenario-cycle-mgt/#compare-scenarios).
 
 ![](config_08.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
