@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_05.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started-core/tree/develop/src).
 
-# Step 5: Scoping 
+# Step 5: Scopes
 
 Scoping determines how Data Nodes are shared between cycles, scenarios, and pipelines. The developer may decide to:
 - Keep Data Nodes local to each pipeline.
