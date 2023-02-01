@@ -29,10 +29,12 @@ scenario = tp.create_scenario(scenario_cfg, name="Scenario")
 tp.submit(scenario)
 print("Output of First submit:", scenario.output.read())
 ```
+
 Results:
+
 ```
-    [2022-12-22 16:20:02,874][Taipy][INFO] job JOB_double_a5ecfa4d-1963-4776-8f68-0859d22970b9 is completed.
-    Output of First submit: 42
+[2022-12-22 16:20:02,874][Taipy][INFO] job JOB_double_a5ecfa4d-1963-4776-8f68-0859d22970b9 is completed.
+Output of First submit: 42
 ```
 
 ## _write_ function
@@ -75,7 +77,7 @@ print([s.name for s in tp.get_scenarios()])
 
 Results:
 ```
-    ["Scenario"]
+["Scenario"]
 ```
 
 - Get an entity from its id:
