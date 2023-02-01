@@ -1,6 +1,6 @@
 # Step 4: Cycles
 
-Cycles have been introduced to reflect business situations that our customers encounter frequently. 
+[Cycles](https://docs.taipy.io/en/latest/manuals/core/concepts/cycle/) have been introduced to reflect business situations that our customers encounter frequently. 
 
 For instance, a large Fast Food chain wants to generate sales forecasts for its stores every week. When creating a given scenario, it will need to be attached to a given week. And often, amongst all the scenarios generated for a given week, a single one will be published. This kind of 'official' scenario will be referred to as 'Primary' scenario in Taipy  Core.
 
