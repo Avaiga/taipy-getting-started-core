@@ -9,9 +9,10 @@ Taipy Core provides for each task the _skippable_ attribute. If this attribute i
 
 ![](config_06.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
-![](config_06.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 === "Taipy Studio/TOML configuration"
+
+    ![](config_06.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
     - Add the skippable to the tasks
             -name: filter_current
