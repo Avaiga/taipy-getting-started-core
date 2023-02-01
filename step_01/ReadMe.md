@@ -24,7 +24,8 @@ Let's create our first configuration. For this, we have two alternatives:
 - Using Taipy Studio
 - Or directly coding in Python.
 
-Once the scenario configuration is defined, we will be able to create instances, aka *'entities'* of scenarios, that can be submitted for execution. create our entities to submit. In fact, entities are created from all configuration objects: scenario config, pipeline config, tasks, and data node configs. We will be referring to them as _scenario entities_, _pipeline entities_, _task entities_, and _Data Node entities_. Since this is very much like the mechanism of class and instances present in object programming, we will be using the word entity and instance interchangeably. 
+Once the scenario configuration is defined, we will be able to create instances, aka *'entities'* of scenarios, that can be submitted for execution. In fact, entities are created from all configuration objects: scenario config, pipeline config, tasks, and data node configs. We will be referring to them as _scenario entities_, _pipeline entities_, _task entities_, and _Data Node entities_. Since this is very much like the mechanism of class and instances present in object programming, we will be using the word entity and instance interchangeably. 
+
 Let’s consider the simplest possible pipeline: a single function taking as input an integer and generating an integer output (doubling the input number). See below:
 
 
