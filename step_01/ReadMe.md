@@ -68,21 +68,21 @@ def double(nb):
         
         - Create a name for it and change its details in the 'Details' section of Taipy Studio
         
-                - name: input
+            - name: input
                 
-                - Details: default_data=21, storage_type=pickle
+            - Details: default_data=21, storage_type=pickle
                 
         - Do the same for the output
         
-                - name: output
+            - name: output
                 
-                - Details: storage_type=pickle
+            - Details: storage_type=pickle
                 
         - Add a task and choose a function to associate with `<module>.<name>`
         
-                - name: double
+            - name: double
                 
-                - Details: function=`__main__.double`
+            - Details: function=`__main__.double`
                 
         - Link the Data Nodes and the task
         
