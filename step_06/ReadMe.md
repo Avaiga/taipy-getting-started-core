@@ -9,39 +9,40 @@ Taipy Core provides for each task the _skippable_ attribute. If this attribute i
 
 ![](config_06.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
+!!! example "Configuration"
 
-=== "Taipy Studio/TOML configuration"
+    === "Taipy Studio"
 
-    ![](config_06.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
+        ![](config_06.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
-    - Add the skippable to the tasks
-            -name: filter_current
-            -Details: function=`__main__.filter_current:function`, skippable=True:bool
-    - Do the same for count_values
+        - Add the skippable to the tasks
+                -name: filter_current
+                -Details: function=`__main__.filter_current:function`, skippable=True:bool
+        - Do the same for count_values
 
 
-    ```python
-    Config.load('config_06.toml')
+        ```python
+        Config.load('config_06.toml')
 
-    # my_scenario is the id of the scenario configured
-    scenario_cfg = Config.scenarios['my_scenario']
-    ```
+        # my_scenario is the id of the scenario configured
+        scenario_cfg = Config.scenarios['my_scenario']
+        ```
 
-=== "Python configuration"
+    === "Python configuration"
 
-    ```python
-    task_filter_cfg = Config.configure_task(id="filter_by_month",
-                                                 function=filter_by_month,
-                                                 input=[historical_data_cfg, month_cfg],
-                                                 output=month_values_cfg,
-                                                 skippable=True)
-
-    task_count_values_cfg = Config.configure_task(id="count_values",
-                                                     function=count_values,
-                                                     input=month_values_cfg,
-                                                     output=nb_of_values_cfg,
+        ```python
+        task_filter_cfg = Config.configure_task(id="filter_by_month",
+                                                     function=filter_by_month,
+                                                     input=[historical_data_cfg, month_cfg],
+                                                     output=month_values_cfg,
                                                      skippable=True)
-    ```
+
+        task_count_values_cfg = Config.configure_task(id="count_values",
+                                                         function=count_values,
+                                                         input=month_values_cfg,
+                                                         output=nb_of_values_cfg,
+                                                         skippable=True)
+        ```
 
 The configuration is almost the same. `skippable=True` are added to the tasks we want to be skipped.
 
