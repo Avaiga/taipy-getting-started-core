@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_04.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started-core/tree/develop/src).
 
-# Step 3: Different types of Data Nodes:
+# Step 3: Data Node types
 
 - *[Pickle](https://docs.taipy.io/en/latest/manuals/core/config/data-node-config/#pickle)* (default): Taipy can read and write any data that can be serializable.
 
