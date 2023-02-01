@@ -17,9 +17,9 @@ Taipy Core provides for each task the _skippable_ attribute. If this attribute i
 
         - Add the skippable to the tasks
         
-                -name: filter_current
+            - name: filter_current
                 
-                -Details: function=`__main__.filter_current:function`, skippable=True:bool
+            - Details: function=`__main__.filter_current:function`, skippable=True:bool
                 
         - Do the same for count_values
 
