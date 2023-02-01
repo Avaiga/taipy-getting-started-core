@@ -48,8 +48,8 @@ print("After write",scenario.input.read())
 
 Results:
 ```
-    Before write 21
-    After write 54
+Before write 21
+After write 54
 ```
 
 The submission of the scenario will update the output values.
@@ -61,8 +61,8 @@ print("Second submit",scenario.output.read())
 ```
 Results:
 ```
-    [2022-12-22 16:20:03,011][Taipy][INFO] job JOB_double_7eee213f-062c-4d67-b0f8-4b54c04e45e7 is completed.
-    Second submit 108
+[2022-12-22 16:20:03,011][Taipy][INFO] job JOB_double_7eee213f-062c-4d67-b0f8-4b54c04e45e7 is completed.
+Second submit 108
 ```
     
 ## Other useful functions
