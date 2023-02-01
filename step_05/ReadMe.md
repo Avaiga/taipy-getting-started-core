@@ -2,7 +2,7 @@
 
 # Step 5: Scopes
 
-Scoping determines how Data Nodes are shared between cycles, scenarios, and pipelines. The developer may decide to:
+[Scopes](https://docs.taipy.io/en/latest/manuals/core/concepts/scope/) determine how Data Nodes are shared between cycles, scenarios, and pipelines. The developer may decide to:
 
 - Keep Data Nodes local to each pipeline.
 
