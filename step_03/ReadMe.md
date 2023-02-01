@@ -118,10 +118,12 @@ scenario_1.submit()
 
 print("Nb of values of scenario 1:", scenario_1.nb_of_values.read())
 ```
+
 Results:
+
 ```
-    [2022-12-22 16:20:03,424][Taipy][INFO] job JOB_filter_current_257edf8d-3ca3-46f5-aec6-c8a413c86c43 is completed.
-    [2022-12-22 16:20:03,510][Taipy][INFO] job JOB_count_values_90c9b3c7-91e7-49ef-9064-69963d60f52a is completed.
+[2022-12-22 16:20:03,424][Taipy][INFO] job JOB_filter_current_257edf8d-3ca3-46f5-aec6-c8a413c86c43 is completed.
+[2022-12-22 16:20:03,510][Taipy][INFO] job JOB_count_values_90c9b3c7-91e7-49ef-9064-69963d60f52a is completed.
     
-    Nb of values of scenario 1: 896
+Nb of values of scenario 1: 896
 ```
