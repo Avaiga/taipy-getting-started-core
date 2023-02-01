@@ -55,14 +55,16 @@ So, without further delay, let's begin to code!
 
 2. [Basic functions](step_02/ReadMe.md)
 
-3. [Data Nodes](step_03/ReadMe.md)
+3. [Data Node types](step_03/ReadMe.md)
 
 4. [Cycles](step_04/ReadMe.md)
 
-5. [Caching](step_05/ReadMe.md)
+5. [Scopes](step_05/ReadMe.md)
 
-6. [Scoping](step_06/ReadMe.md)
+6. [Skipping tasks](step_06/ReadMe.md)
 
 7. [Execution modes](step_07/ReadMe.md)
 
-8. [Other features](step_08/ReadMe.md)
+8. [Scenario comparison](step_08/ReadMe.md)
+
+9. [Scenario subscription](step_09/ReadMe.md)
