@@ -40,64 +40,62 @@ def count_values(df):
     return len(df)
 ```
 
+!!! example "Configuration"
 
-=== "Taipy Studio/TOML configuration"
+    === "Taipy Studio"
 
-    ![](config_03.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
-
-
-    - Create the beginning of the Config with Data Nodes following the graph.
-    - Change the details of *historical_data* in the 'Details' section of Taipy Studio
-            - name: historical_data
-            - Details: default_path='xxxx/yyyy.csv', storage_type=csv
-    - Add tasks: filter_current and count_values
-    - Finish the Config by connecting tasks and Data Nodes and creating the pipeline and scenario
-
-    To use this configuration in our code (`main.py` for example), we must load it and retrieve the `scenario_cfg`. This `scenario_cfg` is the basis to instantiate our scenarios.
-
-    ```python
-    Config.load('config_03.toml')
-
-    # my_scenario is the id of the scenario configured
-    scenario_cfg = Config.scenarios['my_scenario']
-    ```
-
-=== "Python configuration"
-
-    ```python
-    # here is a CSV Data Node
-    historical_data_cfg = Config.configure_csv_data_node(id="historical_data",
-                                                         default_path="time_series.csv")
-    month_values_cfg =  Config.configure_data_node(id="month_data")
-    nb_of_values_cfg = Config.configure_data_node(id="nb_of_values")
-    ```
+        ![](config_03.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 
-    ```python
-    task_filter_cfg = Config.configure_task(id="filter_current",
-                                                     function=filter_current,
-                                                     input=historical_data_cfg,
-                                                     output=month_values_cfg)
+        - Create the beginning of the Config with Data Nodes following the graph.
+        - Change the details of *historical_data* in the 'Details' section of Taipy Studio
+                - name: historical_data
+                - Details: default_path='xxxx/yyyy.csv', storage_type=csv
+        - Add tasks: filter_current and count_values
+        - Finish the Config by connecting tasks and Data Nodes and creating the pipeline and scenario
 
-    task_count_values_cfg = Config.configure_task(id="count_values",
-                                                     function=count_values,
-                                                     input=month_values_cfg,
-                                                     output=nb_of_values_cfg)
-    ```
+        To use this configuration in our code (`main.py` for example), we must load it and retrieve the `scenario_cfg`. This `scenario_cfg` is the basis to instantiate our scenarios.
+
+        ```python
+        Config.load('config_03.toml')
+
+        # my_scenario is the id of the scenario configured
+        scenario_cfg = Config.scenarios['my_scenario']
+        ```
+
+    === "Python configuration"
+
+        ```python
+        # here is a CSV Data Node
+        historical_data_cfg = Config.configure_csv_data_node(id="historical_data",
+                                                             default_path="time_series.csv")
+        month_values_cfg =  Config.configure_data_node(id="month_data")
+        nb_of_values_cfg = Config.configure_data_node(id="nb_of_values")
+        ```
 
 
-    ```python
-    pipeline_cfg = Config.configure_pipeline(id="my_pipeline",
-                                             task_configs=[task_filter_cfg,
-                                                           task_count_values_cfg])
+        ```python
+        task_filter_cfg = Config.configure_task(id="filter_current",
+                                                         function=filter_current,
+                                                         input=historical_data_cfg,
+                                                         output=month_values_cfg)
 
-    scenario_cfg = Config.configure_scenario(id="my_scenario",
-                                             pipeline_configs=[pipeline_cfg])
+        task_count_values_cfg = Config.configure_task(id="count_values",
+                                                         function=count_values,
+                                                         input=month_values_cfg,
+                                                         output=nb_of_values_cfg)
+        ```
 
-    #scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
-    #                                                    task_configs=[task_filter_cfg,
-    #                                                                  task_count_values_cfg])
-    ```
+
+        ```python
+        pipeline_cfg = Config.configure_pipeline(id="my_pipeline",
+                                                 task_configs=[task_filter_cfg,
+                                                               task_count_values_cfg])
+
+        scenario_cfg = Config.configure_scenario(id="my_scenario",
+                                                 pipeline_configs=[pipeline_cfg])
+
+        ```
 
 
 ```python
