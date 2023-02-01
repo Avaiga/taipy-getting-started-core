@@ -22,8 +22,6 @@ It is worth noting that the default scope for Data nodes is the Scenario scope.
 
 ![](config_05.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
-![](config_05.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
-
 
 === "Taipy Studio/TOML configuration"
 
@@ -31,6 +29,8 @@ It is worth noting that the default scope for Data nodes is the Scenario scope.
     
     The configuration is taken in the previous step, so you can directly copy the last TOML Config file.
     
+    ![](config_05.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
+
     - Change the Scope of historical_data to be global
             - name: historical_data
             - Details: default_path=xxxx/yyyy.csv, storage_type=csv, scope=GLOBAL:SCOPE
