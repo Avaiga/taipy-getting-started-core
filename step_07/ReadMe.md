@@ -2,7 +2,7 @@
 
 # Step 7: Execution modes
 
-Taipy has different ways to execute the code. Changing the execution mode can be useful to run multiple tasks in parallel.
+Taipy has [different ways](https://docs.taipy.io/en/latest/manuals/core/config/job-config/) to execute the code. Changing the execution mode can be useful to run multiple tasks in parallel.
 - _standalone_ mode: asynchronous. Jobs can be run in parallel depending on the graph of execution if _max_nb_of_workers_ > 1.
 - _development_ mode: synchronous.
 
