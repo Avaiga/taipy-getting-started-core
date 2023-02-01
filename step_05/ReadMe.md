@@ -3,9 +3,13 @@
 # Step 5: Scopes
 
 Scoping determines how Data Nodes are shared between cycles, scenarios, and pipelines. The developer may decide to:
+
 - Keep Data Nodes local to each pipeline.
+
 - Extend the scope by sharing data nodes between all the pipelines of a given scenario.
+
 - Extend the scope further by sharing data nodes across all scenarios of a given cycle.
+
 - Finally, extend the scope globally (across all scenarios of all cycles). For example, the initial/historical dataset is usually shared by all the scenarios/pipelines/cycles. It has a Global Scope and will be unique in the entire application.
 
 To summarize the different possible scopes are:
@@ -34,15 +38,15 @@ It is worth noting that the default scope for Data nodes is the Scenario scope.
 
         - Change the Scope of historical_data to be global
         
-                - name: historical_data
+            - name: historical_data
                 
-                - Details: default_path=xxxx/yyyy.csv, storage_type=csv, scope=GLOBAL:SCOPE
+            - Details: default_path=xxxx/yyyy.csv, storage_type=csv, scope=GLOBAL:SCOPE
                 
         - Change the Scope of month_data and month to be Cycle
         
-                - name: output
+            - name: output
                 
-                - Details: storage_type:pickle, scope=CYCLE:SCOPE
+            - Details: storage_type:pickle, scope=CYCLE:SCOPE
                 
         - Load the new configuration in the code
 
