@@ -43,66 +43,68 @@ def double(nb):
 
 - The pipeline contains this one task, and the scenario includes this single pipeline.
 
-=== "Taipy Studio/TOML configuration"
+!!! example "Configuration"
 
-    ## Alternative 1: Configuration using Taipy Studio
-    
-    By watching the animation below, you can have a feel of how this configuration gets created using Taipy Studio. Once created, the configuration can be saved as a TOML file (see below)
+    === "Taipy Studio"
+
+        **Alternative 1:** Configuration using Taipy Studio
+
+        By watching the animation below, you can have a feel of how this configuration gets created using Taipy Studio. Once created, the configuration can be saved as a TOML file (see below)
 
 
-    ![](config_01.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
+        ![](config_01.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 
-    **Note**: Remember to save the file after each change.
-    - Create a new file: 'config_01.toml'
-    - Open Taipy Studio view
-    - Right-click on the right configuration and choose 'Taipy: Show View'
-    - Add your first Data Node by clicking the button on the right corner of the window
-    - Create a name for it and change its details in the 'Details' section of Taipy Studio
-            - name: input
-            - Details: default_data=21, storage_type=pickle
-    - Do the same for the output
-            - name: output
-            - Details: storage_type=pickle
-    - Add a task and choose a function to associate with `<module>.<name>:function`
-            - name: double
-            - Details: function=`__main__.double:function`
-    - Link the Data Nodes and the task
-    - Add a pipeline and link it to the task
-    - Add a scenario and link to the pipeline
+        **Note**: Remember to save the file after each change.
+        - Create a new file: 'config_01.toml'
+        - Open Taipy Studio view
+        - Right-click on the right configuration and choose 'Taipy: Show View'
+        - Add your first Data Node by clicking the button on the right corner of the window
+        - Create a name for it and change its details in the 'Details' section of Taipy Studio
+                - name: input
+                - Details: default_data=21, storage_type=pickle
+        - Do the same for the output
+                - name: output
+                - Details: storage_type=pickle
+        - Add a task and choose a function to associate with `<module>.<name>:function`
+                - name: double
+                - Details: function=`__main__.double:function`
+        - Link the Data Nodes and the task
+        - Add a pipeline and link it to the task
+        - Add a scenario and link to the pipeline
 
-    To use this configuration in our code (`main.py` for example), we must load it and retrieve the `scenario_cfg`. This `scenario_cfg` is the basis to instantiate our scenarios.
+        To use this configuration in our code (`main.py` for example), we must load it and retrieve the `scenario_cfg`. This `scenario_cfg` is the basis to instantiate our scenarios.
 
-    ```python
-    Config.load('config_01.toml')
+        ```python
+        Config.load('config_01.toml')
 
-    # my_scenario is the id of the scenario configured
-    scenario_cfg = Config.scenarios['my_scenario']
-    ```
+        # my_scenario is the id of the scenario configured
+        scenario_cfg = Config.scenarios['my_scenario']
+        ```
 
-=== "Python configuration"
+    === "Python configuration"
 
-    ## Alternative 2: Configuration using Python Code
+        **Alternative 2:** Configuration using Python Code
 
-    Here is the code to configure a simple scenario.
+        Here is the code to configure a simple scenario.
 
-    ```python
-    # Configuration of Data Nodes
-    input_data_node_cfg = Config.configure_data_node("input", default_data=21)
-    output_data_node_cfg = Config.configure_data_node("output")
+        ```python
+        # Configuration of Data Nodes
+        input_data_node_cfg = Config.configure_data_node("input", default_data=21)
+        output_data_node_cfg = Config.configure_data_node("output")
 
-    # Configuration of tasks
-    task_cfg = Config.configure_task("double",
-                                     double,
-                                     input_data_node_cfg,
-                                     output_data_node_cfg)
+        # Configuration of tasks
+        task_cfg = Config.configure_task("double",
+                                         double,
+                                         input_data_node_cfg,
+                                         output_data_node_cfg)
 
-    # Configuration of the pipeline and scenario
-    pipeline_cfg = Config.configure_pipeline("my_pipeline", [task_cfg])
-    scenario_cfg = Config.configure_scenario("my_scenario", [pipeline_cfg])
-    ```
+        # Configuration of the pipeline and scenario
+        pipeline_cfg = Config.configure_pipeline("my_pipeline", [task_cfg])
+        scenario_cfg = Config.configure_scenario("my_scenario", [pipeline_cfg])
+        ```
 
-TThe code below presents how you can create scenarios and submit them.
+The code below presents how you can create scenarios and submit them.
 
 First of all, Taipy Core has to be launched(`tp.Core().run()`). It will create a service that acts as a job scheduler.
 
