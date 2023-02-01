@@ -76,9 +76,10 @@ print("Scenario 2: month", scenario_2.month.read())
 ```
 
 Results:
+
 ```
-    Scenario 1: month 10
-    Scenario 2: month 10
+Scenario 1: month 10
+Scenario 2: month 10
 ```
 
 Every task has yet to be submitted, so when submitting scenario 1, all tasks will be executed.
@@ -92,10 +93,10 @@ print("Value", scenario_1.nb_of_values.read())
 Results:
 
 ```
-    Scenario 1: submit
-    [2022-12-22 16:20:09,079][Taipy][INFO] job JOB_filter_by_month_0d7836eb-70eb-4fe6-b954-0e56967831b6 is completed.
-    [2022-12-22 16:20:09,177][Taipy][INFO] job JOB_count_values_91214241-ce81-42d8-9025-e83509652133 is completed.
-    Value 849
+Scenario 1: submit
+[2022-12-22 16:20:09,079][Taipy][INFO] job JOB_filter_by_month_0d7836eb-70eb-4fe6-b954-0e56967831b6 is completed.
+[2022-12-22 16:20:09,177][Taipy][INFO] job JOB_count_values_91214241-ce81-42d8-9025-e83509652133 is completed.
+Value 849
 ```
 
 When submitting scenario 2, the scheduler will skip the first task of this second scenario. Indeed, the two scenarios share the same input Data Nodes for this task, and no changes have occured on these Data Nodes (since the last run of the task when we submitted scenario 1).
@@ -109,10 +110,10 @@ print("Value", scenario_2.nb_of_values.read())
 
 Results:
 ```
-    Scenario 2: first submit
-    [2022-12-22 16:20:09,317][Taipy][INFO] job JOB_filter_by_month_c1db1f0c-6e0a-4691-b0a3-331d473c4c42 is skipped.
-    [2022-12-22 16:20:09,371][Taipy][INFO] job JOB_count_values_271cefd0-8648-47fa-8948-ed49e93e3eee is completed.
-    Value 849
+Scenario 2: first submit
+[2022-12-22 16:20:09,317][Taipy][INFO] job JOB_filter_by_month_c1db1f0c-6e0a-4691-b0a3-331d473c4c42 is skipped.
+[2022-12-22 16:20:09,371][Taipy][INFO] job JOB_count_values_271cefd0-8648-47fa-8948-ed49e93e3eee is completed.
+Value 849
 ```
 
 Resubmitting the same scenario without any change will skip every task.
@@ -126,10 +127,10 @@ print("Value", scenario_2.nb_of_values.read())
 
 Results:
 ```
-    Scenario 2: second submit
-    [2022-12-22 16:20:09,516][Taipy][INFO] job JOB_filter_by_month_da2762d1-6f24-40c1-9bd1-d6786fee7a8d is skipped.
-    [2022-12-22 16:20:09,546][Taipy][INFO] job JOB_count_values_9071dff4-37b2-4095-a7ed-34ef81daad27 is skipped.
-    Value 849
+Scenario 2: second submit
+[2022-12-22 16:20:09,516][Taipy][INFO] job JOB_filter_by_month_da2762d1-6f24-40c1-9bd1-d6786fee7a8d is skipped.
+[2022-12-22 16:20:09,546][Taipy][INFO] job JOB_count_values_9071dff4-37b2-4095-a7ed-34ef81daad27 is skipped.
+Value 849
 ```
 
 This scenario is not in the same cycle. We change the month to 9, and the scheduler will complete every task. 
@@ -145,10 +146,10 @@ print("Value", scenario_3.nb_of_values.read())
 
 Results:
 ```
-    Scenario 3: submit
-    [2022-12-22 16:20:10,071][Taipy][INFO] job JOB_filter_by_month_c4d06eba-a149-4b79-9194-78972c7b7a18 is completed.
-    [2022-12-22 16:20:10,257][Taipy][INFO] job JOB_count_values_817df173-6bae-4742-a2c0-b8b8eba52872 is completed.
-    Value 1012
+Scenario 3: submit
+[2022-12-22 16:20:10,071][Taipy][INFO] job JOB_filter_by_month_c4d06eba-a149-4b79-9194-78972c7b7a18 is completed.
+[2022-12-22 16:20:10,257][Taipy][INFO] job JOB_count_values_817df173-6bae-4742-a2c0-b8b8eba52872 is completed.
+Value 1012
 ```  
 
 Here, we change the input Data Node of the pipeline so Taipy will re-run the correct tasks to ensure that everything is up-to-date.
@@ -165,8 +166,8 @@ print("Value", scenario_3.nb_of_values.read())
 Results:
 
 ```
-    Scenario 3: change in historical data
-    [2022-12-22 16:20:10,870][Taipy][INFO] job JOB_filter_by_month_92f32135-b410-41f0-b9f3-a852c2eb07cd is completed.
-    [2022-12-22 16:20:10,932][Taipy][INFO] job JOB_count_values_a6a75e13-4cd4-4f7e-bc4e-d14a86733440 is completed.
-    Value 1012
+Scenario 3: change in historical data
+[2022-12-22 16:20:10,870][Taipy][INFO] job JOB_filter_by_month_92f32135-b410-41f0-b9f3-a852c2eb07cd is completed.
+[2022-12-22 16:20:10,932][Taipy][INFO] job JOB_count_values_a6a75e13-4cd4-4f7e-bc4e-d14a86733440 is completed.
+Value 1012
 ```
