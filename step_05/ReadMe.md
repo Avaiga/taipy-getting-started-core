@@ -22,40 +22,41 @@ It is worth noting that the default scope for Data nodes is the Scenario scope.
 
 ![](config_05.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
+!!! example "Configuration"
 
-=== "Taipy Studio/TOML configuration"
+    === "Taipy Studio"
 
-    Modifying the scope of a Data Node is as simple as changing its Scope parameter in the configuration. 
-    
-    The configuration is taken in the previous step, so you can directly copy the last TOML Config file.
-    
-    ![](config_05.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
+        Modifying the scope of a Data Node is as simple as changing its Scope parameter in the configuration. 
 
-    - Change the Scope of historical_data to be global
-            - name: historical_data
-            - Details: default_path=xxxx/yyyy.csv, storage_type=csv, scope=GLOBAL:SCOPE
-    - Change the Scope of month_data and month to be Cycle
-            - name: output
-            - Details: storage_type:pickle, scope=CYCLE:SCOPE
-    - Load the new configuration in the code
-    
-=== "Python configuration"
+        The configuration is taken in the previous step, so you can directly copy the last TOML Config file.
 
-    Modifying the scope of a Data Node is as simple as changing its Scope parameter inside the configuration.
-    
-    The configuration is taken in the previous step so you can copy the previous code directly.
+        ![](config_05.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
-    ```python
-    from taipy.config import Scope, Frequency
-    
-    historical_data_cfg = Config.configure_csv_data_node(id="historical_data",
-                                                     default_path="time_series.csv",
-                                                     scope=Scope.GLOBAL)
-    month_cfg =  Config.configure_data_node(id="month", scope=Scope.CYCLE)
+        - Change the Scope of historical_data to be global
+                - name: historical_data
+                - Details: default_path=xxxx/yyyy.csv, storage_type=csv, scope=GLOBAL:SCOPE
+        - Change the Scope of month_data and month to be Cycle
+                - name: output
+                - Details: storage_type:pickle, scope=CYCLE:SCOPE
+        - Load the new configuration in the code
 
-    month_values_cfg = Config.configure_data_node(id="month_data",
-                                                   scope=Scope.CYCLE)
-    ```
+    === "Python configuration"
+
+        Modifying the scope of a Data Node is as simple as changing its Scope parameter inside the configuration.
+
+        The configuration is taken in the previous step so you can copy the previous code directly.
+
+        ```python
+        from taipy.config import Scope, Frequency
+
+        historical_data_cfg = Config.configure_csv_data_node(id="historical_data",
+                                                         default_path="time_series.csv",
+                                                         scope=Scope.GLOBAL)
+        month_cfg =  Config.configure_data_node(id="month", scope=Scope.CYCLE)
+
+        month_values_cfg = Config.configure_data_node(id="month_data",
+                                                       scope=Scope.CYCLE)
+        ```
 
 
 Cycles are created based on the _creation_date_ of scenarios. In the example below, we force the creation_date to a given date (in real life, the actual creation date of the scenario gets used automatically).
