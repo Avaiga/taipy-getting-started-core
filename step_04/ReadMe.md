@@ -93,14 +93,14 @@ scenario_2.submit()
 
 Results:
 ```
-    Month Data Node of Scenario 1 10
-    Month Data Node of Scenario 2 10
-    [2022-12-22 16:20:04,746][Taipy][INFO] job JOB_filter_by_month_a4d3c4a7-5ec9-4cca-8a1b-578c910e255a is completed.
-    [2022-12-22 16:20:04,833][Taipy][INFO] job JOB_count_values_a81b2f60-e9f9-4848-aa58-272810a0b755 is completed.
-    [2022-12-22 16:20:05,026][Taipy][INFO] job JOB_filter_by_month_22a3298b-ac8d-4b55-b51f-5fab0971cc9e is completed.
-    [2022-12-22 16:20:05,084][Taipy][INFO] job JOB_count_values_a52b910a-4024-443e-8ea2-f3cdda6c1c9d is completed.
-    [2022-12-22 16:20:05,317][Taipy][INFO] job JOB_filter_by_month_8643e5cf-e863-434f-a1ba-18222d6faab8 is completed.
-    [2022-12-22 16:20:05,376][Taipy][INFO] job JOB_count_values_72ab71be-f923-4898-a8a8-95ec351c24d9 is completed.
+Month Data Node of Scenario 1 10
+Month Data Node of Scenario 2 10
+[2022-12-22 16:20:04,746][Taipy][INFO] job JOB_filter_by_month_a4d3c4a7-5ec9-4cca-8a1b-578c910e255a is completed.
+[2022-12-22 16:20:04,833][Taipy][INFO] job JOB_count_values_a81b2f60-e9f9-4848-aa58-272810a0b755 is completed.
+[2022-12-22 16:20:05,026][Taipy][INFO] job JOB_filter_by_month_22a3298b-ac8d-4b55-b51f-5fab0971cc9e is completed.
+[2022-12-22 16:20:05,084][Taipy][INFO] job JOB_count_values_a52b910a-4024-443e-8ea2-f3cdda6c1c9d is completed.
+[2022-12-22 16:20:05,317][Taipy][INFO] job JOB_filter_by_month_8643e5cf-e863-434f-a1ba-18222d6faab8 is completed.
+[2022-12-22 16:20:05,376][Taipy][INFO] job JOB_count_values_72ab71be-f923-4898-a8a8-95ec351c24d9 is completed.
 ```
 
 ## Primary scenarios
@@ -120,13 +120,14 @@ tp.set_primary(scenario_2)
 print("Scenario 1 after", scenario_1.is_primary)
 print("Scenario 2 after", scenario_2.is_primary)
 ```
+
 Results:
 
 ```
-    Scenario 1 before True
-    Scenario 2 before False
-    Scenario 1 after False
-    Scenario 2 after True
+Scenario 1 before True
+Scenario 2 before False
+Scenario 1 after False
+Scenario 2 after True
 ```
 
 Scenario 3 is the only scenario in another Cycle due to its creation date and is therefore the default primary scenario.
@@ -144,10 +145,10 @@ print("Is scenario 3 primary?", scenario_3.is_primary)
 Results:
 
 ```
-    [2022-12-22 16:20:05,317][Taipy][INFO] job JOB_filter_by_month_8643e5cf-e863-434f-a1ba-18222d6faab8 is completed.
-    [2022-12-22 16:20:05,376][Taipy][INFO] job JOB_count_values_72ab71be-f923-4898-a8a8-95ec351c24d9 is completed.
+[2022-12-22 16:20:05,317][Taipy][INFO] job JOB_filter_by_month_8643e5cf-e863-434f-a1ba-18222d6faab8 is completed.
+[2022-12-22 16:20:05,376][Taipy][INFO] job JOB_count_values_72ab71be-f923-4898-a8a8-95ec351c24d9 is completed.
 
-    Is scenario 3 primary? True
+Is scenario 3 primary? True
 ```
 
 Also, as you can see, every scenario has been submitted and executed entirely. However, the results for these tasks are all the same. Skipping Tasks (defined in subsequent steps) will help optimize your executions by skipping the execution of redundant tasks.
