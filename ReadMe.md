@@ -61,7 +61,7 @@ file.
 - `step_06`: Skipping tasks
 - `step_07`: Execution modes and asynchronisity.
 - `step_08`: Compare scenarios
-- `step_09`: Attach a callback to a scenario
+- `step_09`: Scenario subscription
 - `CODE_OF_CONDUCT.md`: Code of conduct for members and contributors of _taipy-getting-started_.
 - `CONTRIBUTING.md`: Instructions to contribute to _taipy-getting-started_.
 - `index.md`: Landing page of the generated documentation. 
