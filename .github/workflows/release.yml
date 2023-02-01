@@ -1,0 +1,28 @@
+name: Create Github Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "The release/package version to create (ex: 1.0.0)"
+        required: true
+
+jobs:
+  release:
+    timeout-minutes: 20
+    name: Release taipy-getting-started-core
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Extract commit hash
+        shell: bash
+        run: echo "##[set-output name=hash;]$(echo $(git rev-parse HEAD))"
+        id: extract_hash
+
+      - name: Create release and tag
+        run: |
+            gh release create ${{ github.event.inputs.version }} --target ${{ steps.extract_hash.outputs.hash }} --title ${{ github.event.inputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

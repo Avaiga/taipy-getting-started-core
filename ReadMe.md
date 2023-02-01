@@ -36,7 +36,9 @@ Want to install _Taipy Getting Started_? Check out our [`INSTALLATION.md`](INSTA
 
 ## Notebooks
 
-//To follow the **Getting Started for Core** in a Notebook environment, you must generate the notebook document using the [`generate_notebook.py`](generate_notebook.py) script. Clone the repository and run the script (`python generate_notebook.py`). A Notebook called `getting_started.ipynb` will be created in your current folder.
+To follow the **Getting Started for Core** in a Notebook environment, you must generate the notebook document using 
+the [`generate_notebook.py`](generate_notebook.py) script. Clone the repository and run the script 
+(`python generate_notebook.py`). A Notebook called `getting_started.ipynb` will be created in your current folder.
 
 ## Contributing
 
@@ -44,7 +46,8 @@ Want to help build _Taipy Getting Started Core_? Check out our [`CONTRIBUTING.md
 
 ## Code of conduct
 
-Want to be part of the _Taipy Getting Started Core_ community? Check out our [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) file.
+Want to be part of the _Taipy Getting Started Core_ community? Check out our [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) 
+file.
 
 ## Directory Structure
 
