@@ -15,7 +15,7 @@ specific language governing permissions and limitations under the License.
 
 - [License](#license)
 - [Usage](#usage)
-- [Taipy Getting Started](##what-is-taipy-getting-started-for-core)
+- [Taipy Getting Started](#what-is-taipy-getting-started-for-core)
 - [Installation](#installation)
 - [Contributing](#contributing)
 - [Code of conduct](#code-of-conduct)
