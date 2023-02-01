@@ -24,36 +24,39 @@ Then to introduce Cycles, you simply need to set the frequency (predefined attri
 ![](config_04.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 
-=== "Taipy Studio/TOML configuration"
-
-    ![](config_04.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
-
-    - Recreate the config of the previous step but change the task accordingly with a new input Data Node (_month_).
-    - Add the frequency property for the scenario and put "MONTHLY:FREQUENCY" (DAYLY, WEEKLY, MONTHLY, YEARLY)
-    - Load the new configuration in the code
-
-=== "Python configuration"
-    
-    The configuration is the same as the last step except for the scenario and task configuration. A new parameter is added for the frequency.
-    
-    ```python
-    from taipy.config import Scope
-    
-    month_cfg =  Config.configure_data_node(id="month")
-    
-    task_filter_cfg = Config.configure_task(id="filter_by_month",
-                                                 function=filter_by_month,
-                                                 input=[historical_data_cfg, month_cfg],
-                                                 output=month_values_cfg)
-
-    ...
-    
-    scenario_cfg = Config.configure_scenario(id="my_scenario",
-                                             pipeline_configs=[pipeline_cfg],
-                                             frequency=Frequency.MONTHLY)
+!!! example "Configuration"
 
 
-    ```
+    === "Taipy Studio"
+
+        ![](config_04.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
+
+        - Recreate the config of the previous step but change the task accordingly with a new input Data Node (_month_).
+        - Add the frequency property for the scenario and put "MONTHLY:FREQUENCY" (DAYLY, WEEKLY, MONTHLY, YEARLY)
+        - Load the new configuration in the code
+
+    === "Python configuration"
+
+        The configuration is the same as the last step except for the scenario and task configuration. A new parameter is added for the frequency.
+
+        ```python
+        from taipy.config import Scope
+
+        month_cfg =  Config.configure_data_node(id="month")
+
+        task_filter_cfg = Config.configure_task(id="filter_by_month",
+                                                     function=filter_by_month,
+                                                     input=[historical_data_cfg, month_cfg],
+                                                     output=month_values_cfg)
+
+        ...
+
+        scenario_cfg = Config.configure_scenario(id="my_scenario",
+                                                 pipeline_configs=[pipeline_cfg],
+                                                 frequency=Frequency.MONTHLY)
+
+
+        ```
 
 
 
