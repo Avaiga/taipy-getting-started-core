@@ -9,7 +9,7 @@ Note that Cycles can be completely ignored if the business problem doesn’t hav
 
 In this step, scenarios are attached to a MONTHLY cycle. By Using Cycles the developer will benefit from specific Taipy's functions to navigate through these Cycles. For instance, Taipy can get all the scenarios created in a month by providing the Cycle. You can also get every primary scenario generated for the past X months  to easily monitor KPIs over time.
 
-To get started, let’s slightly change the filter function by passing the month as an argument. You will need to create a new data node representing the month (see the steps below)
+To get started, let’s slightly change the filter function by passing the month as an argument. You will need to create a new data node representing the month (see the steps below).
 
 
 ```python
