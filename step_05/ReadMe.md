@@ -99,9 +99,9 @@ print("Scenario 3: month", scenario_2.month.read())
 ```
 Results:
 ```
-    Scenario 1: month 10
-    Scenario 2: month 10
-    Scenario 3: month 9
+Scenario 1: month 10
+Scenario 2: month 10
+Scenario 3: month 9
 ```
 
 Defining the _month_ of scenario 1 will also determine the _month_ of scenario 2 since they share the same Data Node. 
