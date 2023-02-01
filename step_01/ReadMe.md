@@ -57,21 +57,37 @@ def double(nb):
 
 
         **Note**: Remember to save the file after each change.
+        
         - Create a new file: 'config_01.toml'
+        
         - Open Taipy Studio view
+        
         - Right-click on the right configuration and choose 'Taipy: Show View'
+        
         - Add your first Data Node by clicking the button on the right corner of the window
+        
         - Create a name for it and change its details in the 'Details' section of Taipy Studio
+        
                 - name: input
+                
                 - Details: default_data=21, storage_type=pickle
+                
         - Do the same for the output
+        
                 - name: output
+                
                 - Details: storage_type=pickle
-        - Add a task and choose a function to associate with `<module>.<name>:function`
+                
+        - Add a task and choose a function to associate with `<module>.<name>`
+        
                 - name: double
-                - Details: function=`__main__.double:function`
+                
+                - Details: function=`__main__.double`
+                
         - Link the Data Nodes and the task
+        
         - Add a pipeline and link it to the task
+        
         - Add a scenario and link to the pipeline
 
         To use this configuration in our code (`main.py` for example), we must load it and retrieve the `scenario_cfg`. This `scenario_cfg` is the basis to instantiate our scenarios.
