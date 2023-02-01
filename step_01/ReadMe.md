@@ -50,7 +50,7 @@ def double(nb):
     By watching the animation below, you can have a feel of how this configuration gets created using Taipy Studio. Once created, the configuration can be saved as a TOML file (see below)
 
 
-![](config_01.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
+    ![](config_01.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 
     **Note**: Remember to save the file after each change.
