@@ -2,7 +2,7 @@
 
 # Step 7: Execution modes
 
-Taipy has [different ways](https://docs.taipy.io/en/latest/manuals/core/config/job-config/) to execute the code. Changing the execution mode can be useful to run multiple tasks in parallel.
+Taipy has [different ways](https://docs.taipy.io/en/latest/manuals/core/config/job-config/) to execute the code. Changing the execution mode can be useful for running multiple tasks in parallel.
 - _standalone_ mode: asynchronous. Jobs can be run in parallel depending on the graph of execution if _max_nb_of_workers_ > 1.
 - _development_ mode: synchronous.
 
@@ -40,7 +40,7 @@ if __name__=="__main__":
     time.sleep(30)
 ```
 
-Jobs from the two submissions are being executed simultaneously. If `max_nb_of_workers` was greater, we could execute multiple scenarios at the same time and multiple tasks of a scenario at the same time.
+Jobs from the two submissions are being executed simultaneously. If `max_nb_of_workers` was greater, we could run multiple scenarios at the same time and multiple tasks of a scenario at the same time.
 
 Some options for the _submit_ function exist:
 - _wait_: if _wait_ is True, the submit is synchronous and will wait for the end of all the jobs (if _timeout_ is not defined).

@@ -10,7 +10,7 @@ Taipy provides a mechanism to compare scenarios by providing a function directly
 
 ## Step 1: The first step consists in declaring on which data nodes to apply the comparison functions:
 
-Taipy can compares Data Nodes. In this example, we want a comparison applied to the '_output_' Data Node. It is indicated in the comparators parameter of the `configure_scenario()`.
+Taipy can compare Data Nodes. In this example, we want a comparison applied to the '_output_' Data Node. It is indicated in the comparators parameter of the `configure_scenario()`.
 
 ```python
 scenario_cfg = Config.configure_scenario(id="multiply_scenario",
@@ -66,5 +66,3 @@ Taipy Rest allows the user to navigate through the entities of the application b
 ```python
 tp.Rest().run()
 ```
-
-

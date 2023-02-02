@@ -6,13 +6,13 @@
 
 - Keep Data Nodes local to each pipeline.
 
-- Extend the scope by sharing data nodes between all the pipelines of a given scenario.
+- Extend the scope by sharing data nodes between a given scenario's pipelines.
 
-- Extend the scope further by sharing data nodes across all scenarios of a given cycle.
+- Extend the scope by sharing data nodes across all scenarios of a given cycle.
 
 - Finally, extend the scope globally (across all scenarios of all cycles). For example, the initial/historical dataset is usually shared by all the scenarios/pipelines/cycles. It has a Global Scope and will be unique in the entire application.
 
-To summarize the different possible scopes are:
+To summarize, the different possible scopes are:
 
 - _Pipeline scope_: two pipelines can reference different Data Nodes even if their names are the same. For example, we can have a _prediction_ Data Node of an ARIMA model (ARIMA pipeline) and a _prediction_ Data Node of a RandomForest model (RandomForest pipeline). A scenario can contain multiple pipelines.
 
@@ -32,7 +32,7 @@ It is worth noting that the default scope for Data nodes is the Scenario scope.
 
         Modifying the scope of a Data Node is as simple as changing its Scope parameter in the configuration. 
 
-        The configuration is taken in the previous step, so you can directly copy the last TOML Config file.
+        The configuration is taken in the previous step, so you can copy the last TOML Config file directly.
 
         ![](config_05.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
@@ -85,7 +85,7 @@ scenario_3 = tp.create_scenario(scenario_cfg,
                                 name="Scenario 2021/9/1")
 ```
 
-Scenario 1 and 2 belong to the same Cycle: since month has now a **Cycle** scope, we can define _month_ just once for both scenario 1 and 2.
+Scenario 1 and 2 belong to the same Cycle: since _month_ now has a **Cycle** scope, we can define _month_ just once for both scenarios: 1 and 2.
 
 ![](sommething.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
@@ -106,4 +106,4 @@ Scenario 3: month 9
 
 Defining the _month_ of scenario 1 will also determine the _month_ of scenario 2 since they share the same Data Node. 
 
-This is not the case for _nb_of_values_ that are of Scenario scope, each _nb_of_values_ has its own value in each scenario.
+This is not the case for _nb_of_values_ that are of Scenario scope; each _nb_of_values_ has its own value in each scenario.
