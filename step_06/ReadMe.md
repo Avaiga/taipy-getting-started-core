@@ -2,9 +2,9 @@
 
 # Step 6: Skipping tasks
 
-Skipping tasks is an essential feature of Taipy. For a given pipeline or scenario, Running twice a function with the same input parameters will most of the time create the same output. Executing this sort of function is a waste of time and resources.
+Skipping tasks is an essential feature of Taipy. Running twice a function with the same input parameters will create the same output for a given pipeline or scenario. Executing this sort of function is a waste of time and resources.
 
-Taipy Core provides for each task the _skippable_ attribute. If this attribute is set to True, Taipy Core’s scheduler will automatically detect if changes have occured on any of the input data nodes of a task. If no changes have occured, it will automatically skip the execution of that task.By default; skippable is set to False. 
+Taipy Core provides for each task the _skippable_ attribute. If this attribute is set to True, Taipy Core’s scheduler will automatically detect if changes have occurred on any of the input Data Nodes of a task. If no changes have occurred, it will automatically skip the execution of that task. By default, skippable is set to False. 
 
 
 ![](config_06.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
@@ -99,7 +99,7 @@ Scenario 1: submit
 Value 849
 ```
 
-When submitting scenario 2, the scheduler will skip the first task of this second scenario. Indeed, the two scenarios share the same input Data Nodes for this task, and no changes have occured on these Data Nodes (since the last run of the task when we submitted scenario 1).
+When submitting scenario 2, the scheduler will skip the first task of this second scenario. Indeed, the two scenarios share the same input Data Nodes for this task, and no changes have occurred on these Data Nodes (since the last task run when we submitted scenario 1).
 
 ```python
 # the first task has already been executed by scenario 1
@@ -119,7 +119,7 @@ Value 849
 Resubmitting the same scenario without any change will skip every task.
 
 ```python
-# every task has already been executed, so the scheduler will skip everything
+# every task has already been executed so that the scheduler will skip everything
 print("Scenario 2: second submit")
 scenario_2.submit()
 print("Value", scenario_2.nb_of_values.read())
