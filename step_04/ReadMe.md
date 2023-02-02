@@ -2,7 +2,7 @@
 
 [Cycles](https://docs.taipy.io/en/latest/manuals/core/concepts/cycle/) have been introduced to reflect business situations our customers frequently encounter. 
 
-For instance, a large Fast Food chain wants to generate sales forecasts for its stores every week. When creating a given scenario, it will need to be attached to a given week. And often, a single one will be published amongst all the scenarios generated for a given week. This kind of 'official' scenario will be referred to as the 'Primary' scenario in Taipy  Core.
+For instance, a large Fast Food chain wants to generate sales forecasts for its stores every week. When creating a given scenario, it will need to be attached to a given week. And often, a single one will be published amongst all the scenarios generated for a given week. This kind of 'official' scenario will be referred to as the 'Primary' scenario in Taipy Core.
 
 Note that Cycles can be ignored entirely if the business problem has no time frequency. 
 

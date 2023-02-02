@@ -32,7 +32,7 @@ This section will use the simple DAG/execution configuration described below. Th
 
 -   _count_values_: calculates the number of elements in this month
 
-5. One single pipeline in this scenario configuration regrouping these two tasks.
+5. One single pipeline in this scenario configuration grouping these two tasks.
 
 
 ![](config_03.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }

@@ -2,7 +2,7 @@
 
 # Step 1: Configuration and execution
 
-Before looking at some code and examples, let’s define some basic terms Taipy Core uses. Taipy Core revolves around four major concepts.
+Before looking at some code examples, let’s define some basic terms Taipy Core uses. Taipy Core revolves around four major concepts.
 
 ## Four fundamental concepts in Taipy Core:
 - Data Nodes are the translation of _variables_ in Taipy. Data Nodes don't contain the data but know how to retrieve it. They can refer to any data: any Python object (string, int, list, dict, model, data frame, etc.), a Pickle file, a CSV file, a SQL database, etc. They know how to read and write data. You can even write your own custom Data Node to access a particular data format.
@@ -11,7 +11,7 @@ Before looking at some code and examples, let’s define some basic terms Taipy 
 
 - Pipelines are a list of tasks executed with intelligent scheduling created automatically by Taipy. They usually represent a sequence of Tasks/functions ranging from data processing steps to simple baseline Algorithms all the way to more sophisticated pipelines: Machine-Learning, Mathematical models, Simulation, etc.
 
-- Scenarios End-Users often require modifying various parameters to reflect different business situations. Taipy Scenarios provide the framework to "play"/"execute" pipelines under different conditions/variations (i.e., data/parameters modified by the end-user)
+- Scenarios End-Users often require modifying various parameters to reflect different business situations. Taipy Scenarios provide the framework to "run"/"execute" pipelines under different conditions/variations (i.e., data/parameters modified by the end-user)
 
 
 ## What is a configuration?
