@@ -9,7 +9,7 @@ Note that Cycles can be ignored entirely if the business problem has no time fre
 
 In this step, scenarios are attached to a MONTHLY cycle. Using Cycles, the developer will benefit from specific Taipy's functions to navigate through these Cycles. For instance, by providing the Cycle, Taipy can get all the scenarios created in a month. You can also easily get every primary scenario generated for the past X months to monitor KPIs over time.
 
-Let’s slightly change the filter function by passing the month as an argument to get started. You must create a new data node representing the month (see the steps below).
+Let’s slightly change the filter function by passing the month as an argument to get started. You must create a new Data Node representing the month (see the steps below).
 
 
 ```python
@@ -107,7 +107,7 @@ Month Data Node of Scenario 2 10
 
 In each Cycle, there is a primary scenario. A primary scenario is interesting because it represents the important scenario of the Cycle, the reference. By default, the first scenario created for a cycle will be primary.
 
-`tp.set_primary(<Scenario>)` allows changing the primary scenario in a Cycle.
+[`tp.set_primary(<Scenario>)`](https://docs.taipy.io/en/latest/manuals/core/entities/scenario-cycle-mgt/#promote-a-scenario-as-primary) allows changing the primary scenario in a Cycle.
 
 `<Scenario>.is_primary` identifies as a boolean whether the scenario is primary or not.
 

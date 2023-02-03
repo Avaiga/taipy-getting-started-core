@@ -7,20 +7,22 @@ def add_line(source, line, step):
     line = line.replace('(../src/', '(https://docs.taipy.io/en/latest/getting_started/src/')
     line = line.replace('(time_series.csv)', '(https://docs.taipy.io/en/latest/getting_started/src/time_series.csv)') #!!!!!
     line = line.replace('(time_series_2.csv)', '(https://docs.taipy.io/en/latest/getting_started/src/time_series_2.csv)')
-
+    line = line.replace('!!! example "Configuration"','')
+    line = line.replace('=== "Python configuration"','')
+    
 
     if line.startswith('!['):
         if step != 'index':
-            line = line.replace('(', '(https://github.com/Avaiga/taipy-getting-started-core/blob/develop/' + step + '/')
+            line = line.replace('(', '(https://raw.githubusercontent.com/Avaiga/taipy-getting-started-core/develop/' + step + '/')
         else:
-            line = line.replace('(', '(https://github.com/Avaiga/taipy-getting-started-core/blob/develop/')
+            line = line.replace('(', '(https://raw.githubusercontent.com/Avaiga/taipy-getting-started-core/develop/')
 
         # conversion of Markdown image to HTML
         img_src = line.split('](')[1].split(')')[0]
         width = line.split('](')[1].split(')')[1].split(' ')[1]
 
         source.append('<div align="center">\n')
-        source.append(f' <img src={img_src} {width}>\n')
+        source.append(f' <img src="{img_src}" {width}>\n')
         source.append('</div>\n')
 
 
@@ -78,6 +80,7 @@ def create_introduction(notebook, execution_count):
     notebook['cells'].append({
         "cell_type": "markdown",
         "metadata": {},
+
         "source": source
     })
 
@@ -92,7 +95,7 @@ def create_introduction(notebook, execution_count):
     notebook['cells'].append({
         "cell_type": "markdown",
         "metadata": {},
-        "source": ['## Using Notebooks\n',]
+        "source": ['## Using Notebooks\n','Using Notebooks, you **may want to restart the kernel** after a run of Taipy Core\n']
     })
 
     execution_count += 1
@@ -123,6 +126,8 @@ def create_steps(notebook, execution_count):
         for line in split_text:
             if cell == "markdown":
                 line=line.replace("    ","")
+            elif cell == "code" and (line[:8] == "        " or len(line)<=1) and for_studio == 2:
+                line=line[8:]   
             elif cell == "code" and (line[:4] == "    " or len(line)<=1) and for_studio == 2:
                 line=line[4:]
             else:

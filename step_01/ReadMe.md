@@ -5,23 +5,24 @@
 Before looking at some code examples, let’s define some basic terms Taipy Core uses. Taipy Core revolves around four major concepts.
 
 ## Four fundamental concepts in Taipy Core:
-- Data Nodes are the translation of _variables_ in Taipy. Data Nodes don't contain the data but know how to retrieve it. They can refer to any data: any Python object (string, int, list, dict, model, data frame, etc.), a Pickle file, a CSV file, a SQL database, etc. They know how to read and write data. You can even write your own custom Data Node to access a particular data format.
+- [**Data Nodes**](https://docs.taipy.io/en/latest/manuals/core/concepts/data-node/): are the translation of _variables_ in Taipy. Data Nodes don't contain the data but know how to retrieve it. They can refer to any data: any Python object (string, int, list, dict, model, data frame, etc.), a Pickle file, a CSV file, a SQL database, etc. They know how to read and write data. You can even write your own custom Data Node to access a particular data format.
 
-- Tasks are the translation of _functions_ in Taipy.
+- [**Tasks**](https://docs.taipy.io/en/latest/manuals/core/concepts/task/): are the translation of _functions_ in Taipy.
 
-- Pipelines are a list of tasks executed with intelligent scheduling created automatically by Taipy. They usually represent a sequence of Tasks/functions ranging from data processing steps to simple baseline Algorithms all the way to more sophisticated pipelines: Machine-Learning, Mathematical models, Simulation, etc.
+- [**Pipelines**](https://docs.taipy.io/en/latest/manuals/core/concepts/pipeline/): are a list of tasks executed with intelligent scheduling created automatically by Taipy. They usually represent a sequence of Tasks/functions ranging from data processing steps to simple baseline Algorithms all the way to more sophisticated pipelines: Machine-Learning, Mathematical models, Simulation, etc.
 
-- Scenarios End-Users often require modifying various parameters to reflect different business situations. Taipy Scenarios provide the framework to "run"/"execute" pipelines under different conditions/variations (i.e., data/parameters modified by the end-user)
+- [**Scenarios**](https://docs.taipy.io/en/latest/manuals/core/concepts/scenario/): End-Users often require modifying various parameters to reflect different business situations. Taipy Scenarios provide the framework to "run"/"execute" pipelines under different conditions/variations (i.e., data/parameters modified by the end-user)
 
 
 ## What is a configuration?
 
-A configuration is a structure to define scenarios and pipelines. It represents our Direct Acyclic Graph(s); it models the data sources, parameters, and tasks. Once defined, a configuration acts like a superclass; it is used to generate different instances of scenarios.
+A [**configuration**](https://docs.taipy.io/en/latest/manuals/core/config/) is a structure to define scenarios and pipelines. It represents our Direct Acyclic Graph(s); it models the data sources, parameters, and tasks. Once defined, a configuration acts like a superclass; it is used to generate different instances of scenarios.
 
 
 Let's create our first configuration. For this, we have two alternatives:
 
 - Using Taipy Studio
+
 - Or directly coding in Python.
 
 Once the scenario configuration is defined, we can create instances, aka *'entities'* of scenarios, that can be submitted for execution. Entities are made from all configuration objects: scenario config, pipeline config, tasks, and data node configs. We will refer to them as _scenario entities_, _pipeline entities_, _task entities_, and _Data Node entities_. Since this is very much like the mechanism of class and instances present in object programming, we will use the word entity and instance interchangeably. 
@@ -125,7 +126,7 @@ The code below presents how you can create scenarios and submit them.
 
 First of all, Taipy Core has to be launched(`tp.Core().run()`). It will create a service that acts as a job scheduler.
 
-Creating a scenario/pipeline (`tp.create_scenario(<Scenario Config>)`/`tp.create_pipeline(<Pipeline Config>)`) will create all its related entities (_tasks_, _Data Nodes_, etc). These entities are being created thanks to the previous configuration. Still, no scenario has been run yet. `tp.submit(<Scenario>)` is the line of code that will run all the scenario-related pipelines and tasks. Note that a pipeline or a task can also be submitted directly (`tp.submit(<Pipeline>)`, `tp.submit(<Task>)`).
+Creating a scenario/pipeline (`tp.create_scenario(<Scenario Config>)` / `tp.create_pipeline(<Pipeline Config>)`) will create all its related entities (_tasks_, _Data Nodes_, etc). These entities are being created thanks to the previous configuration. Still, no scenario has been run yet. `tp.submit(<Scenario>)` is the line of code that will run all the scenario-related pipelines and tasks. Note that a pipeline or a task can also be submitted directly (`tp.submit(<Pipeline>)`, `tp.submit(<Task>)`).
 
 ```python
 # Run of the Core

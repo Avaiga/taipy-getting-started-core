@@ -42,7 +42,7 @@ if __name__=="__main__":
 
 Jobs from the two submissions are being executed simultaneously. If `max_nb_of_workers` was greater, we could run multiple scenarios at the same time and multiple tasks of a scenario at the same time.
 
-Some options for the _submit_ function exist:
+Some options for the [_submit_](https://docs.taipy.io/en/latest/manuals/reference/taipy.core.Scenario/#taipy.core.scenario.scenario.Scenario.submit) function exist:
 - _wait_: if _wait_ is True, the submit is synchronous and will wait for the end of all the jobs (if _timeout_ is not defined).
 - _timeout_: if _wait_ is True, Taipy will wait for the end of the submission up to a certain amount of time.
 

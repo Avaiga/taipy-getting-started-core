@@ -4,13 +4,13 @@
 
 Let's discuss some of the essential functions that come along with Taipy.
 
-- `<Data Node>.write(<new value>)`: this instruction changes the data of a Data Node. It also changes the _last_edit_date_ of the Data Node, influencing whether a task can be skipped.
+- [`<Data Node>.write(<new value>)`](https://docs.taipy.io/en/latest/manuals/core/entities/data-node-mgt/#read-write-a-data-node): this instruction changes the data of a Data Node. It also changes the _last_edit_date_ of the Data Node, influencing whether a task can be skipped.
 
-- `tp.get_scenarios()`: this function returns the list of all the scenarios
+- [`tp.get_scenarios()`](https://docs.taipy.io/en/latest/manuals/core/entities/scenario-cycle-mgt/#get-all-scenarios): this function returns the list of all the scenarios
 
-- `tp.get(<Taipy object ID>)`: this function returns an entity based on the id of the entity
+- [`tp.get(<Taipy object ID>)`](https://docs.taipy.io/en/latest/manuals/core/entities/data-node-mgt/#get-data-node): this function returns an entity based on the id of the entity
 
-- `tp.delete(<Taipy object ID>)`: this function deletes the entity and nested elements based on the id of the entity
+- [`tp.delete(<Taipy object ID>)`](https://docs.taipy.io/en/latest/manuals/core/entities/scenario-cycle-mgt/#delete-a-scenario): this function deletes the entity and nested elements based on the id of the entity
 
 ## Utility of having scenarios
 
