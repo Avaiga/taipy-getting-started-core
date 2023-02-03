@@ -87,8 +87,6 @@ scenario_3 = tp.create_scenario(scenario_cfg,
 
 Scenario 1 and 2 belong to the same Cycle: since _month_ now has a **Cycle** scope, we can define _month_ just once for both scenarios: 1 and 2.
 
-![](sommething.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
-
 
 ```python
 scenario_1.month.write(10)
