@@ -4,7 +4,7 @@
 
     Taipy requires **Python 3.8** or newer.
 
-Welcome to the **Getting Started Core** guide for Taipy Core. This tour shows you how to use Taipy Core to orchestrate pipelines. Taipy Core implements a modern backend for any data-driven application based on your business case.
+Welcome to the **Getting Started Core** guide for Taipy Core. This tour shows you how to use Taipy Core.
 
 
 # Taipy Core
@@ -17,8 +17,7 @@ Taipy Core is one of the components of Taipy to facilitate pipeline orchestratio
 
 - Taipy Core provides easy management of multiple pipelines and end-user scenarios, which comes in handy in the context of Machine Learning or Mathematical optimization.
 
-Each step of the **"Getting Started Core"** will focus on basic concepts of *Taipy Core*. Note that every step is dependent on 
-the code of the previous one. After completing the last step, you will have the skills to develop your own Taipy 
+Each step of the **"Getting Started Core"** will focus on basic concepts of *Taipy Core*. Note that every step is dependent on the code of the previous one. After completing the last step, you will have the skills to develop your own Taipy 
 application. 
 
 ## Before we begin
