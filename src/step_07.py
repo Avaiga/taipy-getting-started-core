@@ -40,8 +40,9 @@ Config.export("config_07.toml")
 if __name__=="__main__":
     tp.Core().run()
     scenario_1 = tp.create_scenario(scenario_cfg)
+    scenario_2 = tp.create_scenario(scenario_cfg)
     scenario_1.submit()
-    scenario_1.submit()
+    scenario_2.submit()
 
     scenario_1 = tp.create_scenario(scenario_cfg)
     scenario_1.submit(wait=True)
