@@ -7,7 +7,7 @@ Before looking at some code examples, let’s define some basic terms Taipy Core
 ## Four fundamental concepts in Taipy Core:
 - [**Data Nodes**](https://docs.taipy.io/en/latest/manuals/core/concepts/data-node/): are the translation of _variables_ in Taipy. Data Nodes don't contain the data but know how to retrieve it. They can refer to any data: any Python object (string, int, list, dict, model, data frame, etc.), a Pickle file, a CSV file, a SQL database, etc. They know how to read and write data. You can even write your own custom Data Node to access a particular data format.
 
-- [**Tasks**](https://docs.taipy.io/en/latest/manuals/core/concepts/task/): are the translation of _functions_ in Taipy.
+- [**Tasks**](https://docs.taipy.io/en/latest/manuals/core/concepts/task/): are the expression of _functions_ in Taipy.
 
 - [**Pipelines**](https://docs.taipy.io/en/latest/manuals/core/concepts/pipeline/): are a list of tasks executed with intelligent scheduling created automatically by Taipy. They usually represent a sequence of Tasks/functions ranging from data processing steps to simple baseline Algorithms all the way to more sophisticated pipelines: Machine-Learning, Mathematical models, Simulation, etc.
 
