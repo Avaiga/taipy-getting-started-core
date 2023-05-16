@@ -150,11 +150,4 @@ Value at the end of task 42
 
 ## Ways of executing the code: Versioning
 
-Taipy Core provides a [versioning system](https://docs.taipy.io/en/latest/manuals/core/versioning/) to keep track of the changes that a configuration will experience over time: new data sources, new parameters, new versions of your Machine Learning engine, etc. `python main.py -h` opens a helper to understand the versioning options. Here are the principal ways to run the code with versioning:
-
-- _Development_: is the default way of executing the code. When running a Taipy Core application in development mode, Taipy can’t access all entities created from a previous Development run. Launching your Taipy code as `python main.py` executes it in Development mode.
-
-- _Experiment_: all Taipy Core entities from the previous run are kept, but each new run will ignore them. An identifier is attached to each run. 
-`python main.py --experiment` will execute the code in Experiment mode. The user can then re-execute a previous run (by selecting a previously used identifier). This version number is as follows: `python main.py --experiment 1`.
-
-- _Production_: When running a Taipy Core application in production mode, Taipy can access all entities attached to the current or another production version. It corresponds to the case where the application is stable and running in a production environment. The user can decide the identifier to use. `python main.py --production` will execute the code in Experiment mode, or `python main.py --production 1` to run it with a specific version.
+Taipy Core provides a [versioning system](https://docs.taipy.io/en/latest/manuals/core/versioning/) to keep track of the changes that a configuration will experience over time: new data sources, new parameters, new versions of your Machine Learning engine, etc. `python main.py -h` opens a helper to understand the versioning options at your disposal.
