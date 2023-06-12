@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_07.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started-core/tree/develop/src).
 
-# Step 7: Execution modes
+# Execution modes
 
 Taipy has [different ways](https://docs.taipy.io/en/latest/manuals/core/config/job-config/) to execute the code. Changing the execution mode can be useful for running multiple tasks in parallel.
 - _standalone_ mode: asynchronous. Jobs can be run in parallel depending on the graph of execution if _max_nb_of_workers_ > 1.

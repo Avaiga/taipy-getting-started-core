@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_05.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started-core/tree/develop/src).
 
-# Step 5: Scopes
+# Scopes
 
 [Scopes](https://docs.taipy.io/en/latest/manuals/core/concepts/scope/) determine how Data Nodes are shared between cycles, scenarios, and pipelines. The developer may decide to:
 

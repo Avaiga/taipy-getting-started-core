@@ -48,7 +48,7 @@ Taipy Studio is a VS Code extension that provides a graphical editor to describe
 
 So, without further delay, let's begin to code!
 
-## Steps
+## Concepts
 
 1. [Configuration and execution](step_01/ReadMe.md)
 

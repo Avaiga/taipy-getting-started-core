@@ -1,6 +1,6 @@
 > You can download the code of this step [here](../src/step_08.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started-core/tree/develop/src).
 
-# Step 8: Scenario comparison
+# Scenario comparison
 
 This step reuses the configuration provided in the previous step except for the [scenario configuration](https://docs.taipy.io/en/latest/manuals/core/entities/scenario-cycle-mgt/#compare-scenarios).
 

@@ -1,4 +1,4 @@
-# Step 4: Cycles
+# Cycles
 
 [Cycles](https://docs.taipy.io/en/latest/manuals/core/concepts/cycle/) have been introduced to reflect business situations our customers frequently encounter. 
 

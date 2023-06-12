@@ -1,16 +1,16 @@
 > You can download the code of this step [here](../src/step_02.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started-core/tree/develop/src).
 
-# Step 2: Basic functions
+# Basic functions
 
 Let's discuss some of the essential functions that come along with Taipy.
 
-- [`<Data Node>.write(<new value>)`](https://docs.taipy.io/en/latest/manuals/core/entities/data-node-mgt/#read-write-a-data-node): this instruction changes the data of a Data Node. It also changes the _last_edit_date_ of the Data Node, influencing whether a task can be skipped.
+- [`<Data Node>.write(<new value>)`](https://docs.taipy.io/en/latest/manuals/core/entities/data-node-mgt/#read-write-a-data-node): this instruction changes the data of a Data Node.
 
-- [`tp.get_scenarios()`](https://docs.taipy.io/en/latest/manuals/core/entities/scenario-cycle-mgt/#get-all-scenarios): this function returns the list of all the scenarios
+- [`tp.get_scenarios()`](https://docs.taipy.io/en/latest/manuals/core/entities/scenario-cycle-mgt/#get-all-scenarios): this function returns the list of all the scenarios.
 
-- [`tp.get(<Taipy object ID>)`](https://docs.taipy.io/en/latest/manuals/core/entities/data-node-mgt/#get-data-node): this function returns an entity based on the id of the entity
+- [`tp.get(<Taipy object ID>)`](https://docs.taipy.io/en/latest/manuals/core/entities/data-node-mgt/#get-data-node): this function returns an entity based on the id of the entity.
 
-- [`tp.delete(<Taipy object ID>)`](https://docs.taipy.io/en/latest/manuals/core/entities/scenario-cycle-mgt/#delete-a-scenario): this function deletes the entity and nested elements based on the id of the entity
+- [`tp.delete(<Taipy object ID>)`](https://docs.taipy.io/en/latest/manuals/core/entities/scenario-cycle-mgt/#delete-a-scenario): this function deletes the entity and nested elements based on the id of the entity.
 
 ## Utility of having scenarios
 
@@ -41,7 +41,7 @@ Output of First submit: 42
 
 ## _write_ function
 
-Data of a Data Node can be changed using _write_. The syntax is `<Scenario>.<Pipeline>.<Data Node>.write(value)`. If the scenario contains a single pipeline, we can write `<Scenario>.<Data Node>.write(value)`.
+Data of a Data Node can be changed using _write_. The syntax is `<Scenario>.<Data Node>.write(value)`.
 
 
 ```python
