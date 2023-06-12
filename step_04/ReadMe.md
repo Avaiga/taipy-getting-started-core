@@ -62,7 +62,7 @@ Then to introduce Cycles, you need to set the frequency (predefined attribute) o
 
 
 
-As you can see, a Cycle is activated once you have set the desired frequency on the scenario. In this code snippet, since we have specified `frequency=Frequency.MONTHLY`, the corresponding scenario will be automatically attached to the correct period (month) once it is created. The _creation_date_ here is artificially given to the scenarios.
+As you can see, a Cycle is activated once you have set the desired frequency on the scenario. In this code snippet, since we have specified `frequency=Frequency.MONTHLY`, the corresponding scenario will be automatically attached to the correct period (month) once it is created. _creation_date_ is automatically assigned `datetime.datetime.now()` but, we are here manually overriding it. A Scenario belongs to a Cycle based on the _creation_date_ of the scenario. It can be "attached" to a specific cycle by manually setting its _creation_date_.
 
 ```python
 tp.Core().run()

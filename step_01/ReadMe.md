@@ -43,9 +43,6 @@ def clean(data):
 
 <video controls width="250">
     <source src="/step_01/config_01.mp4" type="video/mp4">
-
-    <a href="/step_01/config_01.mp4">MP4</a>
-    video.
 </video>
 
 

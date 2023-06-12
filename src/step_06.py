@@ -18,22 +18,22 @@ historical_data_cfg = Config.configure_csv_data_node(id="historical_data",
                                                  scope=Scope.GLOBAL)
 month_cfg =  Config.configure_data_node(id="month", scope=Scope.CYCLE)
 month_values_cfg =  Config.configure_data_node(id="month_data",
-                                               scope=Scope.CYCLE,
-                                               cacheable=True)
+                                               scope=Scope.CYCLE)
 
-nb_of_values_cfg = Config.configure_data_node(id="nb_of_values",
-                                              cacheable=True)
+nb_of_values_cfg = Config.configure_data_node(id="nb_of_values")
 
 
 task_filter_cfg = Config.configure_task(id="filter_by_month",
                                                  function=filter_by_month,
                                                  input=[historical_data_cfg, month_cfg],
-                                                 output=month_values_cfg)
+                                                 output=month_values_cfg,
+                                                 skippable=True)
 
 task_count_values_cfg = Config.configure_task(id="count_values",
                                                  function=count_values,
                                                  input=month_values_cfg,
-                                                 output=nb_of_values_cfg)
+                                                 output=nb_of_values_cfg,
+                                                 skippable=True)
 
 pipeline_cfg = Config.configure_pipeline(id="my_pipeline",
                                          task_configs=[task_filter_cfg,
