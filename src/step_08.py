@@ -28,7 +28,6 @@ second_task_cfg = Config.configure_task("add",
                                     output_cfg)
 
 # Configuration of the pipeline and scenario
-pipeline_cfg = Config.configure_pipeline("my_pipeline", [first_task_cfg, second_task_cfg])
 
 
 def compare_function(*data_node_results):
@@ -45,9 +44,9 @@ def compare_function(*data_node_results):
     return compare_result
 
 
-scenario_cfg = Config.configure_scenario(id="multiply_scenario",
+scenario_cfg = Config.configure_scenario_from_tasks(id="multiply_scenario",
                                         name="my_scenario",
-                                        pipeline_configs=[pipeline_cfg],
+                                        task_configs=[first_task_cfg, second_task_cfg],
                                         comparators={output_cfg.id: compare_function},
                                         frequency=Frequency.MONTHLY)
 

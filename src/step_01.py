@@ -15,9 +15,8 @@ task_cfg = Config.configure_task("double",
                                  input_data_node_cfg,
                                  output_data_node_cfg)
 
-# Configuration of the pipeline and scenario
-pipeline_cfg = Config.configure_pipeline("my_pipeline", [task_cfg])
-scenario_cfg = Config.configure_scenario("my_scenario", [pipeline_cfg])
+# Configuration of scenario
+scenario_cfg = Config.configure_scenario_from_tasks("my_scenario", [task_cfg])
 
 Config.export('config_01.toml')
 
@@ -30,3 +29,7 @@ if __name__ == '__main__':
     tp.submit(scenario)
 
     print("Value at the end of task", scenario.output.read())
+
+    tp.Gui("""<|{scenario}|scenario_selector|>
+              <|{scenario}|scenario|>
+              <|{scenario}|scenario_dag|>""").run()

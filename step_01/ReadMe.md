@@ -2,6 +2,8 @@
 
 # Configuration and execution
 
+*Time to complete: 15min*
+
 Before looking at some code examples, let’s define some basic terms Taipy Core uses. Taipy Core revolves around four major concepts.
 
 ## Four fundamental concepts in Taipy Core:

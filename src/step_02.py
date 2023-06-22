@@ -13,9 +13,7 @@ task_cfg = Config.configure_task("double",
                                  input_data_node_cfg,
                                  output_data_node_cfg)
 
-pipeline_cfg = Config.configure_pipeline("my_pipeline", [task_cfg])
-
-scenario_cfg = Config.configure_scenario("my_scenario", [pipeline_cfg])
+scenario_cfg = Config.configure_scenario_from_tasks("my_scenario", [task_cfg])
 
 Config.export('config_02.toml')
 

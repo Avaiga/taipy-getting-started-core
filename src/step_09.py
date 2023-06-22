@@ -30,8 +30,6 @@ second_task_cfg = Config.configure_task("add",
                                     intermediate_cfg,
                                     output_cfg)
 
-# Configuration of the pipeline and scenario
-pipeline_cfg = Config.configure_pipeline("my_pipeline", [first_task_cfg, second_task_cfg])
 
 
 
@@ -48,10 +46,10 @@ def callback_scenario_state(scenario, job):
         for data_node in job.task.output.values():
             print(data_node.read())
 
-
-scenario_cfg = Config.configure_scenario(id="my_scenario",
-                                         name="my_scenario",
-                                         pipeline_configs=[pipeline_cfg])
+# Configuration of scenario
+scenario_cfg = Config.configure_scenario_from_tasks("my_scenario",
+                                                    [first_task_cfg, second_task_cfg],
+                                                    name="my_scenario")
 
 
 Config.export("config_09.toml")

@@ -53,9 +53,9 @@ Then to introduce Cycles, you need to set the frequency (predefined attribute) o
 
         ...
 
-        scenario_cfg = Config.configure_scenario(id="my_scenario",
-                                                 pipeline_configs=[pipeline_cfg],
-                                                 frequency=Frequency.MONTHLY)
+        scenario_cfg = Config.configure_scenario_from_tasks("my_scenario",
+                                                            [pipeline_cfg],
+                                                            frequency=Frequency.MONTHLY)
 
 
         ```

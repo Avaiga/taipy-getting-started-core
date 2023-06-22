@@ -32,8 +32,7 @@ second_task_cfg = Config.configure_task("add",
                                     output_cfg)
 
 # Configuration of the pipeline and scenario
-pipeline_cfg = Config.configure_pipeline("my_pipeline", [first_task_cfg, second_task_cfg])
-scenario_cfg = Config.configure_scenario("my_scenario", [pipeline_cfg])
+scenario_cfg = Config.configure_scenario_from_tasks("my_scenario", [first_task_cfg, second_task_cfg])
 
 Config.export("config_07.toml")
 

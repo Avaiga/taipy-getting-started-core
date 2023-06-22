@@ -88,12 +88,9 @@ def count_values(df):
 
 
         ```python
-        pipeline_cfg = Config.configure_pipeline(id="my_pipeline",
-                                                 task_configs=[task_filter_cfg,
-                                                               task_count_values_cfg])
-
-        scenario_cfg = Config.configure_scenario(id="my_scenario",
-                                                 pipeline_configs=[pipeline_cfg])
+        scenario_cfg = Config.configure_scenario_from_tasks("my_scenario",
+                                                            [task_filter_cfg,
+                                                             task_count_values_cfg])
 
         ```
 

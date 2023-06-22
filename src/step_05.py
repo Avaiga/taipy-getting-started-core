@@ -33,13 +33,12 @@ task_count_values_cfg = Config.configure_task(id="count_values",
                                                  input=month_values_cfg,
                                                  output=nb_of_values_cfg)
 
-pipeline_cfg = Config.configure_pipeline(id="my_pipeline",
-                                         task_configs=[task_filter_cfg,
-                                                       task_count_values_cfg])
 
-scenario_cfg = Config.configure_scenario(id="my_scenario",
-                                         pipeline_configs=[pipeline_cfg],
-                                         frequency=Frequency.MONTHLY)
+
+scenario_cfg = Config.configure_scenario_from_tasks("my_scenario",
+                                                    [task_filter_cfg,
+                                                     task_count_values_cfg],
+                                                    frequency=Frequency.MONTHLY)
 
 Config.export('config_05.toml')
 
