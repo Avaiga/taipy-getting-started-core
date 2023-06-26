@@ -90,7 +90,8 @@ def clean(data):
 
 The configurate is done! Let's use it to create scenarios and submit them.
 
-First, lauch Taipy Core in your code (`tp.Core().run()`). Then, you can play with Taipy: 
+First, launch Taipy Core in your code (`tp.Core().run()`). Then, you can play with Taipy: 
+
 - creating scenarios,
 
 - submitting them,
