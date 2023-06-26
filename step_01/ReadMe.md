@@ -4,9 +4,9 @@
 
 *Time to complete: 15min*
 
-Before looking at some code examples, let’s define some basic terms Taipy Core uses. Taipy Core revolves around four major concepts.
+Before looking at some code examples, let’s define some basic terms Taipy Core uses. Taipy Core revolves around three major concepts.
 
-## Four fundamental concepts in Taipy Core:
+## Three fundamental concepts in Taipy Core:
 - [**Data Nodes**](https://docs.taipy.io/en/latest/manuals/core/concepts/data-node/): are the translation of _variables_ in Taipy. Data Nodes know how to retrieve any type of data. They can refer to: any Python object (string, int, list, dict, model, data frame, etc.), a Pickle file, a CSV file, a SQL database, etc.
 
 - [**Tasks**](https://docs.taipy.io/en/latest/manuals/core/concepts/task/): are the expression of _functions_ in Taipy.
@@ -39,9 +39,7 @@ def clean(data):
 
 ![](config_01.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
-- Two Data Nodes are being configured ('input' and 'output'). The 'input' Data Node has a _default_data_ set at 21. They will be stored as Pickle files (default storage format) and unique to each scenario entity/instance (this is the concept of scope which is covered later’). To clarify, the names given to the Data Nodes are arbitrary. The task links the two Data Nodes through the Python function double.
-
-- The pipeline contains this task, and the scenario includes this single pipeline.
+- Two Data Nodes are being configured ('input_data' and 'cleaned_data'). The 'input' Data Node points to a CSV. The *clean_data* Data Node is stored as a Pickle file (default storage format). The task links the two Data Nodes through the Python function *clean_data*.
 
 <video controls width="250">
     <source src="/step_01/config_01.mp4" type="video/mp4">
@@ -54,9 +52,9 @@ def clean(data):
 
         **Alternative 1:** Configuration using Taipy Studio
 
-        By watching the animation below, you can feel how this configuration gets created using Taipy Studio. Once created, the configuration can be saved as a TOML file (see below)
+        By watching the animation below, you can see how this configuration gets created using Taipy Studio. In fact, Taipy Studio is an editor of a TOML file specific to Taipy. It lets you edit and view a TOML file that will be used in our code.
 
-        ![](config_01.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
+        ![](config_01.mp4){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
         To use this configuration in our code (`main.py` for example), we must load it and retrieve the `scenario_cfg`. This `scenario_cfg` is the basis to instantiate our scenarios.
 
@@ -75,24 +73,31 @@ def clean(data):
 
         ```python
         # Configuration of Data Nodes
-        input_data_node_cfg = Config.configure_data_node("input", default_data=21)
-        output_data_node_cfg = Config.configure_data_node("output")
+        input_data_node_cfg = Config.configure_data_node("input_data",
+                                                         storage_type="csv",
+                                                         default_path="data.csv")
+        clean_data_node_cfg = Config.configure_data_node("clean_data")
 
         # Configuration of tasks
         task_cfg = Config.configure_task("clean",
                                          clean,
                                          input_data_node_cfg,
-                                         output_data_node_cfg)
+                                         clean_data_node_cfg)
 
         # Configuration of the pipeline and scenario
         scenario_cfg = Config.configure_scenario_from_tasks("my_scenario", [task_cfg])
         ```
 
-Now that we have configured Taipy Core, you can create scenarios and submit them.
+The configurate is done! Let's use it to create scenarios and submit them.
 
-Before creating your entities, Taipy Core (the job scheduler) has to be launched (`tp.Core().run()`).
+First, lauch Taipy Core in your code (`tp.Core().run()`). Then, you can play with Taipy: 
+- creating scenarios,
 
-Then, you can play with Taipy: creating scenarios, submitting them, reading your data nodes. Creating a scenario (`tp.create_scenario(<Scenario Config>)`) creates all its related entities (_tasks_, _Data Nodes_, etc). These entities are being created thanks to the previous configuration. Still, no scenario has been run yet. `tp.submit(<Scenario>)` is the line of code that runs all the scenario-related pipelines and tasks.
+- submitting them,
+
+- reading your data nodes.
+
+Creating a scenario (`tp.create_scenario(<Scenario Config>)`) creates all its related entities (_tasks_, _Data Nodes_, etc). These entities are being created thanks to the previous configuration. Still, no scenario has been run yet. `tp.submit(<Scenario>)` is the line of code that runs all the scenario-related pipelines and tasks.
 
 ```python
 # Run of the Core
@@ -115,3 +120,43 @@ Value at the end of task 42
 ## Ways of executing the code: Versioning
 
 Taipy Core provides a [versioning system](https://docs.taipy.io/en/latest/manuals/core/versioning/) to keep track of the changes that a configuration will experience over time: new data sources, new parameters, new versions of your Machine Learning engine, etc. `python main.py -h` opens a helper to understand the versioning options at your disposal.
+
+## Entire code
+
+```python
+from taipy import Config
+import taipy as tp
+
+# Normal function used by Taipy
+def double(nb):
+    return nb * 2
+
+# Configuration of Data Nodes
+input_data_node_cfg = Config.configure_data_node("input", default_data=21)
+output_data_node_cfg = Config.configure_data_node("output")
+
+# Configuration of tasks
+task_cfg = Config.configure_task("double",
+                                 double,
+                                 input_data_node_cfg,
+                                 output_data_node_cfg)
+
+# Configuration of scenario
+scenario_cfg = Config.configure_scenario_from_tasks("my_scenario", [task_cfg])
+
+Config.export('config_01.toml')
+
+if __name__ == '__main__':
+    # Run of the Core
+    tp.Core().run()
+
+    # Creation of the scenario and execution
+    scenario = tp.create_scenario(scenario_cfg)
+    tp.submit(scenario)
+
+    print("Value at the end of task", scenario.output.read())
+
+    tp.Gui("""<|{scenario}|scenario_selector|>
+              <|{scenario}|scenario|>
+              <|{scenario}|scenario_dag|>""").run()
+``` 
