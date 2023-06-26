@@ -118,6 +118,25 @@ Results:
 Value at the end of task 42
 ```    
 
+## Gui-Core visual elements
+
+Add these few lines to the code of your script? This creates a web application to:
+
+- select scenarios you created,
+
+- to create new ones,
+
+- to submit them,
+
+- to see the configuration used by the scenario.
+
+```python
+tp.Gui("""<|{scenario}|scenario_selector|>
+          <|{scenario}|scenario|>
+          <|{scenario}|scenario_dag|>""").run()
+```
+
+
 ## Ways of executing the code: Versioning
 
 Taipy Core provides a [versioning system](https://docs.taipy.io/en/latest/manuals/core/versioning/) to keep track of the changes that a configuration will experience over time: new data sources, new parameters, new versions of your Machine Learning engine, etc. `python main.py -h` opens a helper to understand the versioning options at your disposal.
