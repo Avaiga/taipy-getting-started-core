@@ -136,6 +136,7 @@ tp.Gui("""<|{scenario}|scenario_selector|>
           <|{scenario}|scenario_dag|>""").run()
 ```
 
+[Put a gif here]
 
 ## Ways of executing the code: Versioning
 
