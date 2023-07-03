@@ -106,13 +106,25 @@ Month Data Node of Scenario 2 10
 [2022-12-22 16:20:05,376][Taipy][INFO] job JOB_count_values_72ab71be-f923-4898-a8a8-95ec351c24d9 is completed.
 ```
 
-## GUI-Core visual elements
-
-To navigate through cycles ...................
-
 ## Primary scenarios
 
 In each Cycle, there is a primary scenario. A primary scenario is interesting because it represents the important scenario of the Cycle, the reference. By default, the first scenario created for a cycle is primary.
+
+### GUI-Core visual elements
+
+GUI-Core elements have been created as weel to manipulate Cycles. Cycles are visible in `scenario_selector` or `data_node_selector`. It is also possible to make a scenario primary directly through the `scenario` visual element.
+
+```python
+data_node = None
+scenario = None
+
+tp.Gui("""<|{scenario}|scenario_selector|>
+          <|{scenario}|scenario|>
+          <|{scenario}|scenario_dag|>
+          <|{data_node}|data_node_selector|>""").run()
+```
+
+### Python code associated to primary scenarios
 
 [`tp.set_primary(<Scenario>)`](https://docs.taipy.io/en/latest/manuals/core/entities/scenario-cycle-mgt/#promote-a-scenario-as-primary) allows changing the primary scenario in a Cycle.
 
@@ -143,8 +155,6 @@ Scenario 3 is the only scenario in another Cycle due to its creation date and is
 scenario_3 = tp.create_scenario(scenario_cfg,
                                 creation_date=dt.datetime(2021,9,1),
                                 name="Scenario 2022/9/1")
-scenario_3.month.write(9)
-scenario_3.submit()
 
 print("Is scenario 3 primary?", scenario_3.is_primary)
 ```
@@ -152,13 +162,8 @@ print("Is scenario 3 primary?", scenario_3.is_primary)
 Results:
 
 ```
-[2022-12-22 16:20:05,317][Taipy][INFO] job JOB_filter_by_month_8643e5cf-e863-434f-a1ba-18222d6faab8 is completed.
-[2022-12-22 16:20:05,376][Taipy][INFO] job JOB_count_values_72ab71be-f923-4898-a8a8-95ec351c24d9 is completed.
-
 Is scenario 3 primary? True
 ```
-
-Also, as you can see, every scenario has been submitted and executed entirely. However, the results for these tasks are all the same. Skipping Tasks (defined in subsequent steps) will help optimize your executions by skipping the execution of redundant tasks.
 
 ## Useful functions on cycles
 
