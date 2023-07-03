@@ -2,7 +2,7 @@
 
 # Scenario comparison
 
-This step reuses the configuration provided in the previous step except for the [scenario configuration](https://docs.taipy.io/en/latest/manuals/core/entities/scenario-cycle-mgt/#compare-scenarios).
+*Time to complete: 15min; Level: Advanced*
 
 ![](config_08.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
@@ -57,12 +57,4 @@ print("Value", scenario_2.output.read())
 
 
 print(tp.compare_scenarios(scenario_1, scenario_2))
-```
-
-## Taipy Rest
-
-Taipy Rest allows the user to navigate through the entities of the application but also create and submit scenarios. Taipy Rest commands are referenced [here](https://docs.taipy.io/en/latest/manuals/reference_rest/).
-
-```python
-tp.Rest().run()
 ```

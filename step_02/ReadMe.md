@@ -2,6 +2,9 @@
 
 # Basic functions
 
+*Time to complete: 15min; Level: Beginner*
+
+
 Let's discuss some of the essential functions that come along with Taipy.
 
 - [`<Data Node>.write(<new value>)`](https://docs.taipy.io/en/latest/manuals/core/entities/data-node-mgt/#read-write-a-data-node): this instruction changes the data of a Data Node.
@@ -14,7 +17,7 @@ Let's discuss some of the essential functions that come along with Taipy.
 
 ## Utility of having scenarios
 
-Taipy lets the user create multiple instances of the same configuration. Data can differ between different scenario instances. It is essential to detect/understand the difference in data between scenario instances: e.g., comparing the output/results of different instances... Such differences in behavior between different scenarios entities (from the same scenario configuration) can be due to the following:
+Taipy lets the user create multiple instances of the same configuration. Data can differ between different scenario instances. It is essential to detect/understand the difference in data between scenario instances: e.g., comparing the output/results of different instances... Such differences in scenarios can be due to the following:
 
 - Changing data from input data nodes, 
 
@@ -56,13 +59,14 @@ Before write 21
 After write 54
 ```
 
-The submission of the scenario will update the output values.
+The submission of the scenario updates the output values.
 
 
 ```python
 tp.submit(scenario)
 print("Second submit",scenario.output.read())
 ```
+
 Results:
 ```
 [2022-12-22 16:20:03,011][Taipy][INFO] job JOB_double_7eee213f-062c-4d67-b0f8-4b54c04e45e7 is completed.
@@ -93,4 +97,59 @@ scenario = tp.get(scenario.id)
 ```python
 tp.delete(scenario.id)
 ```
+
+## Ways of executing the code: Versioning
+
+Taipy Core provides a [versioning system](https://docs.taipy.io/en/latest/manuals/core/versioning/) to keep track of the changes that a configuration experiences over time: new data sources, new parameters, new versions of your Machine Learning engine, etc. `python main.py -h` opens a helper to understand the versioning options at your disposal.
+
+# Entire code
+
+```python
+from taipy import Config
+import taipy as tp
+
+
+def double(nb):
+    return nb * 2
+
+input_data_node_cfg = Config.configure_data_node("input", default_data=21)
+output_data_node_cfg = Config.configure_data_node("output")
+
+task_cfg = Config.configure_task("double",
+                                 double,
+                                 input_data_node_cfg,
+                                 output_data_node_cfg)
+
+scenario_cfg = Config.configure_scenario_from_tasks("my_scenario", [task_cfg])
+
+Config.export('config_02.toml')
+
+if __name__ == '__main__':
+    tp.Core().run()
+
+    scenario = tp.create_scenario(scenario_cfg, name="Scenario")
+    tp.submit(scenario)
+    print("Output of First submit:", scenario.output.read())
+
+    print("Before write", scenario.input.read())
+    scenario.input.write(54)
+    print("After write",scenario.input.read())
+
+
+    tp.submit(scenario)
+    print("Second submit",scenario.output.read())
+
+    # Basic functions of Taipy Core 
+    print([s.name for s in tp.get_scenarios()])
+    scenario = tp.get(scenario.id)
+    tp.delete(scenario.id)
+
+    data_node = None
+
+    tp.Gui("""<|{scenario}|scenario_selector|>
+              <|{scenario}|scenario|>
+              <|{scenario}|scenario_dag|>
+              <|{data_node}|data_node_selector|>""").run()
+```
+
 

@@ -2,7 +2,9 @@
 
 # Scenario subscription
 
-This step reuses the configuration provided in step 7 except for the scenario configuration. To have an action after changing a job status, we can [subscribe a function](https://docs.taipy.io/en/latest/manuals/core/entities/scheduling-and-job-execution/#subscribe-to-job-execution) to a scenario. A status change will call this function. This feature allows the creation of logs or particular events for Taipy GUI.
+*Time to complete: 15min; Level: Advanced*
+
+To have an action after changing a job status, we can [subscribe a function](https://docs.taipy.io/en/latest/manuals/core/entities/scheduling-and-job-execution/#subscribe-to-job-execution) to a scenario. A status change calls this function. This feature allows the creation of logs or particular events for Taipy GUI.
 
 ```python
 def callback_scenario(scenario, job):

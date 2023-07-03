@@ -2,19 +2,18 @@
 
 # Scopes
 
+*Time to complete: 15min; Level: Intermediate*
+Requirements: Cycle, Scenario, Data Node, Task
+
 [Scopes](https://docs.taipy.io/en/latest/manuals/core/concepts/scope/) determine how Data Nodes are shared between cycles, scenarios, and pipelines. The developer may decide to:
 
-- Keep Data Nodes local to each pipeline.
-
-- Extend the scope by sharing data nodes between a given scenario's pipelines.
+- Having one data node for each scenario.
 
 - Extend the scope by sharing data nodes across all scenarios of a given cycle.
 
-- Finally, extend the scope globally (across all scenarios of all cycles). For example, the initial/historical dataset is usually shared by all the scenarios/pipelines/cycles. It has a Global Scope and will be unique in the entire application.
+- Finally, extend the scope globally (across all scenarios of all cycles). For example, the initial/historical dataset is usually shared by all the scenarios/pipelines/cycles. It has a Global Scope and is unique in the entire application.
 
 To summarize, the different possible scopes are:
-
-- _Pipeline scope_: two pipelines can reference different Data Nodes even if their names are the same. For example, we can have a _prediction_ Data Node of an ARIMA model (ARIMA pipeline) and a _prediction_ Data Node of a RandomForest model (RandomForest pipeline). A scenario can contain multiple pipelines.
 
 - _Scenario scope (default)_: pipelines share the same Data Node within a scenario. 
 
@@ -38,16 +37,8 @@ It is worth noting that the default scope for Data nodes is the Scenario scope.
 
         - Change the Scope of historical_data to be global
         
-            - name: historical_data
-                
-            - Details: default_path=xxxx/yyyy.csv, storage_type=csv, scope=GLOBAL:SCOPE
-                
         - Change the Scope of month_data and month to be Cycle
-        
-            - name: output
-                
-            - Details: storage_type:pickle, scope=CYCLE:SCOPE
-                
+     
         - Load the new configuration in the code
 
     === "Python configuration"
@@ -95,6 +86,7 @@ print("Scenario 1: month", scenario_1.month.read())
 print("Scenario 2: month", scenario_2.month.read())
 print("Scenario 3: month", scenario_2.month.read())
 ```
+
 Results:
 ```
 Scenario 1: month 10
@@ -105,3 +97,70 @@ Scenario 3: month 9
 Defining the _month_ of scenario 1 will also determine the _month_ of scenario 2 since they share the same Data Node. 
 
 This is not the case for _nb_of_values_ that are of Scenario scope; each _nb_of_values_ has its own value in each scenario.
+
+## Entire code
+
+```python
+from taipy.core.config import Config, Frequency, Scope
+import taipy as tp
+import datetime as dt
+import pandas as pd
+
+
+def filter_by_month(df, month):
+    df['Date'] = pd.to_datetime(df['Date']) 
+    df = df[df['Date'].dt.month == month]
+    return df
+
+def count_values(df):
+    return len(df)
+
+
+historical_data_cfg = Config.configure_csv_data_node(id="historical_data",
+                                                 default_path="time_series.csv",
+                                                 scope=Scope.GLOBAL)
+month_cfg =  Config.configure_data_node(id="month", scope=Scope.CYCLE)
+
+month_values_cfg = Config.configure_data_node(id="month_data",
+                                               scope=Scope.CYCLE)
+nb_of_values_cfg = Config.configure_data_node(id="nb_of_values")
+
+
+task_filter_cfg = Config.configure_task(id="filter_by_month",
+                                                 function=filter_by_month,
+                                                 input=[historical_data_cfg,month_cfg],
+                                                 output=month_values_cfg)
+
+task_count_values_cfg = Config.configure_task(id="count_values",
+                                                 function=count_values,
+                                                 input=month_values_cfg,
+                                                 output=nb_of_values_cfg)
+
+
+
+scenario_cfg = Config.configure_scenario_from_tasks("my_scenario",
+                                                    [task_filter_cfg,
+                                                     task_count_values_cfg],
+                                                    frequency=Frequency.MONTHLY)
+
+
+if __name__ == '__main__':
+    tp.Core().run()
+
+    scenario_1 = tp.create_scenario(scenario_cfg,
+                                    creation_date=dt.datetime(2022,10,7),
+                                    name="Scenario 2022/10/7")
+    scenario_2 = tp.create_scenario(scenario_cfg,
+                                creation_date=dt.datetime(2022,10,5),
+                                name="Scenario 2022/10/5")
+
+    scenario_1.month.write(10)
+    print("Scenario 1: month", scenario_1.month.read())
+    print("Scenario 2: month", scenario_2.month.read())
+
+    print("\nScenario 1: submit")
+    scenario_1.submit()
+    scenario_2.submit()
+    print("Value", scenario_1.nb_of_values.read())
+    print("Value", scenario_2.nb_of_values.read())
+```

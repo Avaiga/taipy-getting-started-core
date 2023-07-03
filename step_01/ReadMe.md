@@ -2,7 +2,7 @@
 
 # Configuration and execution
 
-*Time to complete: 15min*
+*Time to complete: 15min; Level: Beginner*
 
 Before looking at some code examples, let’s define some basic terms Taipy Core uses. Taipy Core revolves around three major concepts.
 
@@ -120,7 +120,7 @@ Value at the end of task 42
 
 ## Gui-Core visual elements
 
-Add these few lines to the code of your script? This creates a web application to:
+Add these few lines to the code of your script. This creates a web application to:
 
 - select scenarios you created,
 
@@ -138,9 +138,6 @@ tp.Gui("""<|{scenario}|scenario_selector|>
 
 [Put a gif here]
 
-## Ways of executing the code: Versioning
-
-Taipy Core provides a [versioning system](https://docs.taipy.io/en/latest/manuals/core/versioning/) to keep track of the changes that a configuration will experience over time: new data sources, new parameters, new versions of your Machine Learning engine, etc. `python main.py -h` opens a helper to understand the versioning options at your disposal.
 
 ## Entire code
 
@@ -149,7 +146,7 @@ from taipy import Config
 import taipy as tp
 
 # Normal function used by Taipy
-def double(nb):
+def clean_data(data):
     return nb * 2
 
 # Configuration of Data Nodes
@@ -165,7 +162,6 @@ task_cfg = Config.configure_task("double",
 # Configuration of scenario
 scenario_cfg = Config.configure_scenario_from_tasks("my_scenario", [task_cfg])
 
-Config.export('config_01.toml')
 
 if __name__ == '__main__':
     # Run of the Core
