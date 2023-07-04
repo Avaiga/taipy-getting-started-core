@@ -2,7 +2,7 @@
 
 # Basic functions
 
-*Time to complete: 15min; Level: Beginner*
+*Time to complete: 15 minutes; Level: Beginner*
 
 
 Let's discuss some of the essential functions that come along with Taipy.
@@ -17,7 +17,7 @@ Let's discuss some of the essential functions that come along with Taipy.
 
 ## Utility of having scenarios
 
-Taipy lets the user create multiple instances of the same configuration. Data can differ between different scenario instances. It is essential to detect/understand the difference in data between scenario instances: e.g., comparing the output/results of different instances... Such differences in scenarios can be due to the following:
+Taipy lets the user create multiple instances of the same configuration. Data can differ between different scenario instances. It is essential to understand the difference in data between scenario instances. Such differences in scenarios can be due to the following:
 
 - Changing data from input data nodes, 
 
@@ -120,7 +120,8 @@ task_cfg = Config.configure_task("double",
                                  input_data_node_cfg,
                                  output_data_node_cfg)
 
-scenario_cfg = Config.configure_scenario_from_tasks("my_scenario", [task_cfg])
+scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
+                                                    task_configs=[task_cfg])
 
 Config.export('config_02.toml')
 

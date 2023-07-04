@@ -1,8 +1,8 @@
 > You can download the code of this step [here](../src/step_07.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started-core/tree/develop/src).
 
-# Execution modes
+# Executing jobs
 
-*Time to complete: 15min; Level: Advanced*
+*Time to complete: 15 minutes; Level: Advanced*
 
 Taipy has [different ways](https://docs.taipy.io/en/latest/manuals/core/config/job-config/) to execute the code. Changing the execution mode can be useful for running multiple tasks in parallel.
 
@@ -25,9 +25,7 @@ def add(nb):
 
 ![](config_07.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
-
-
-This line of code will change the execution mode (the default execution mode is _development_). Changing it to _standalone_ will make Taipy Core asynchronous. Here a maximum of two tasks will be able to run concurrently.
+This line of code changes the execution mode (the default execution mode is _development_). Changing it to _standalone_ makes Taipy Core asynchronous. Here a maximum of two tasks are able to run concurrently.
 
 ```python
 Config.configure_job_executions(mode="standalone", max_nb_of_workers=2)
@@ -50,13 +48,68 @@ Jobs from the two submissions are being executed simultaneously. If `max_nb_of_w
 
 Some options for the [_submit_](https://docs.taipy.io/en/latest/manuals/reference/taipy.core.Scenario/#taipy.core.scenario.scenario.Scenario.submit) function exist:
 
-- _wait_: if _wait_ is True, the submit is synchronous and will wait for the end of all the jobs (if _timeout_ is not defined).
+- _wait_: if _wait_ is True, the submit is synchronous and waits for the end of all the jobs (if _timeout_ is not defined).
 
-- _timeout_: if _wait_ is True, Taipy will wait for the end of the submission up to a certain amount of time.
+- _timeout_: if _wait_ is True, Taipy waits for the end of the submission up to a certain amount of time.
 
 ```python
 if __name__=="__main__":
     tp.Core().run()
+    scenario_1 = tp.create_scenario(scenario_cfg)
+    scenario_1.submit(wait=True)
+    scenario_1.submit(wait=True, timeout=5)
+```
+
+## Entire code
+
+
+```python
+from taipy.core.config import Config
+import taipy as tp
+import datetime as dt
+import pandas as pd
+import time
+
+# Normal function used by Taipy
+def double(nb):
+    return nb * 2
+
+def add(nb):
+    print("Wait 10 seconds in add function")
+    time.sleep(10)
+    return nb + 10
+
+Config.configure_job_executions(mode="standalone", max_nb_of_workers=2)
+
+# Configuration of Data Nodes
+input_cfg = Config.configure_data_node("input", default_data=21)
+intermediate_cfg = Config.configure_data_node("intermediate", default_data=21)
+output_cfg = Config.configure_data_node("output")
+
+# Configuration of tasks
+first_task_cfg = Config.configure_task("double",
+                                    double,
+                                    input_cfg,
+                                    intermediate_cfg)
+
+second_task_cfg = Config.configure_task("add",
+                                    add,
+                                    intermediate_cfg,
+                                    output_cfg)
+
+# Configuration of the pipeline and scenario
+scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
+                                                    task_configs=[first_task_cfg,
+                                                                  second_task_cfg])
+
+
+if __name__=="__main__":
+    tp.Core().run()
+    scenario_1 = tp.create_scenario(scenario_cfg)
+    scenario_2 = tp.create_scenario(scenario_cfg)
+    scenario_1.submit()
+    scenario_2.submit()
+
     scenario_1 = tp.create_scenario(scenario_cfg)
     scenario_1.submit(wait=True)
     scenario_1.submit(wait=True, timeout=5)

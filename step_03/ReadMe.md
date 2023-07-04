@@ -2,7 +2,7 @@
 
 # Data Node types
 
-*Time to complete: 15min; Level: Beginner*
+*Time to complete: 15 minutes; Level: Beginner*
 
 
 - *[Pickle](https://docs.taipy.io/en/latest/manuals/core/config/data-node-config/#pickle)* (default): Taipy can read and write any data that can be serializable.
@@ -89,8 +89,8 @@ def count_values(df):
 
 
         ```python
-        scenario_cfg = Config.configure_scenario_from_tasks("my_scenario",
-                                                            [task_filter_cfg,
+        scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
+                                                            task_configs=[task_filter_cfg,
                                                              task_count_values_cfg])
 
         ```

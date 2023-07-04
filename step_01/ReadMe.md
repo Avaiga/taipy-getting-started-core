@@ -2,16 +2,16 @@
 
 # Configuration and execution
 
-*Time to complete: 15min; Level: Beginner*
+*Time to complete: 15 minutes; Level: Beginner*
 
 Before looking at some code examples, let’s define some basic terms Taipy Core uses. Taipy Core revolves around three major concepts.
 
 ## Three fundamental concepts in Taipy Core:
-- [**Data Nodes**](https://docs.taipy.io/en/latest/manuals/core/concepts/data-node/): are the translation of _variables_ in Taipy. Data Nodes know how to retrieve any type of data. They can refer to: any Python object (string, int, list, dict, model, data frame, etc.), a Pickle file, a CSV file, a SQL database, etc.
+- [**Data Node**](https://docs.taipy.io/en/latest/manuals/core/concepts/data-node/): is the translation of a _variable_ in Taipy. Data Nodes know how to retrieve any type of data. They can refer to: any Python object (string, int, list, dict, model, data frame, etc.), a Pickle file, a CSV file, a SQL database, etc.
 
-- [**Tasks**](https://docs.taipy.io/en/latest/manuals/core/concepts/task/): are the expression of _functions_ in Taipy.
+- [**Task**](https://docs.taipy.io/en/latest/manuals/core/concepts/task/): is the expression of a _function_ in Taipy.
 
-- [**Scenarios**](https://docs.taipy.io/en/latest/manuals/core/concepts/scenario/): are an instance of your pipelines. End-Users often require modifying various parameters to reflect different business situations. Taipy Scenarios provide the framework to "run"/"execute" pipelines under different conditions/variations (i.e., data/parameters modified by the end-user)
+- [**Scenarios**](https://docs.taipy.io/en/latest/manuals/core/concepts/scenario/): is an instance of your pipelines. End-users often require modifying various parameters to reflect different business situations. Taipy Scenarios provide the framework to "run"/"execute" pipelines under different conditions/variations (i.e., data/parameters modified by the end-user).
 
 
 ## What is a configuration?
@@ -85,10 +85,11 @@ def clean(data):
                                          clean_data_node_cfg)
 
         # Configuration of the pipeline and scenario
-        scenario_cfg = Config.configure_scenario_from_tasks("my_scenario", [task_cfg])
+        scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
+                                                            task_configs=[task_cfg])
         ```
 
-The configurate is done! Let's use it to create scenarios and submit them.
+The configuration is done! Let's use it to create scenarios and submit them.
 
 First, launch Taipy Core in your code (`tp.Core().run()`). Then, you can play with Taipy: 
 
@@ -124,16 +125,20 @@ Add these few lines to the code of your script. This creates a web application t
 
 - select scenarios you created,
 
-- to create new ones,
+- create new ones,
 
-- to submit them,
+- submit them,
 
-- to see the configuration used by the scenario.
+- see the configuration used by the scenario.
 
 ```python
-tp.Gui("""<|{scenario}|scenario_selector|>
-          <|{scenario}|scenario|>
-          <|{scenario}|scenario_dag|>""").run()
+scenario_md = """
+<|{scenario}|scenario_selector|>
+<|{scenario}|scenario|>
+<|{scenario}|scenario_dag|>
+"""
+
+tp.Gui(scenario_md).run()
 ```
 
 [Put a gif here]
@@ -160,7 +165,8 @@ task_cfg = Config.configure_task("double",
                                  output_data_node_cfg)
 
 # Configuration of scenario
-scenario_cfg = Config.configure_scenario_from_tasks("my_scenario", [task_cfg])
+scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario", 
+                                                    task_configs=[task_cfg])
 
 
 if __name__ == '__main__':
@@ -173,7 +179,11 @@ if __name__ == '__main__':
 
     print("Value at the end of task", scenario.output.read())
 
-    tp.Gui("""<|{scenario}|scenario_selector|>
-              <|{scenario}|scenario|>
-              <|{scenario}|scenario_dag|>""").run()
+    scenario_md = """
+<|{scenario}|scenario_selector|>
+<|{scenario}|scenario|>
+<|{scenario}|scenario_dag|>
+"""
+
+    tp.Gui(scenario_md).run()
 ``` 

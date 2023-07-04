@@ -2,7 +2,7 @@
 
 # Skipping tasks
 
-*Time to complete: 15min; Level: Intermediate*
+*Time to complete: 15 minutes; Level: Intermediate*
 
 Skipping tasks is an essential feature of Taipy. Running twice a function with the same input parameters creates the same output for a given scenario. Executing this sort of function is a waste of time and resources.
 

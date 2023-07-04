@@ -1,8 +1,8 @@
 > You can download the code of this step [here](../src/step_08.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started-core/tree/develop/src).
 
-# Scenario comparison
+# Comparing scenarios
 
-*Time to complete: 15min; Level: Advanced*
+*Time to complete: 15 minutes; Level: Advanced*
 
 ![](config_08.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 

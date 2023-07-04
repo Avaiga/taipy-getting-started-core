@@ -16,7 +16,7 @@ task_cfg = Config.configure_task("double",
                                  output_data_node_cfg)
 
 # Configuration of scenario
-scenario_cfg = Config.configure_scenario_from_tasks("my_scenario", [task_cfg])
+scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario", task_configs=[task_cfg])
 
 Config.export('config_01.toml')
 

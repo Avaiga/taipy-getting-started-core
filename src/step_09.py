@@ -42,13 +42,14 @@ def callback_scenario_state(scenario, job):
         job (_type_): the job that has its status changed
     """
     print(scenario.name)
-    if job.status.value == 7:
+    if job.status.value == tp.core.Status.COMPLETED:
         for data_node in job.task.output.values():
             print(data_node.read())
 
 # Configuration of scenario
-scenario_cfg = Config.configure_scenario_from_tasks("my_scenario",
-                                                    [first_task_cfg, second_task_cfg],
+scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
+                                                    task_configs=[first_task_cfg,
+                                                                  second_task_cfg],
                                                     name="my_scenario")
 
 

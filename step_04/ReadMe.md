@@ -1,11 +1,11 @@
 # Cycles
 
-*Time to complete: 15min; Level: Intermediate*
+*Time to complete: 15 minutes; Level: Intermediate*
 Requirements: Scenario, Data Node, Task
 
 [Cycles](https://docs.taipy.io/en/latest/manuals/core/concepts/cycle/) have been introduced to reflect business situations our customers frequently encounter. 
 
-For instance, a large Fast Food chain wants to generate sales forecasts for its stores every week. When creating a given scenario, it needs to be attached to a given week. And often, a single one will be published amongst all the scenarios generated for a given week. This kind of 'official' scenario is referred to as the 'Primary' scenario in Taipy Core.
+For instance, a large fast food chain wants to generate sales forecasts for its stores every week. When creating a given scenario, it needs to be attached to a given week. And often, a single one will be published amongst all the scenarios generated for a given week. This kind of 'official' scenario is referred to as the 'Primary' scenario in Taipy Core.
 
 Note that Cycles can be ignored entirely if the business problem has no time frequency. 
 
@@ -56,8 +56,9 @@ Then to introduce Cycles, you need to set the frequency (predefined attribute) o
 
         ...
 
-        scenario_cfg = Config.configure_scenario_from_tasks("my_scenario",
-                                                            [pipeline_cfg],
+        scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
+                                                            task_configs=[task_filter_cfg,
+                                                             task_count_values_cfg],
                                                             frequency=Frequency.MONTHLY)
 
 
@@ -65,7 +66,9 @@ Then to introduce Cycles, you need to set the frequency (predefined attribute) o
 
 
 
-As you can see, a Cycle is activated once you have set the desired frequency on the scenario. In this code snippet, since we have specified `frequency=Frequency.MONTHLY`, the corresponding scenario is automatically attached to the correct period (month) once it is created. _creation_date_ is automatically assigned `datetime.datetime.now()` but, we are here manually overriding it. A Scenario belongs to a Cycle based on the _creation_date_ of the scenario. It can be "attached" to a specific cycle by manually setting its _creation_date_.
+As you can see, a Cycle is activated once you have set the desired frequency of the scenario. In this code snippet, since we have specified `frequency=Frequency.MONTHLY`, the corresponding scenario is automatically attached to the correct period (month) when it is created. 
+
+The Cycle which a Scenario belongs to is based on the _creation_date_ (`datetime.datetime.now()` by default) of the scenario. It can be "attached" to a specific cycle by manually setting its _creation_date_, as we are doing in the following example.
 
 ```python
 tp.Core().run()
@@ -112,7 +115,7 @@ In each Cycle, there is a primary scenario. A primary scenario is interesting be
 
 ### GUI-Core visual elements
 
-GUI-Core elements have been created as weel to manipulate Cycles. Cycles are visible in `scenario_selector` or `data_node_selector`. It is also possible to make a scenario primary directly through the `scenario` visual element.
+GUI-Core elements may be used to manipulate Cycles. Cycles are visible in `scenario_selector` or `data_node_selector`. It is also possible to make a scenario primary directly through the `scenario` visual element.
 
 ```python
 data_node = None

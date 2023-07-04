@@ -35,9 +35,9 @@ task_count_values_cfg = Config.configure_task(id="count_values",
                                                  output=nb_of_values_cfg,
                                                  skippable=True)
 
-scenario_cfg = Config.configure_scenario_from_tasks("my_scenario",
-                                                    [task_filter_cfg,
-                                                     task_count_values_cfg],
+scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
+                                                    task_configs=[task_filter_cfg,
+                                                                  task_count_values_cfg],
                                                     frequency=Frequency.MONTHLY)
 
 Config.export('config_06.toml')

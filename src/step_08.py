@@ -45,10 +45,10 @@ def compare_function(*data_node_results):
 
 
 scenario_cfg = Config.configure_scenario_from_tasks(id="multiply_scenario",
-                                        name="my_scenario",
-                                        task_configs=[first_task_cfg, second_task_cfg],
-                                        comparators={output_cfg.id: compare_function},
-                                        frequency=Frequency.MONTHLY)
+                                                    name="my_scenario",
+                                                    task_configs=[first_task_cfg, second_task_cfg],
+                                                    comparators={output_cfg.id: compare_function},
+                                                    frequency=Frequency.MONTHLY)
 
 Config.export("config_08.toml")
 

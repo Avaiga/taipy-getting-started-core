@@ -2,26 +2,16 @@
 
 # Scopes
 
-*Time to complete: 15min; Level: Intermediate*
+*Time to complete: 15 minutes; Level: Intermediate*
 Requirements: Cycle, Scenario, Data Node, Task
 
 [Scopes](https://docs.taipy.io/en/latest/manuals/core/concepts/scope/) determine how Data Nodes are shared between cycles, scenarios, and pipelines. The developer may decide to:
 
-- Having one data node for each scenario.
+- `Scope.SCENARIO` (_default_): Having one data node for each scenario. Pipelines share the same Data Node within a scenario. 
 
-- Extend the scope by sharing data nodes across all scenarios of a given cycle.
+- `Scope.CYCLE`: Extend the scope by sharing data nodes across all scenarios of a given cycle. Data Nodes are shared across all the scenarios/pipelines/cycles.
 
-- Finally, extend the scope globally (across all scenarios of all cycles). For example, the initial/historical dataset is usually shared by all the scenarios/pipelines/cycles. It has a Global Scope and is unique in the entire application.
-
-To summarize, the different possible scopes are:
-
-- _Scenario scope (default)_: pipelines share the same Data Node within a scenario. 
-
-- _Cycle scope_: scenarios from the same Cycle share the same Data Node.
-
-- _Global scope_: Data Nodes are shared across all the scenarios/pipelines/cycles.
-
-It is worth noting that the default scope for Data nodes is the Scenario scope.
+- `Scope.GLOBAL`: Finally, extend the scope globally (across all scenarios of all cycles). For example, the initial/historical dataset is usually shared by all the scenarios/pipelines/cycles.It is unique in the entire application.
 
 ![](config_05.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
@@ -138,9 +128,9 @@ task_count_values_cfg = Config.configure_task(id="count_values",
 
 
 
-scenario_cfg = Config.configure_scenario_from_tasks("my_scenario",
-                                                    [task_filter_cfg,
-                                                     task_count_values_cfg],
+scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
+                                                    task_configs=[task_filter_cfg,
+                                                                  task_count_values_cfg],
                                                     frequency=Frequency.MONTHLY)
 
 

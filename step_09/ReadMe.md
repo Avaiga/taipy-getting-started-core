@@ -1,8 +1,8 @@
 > You can download the code of this step [here](../src/step_09.py) or all the steps [here](https://github.com/Avaiga/taipy-getting-started-core/tree/develop/src).
 
-# Scenario subscription
+# Subscribing to a scenario
 
-*Time to complete: 15min; Level: Advanced*
+*Time to complete: 15 minutes; Level: Advanced*
 
 To have an action after changing a job status, we can [subscribe a function](https://docs.taipy.io/en/latest/manuals/core/entities/scheduling-and-job-execution/#subscribe-to-job-execution) to a scenario. A status change calls this function. This feature allows the creation of logs or particular events for Taipy GUI.
 
