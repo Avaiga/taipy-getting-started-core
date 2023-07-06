@@ -31,10 +31,16 @@ Let’s consider the simplest possible pipeline: a single function taking an inp
 ```python
 from taipy import Config
 import taipy as tp
+import pandas as pd
 
-# Normal function used by Taipy
-def clean(data):
-    return data.drop_duplicates()
+def predict(historical_temperature: pd.DataFrame, date_to_forecast: str) -> float:
+    print(f"Running baseline...")
+    historical_temperature['Date'] = pd.to_datetime(historical_temperature['Date'])
+    historical_same_day = historical_temperature.loc[
+        (historical_temperature['Date'].dt.day == date_to_forecast.day) &
+        (historical_temperature['Date'].dt.month == date_to_forecast.month)
+    ]
+    return historical_same_day['Temp'].mean()
 ```
 
 ![](config_01.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
@@ -73,20 +79,19 @@ def clean(data):
 
         ```python
         # Configuration of Data Nodes
-        input_data_node_cfg = Config.configure_data_node("input_data",
-                                                         storage_type="csv",
-                                                         default_path="data.csv")
-        clean_data_node_cfg = Config.configure_data_node("clean_data")
+        historical_temperature_cfg = Config.configure_data_node("historical_temperature")
+        date_to_forecast_cfg = Config.configure_data_node("date_to_forecast")
+        predictions_cfg = Config.configure_data_node("predictions")
 
         # Configuration of tasks
-        task_cfg = Config.configure_task("clean",
-                                         clean,
-                                         input_data_node_cfg,
-                                         clean_data_node_cfg)
+        predictions_cfg = Config.configure_task("predict",
+                                            predict,
+                                            [historical_temperature_cfg, date_to_forecast_cfg],
+                                            predictions_cfg)
 
-        # Configuration of the pipeline and scenario
-        scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
-                                                            task_configs=[task_cfg])
+        # Configuration of scenario
+        scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario", 
+                                                        task_configs=[predictions_cfg])
         ```
 
 The configuration is done! Let's use it to create scenarios and submit them.
@@ -96,6 +101,8 @@ First, launch Taipy Core in your code (`tp.Core().run()`). Then, you can play wi
 - creating scenarios,
 
 - submitting them,
+
+- writing your data nodes,
 
 - reading your data nodes.
 
@@ -107,6 +114,7 @@ tp.Core().run()
 
 # Creation of the scenario and execution
 scenario = tp.create_scenario(scenario_cfg)
+scenario.historical_temperature.write(data)
 tp.submit(scenario)
 
 print("Value at the end of task", scenario.output.read())
@@ -149,24 +157,36 @@ tp.Gui(scenario_md).run()
 ```python
 from taipy import Config
 import taipy as tp
+import pandas as pd
+
+
+data = pd.read_csv("https://raw.githubusercontent.com/Avaiga/taipy-getting-started-core/src/daily-min-temperatures.csv")
+
 
 # Normal function used by Taipy
-def clean_data(data):
-    return nb * 2
+def predict(historical_temperature: pd.DataFrame, date_to_forecast: str) -> float:
+    print(f"Running baseline...")
+    historical_temperature['Date'] = pd.to_datetime(historical_temperature['Date'])
+    historical_same_day = historical_temperature.loc[
+        (historical_temperature['Date'].dt.day == date_to_forecast.day) &
+        (historical_temperature['Date'].dt.month == date_to_forecast.month)
+    ]
+    return historical_same_day['Temp'].mean()
 
 # Configuration of Data Nodes
-input_data_node_cfg = Config.configure_data_node("input", default_data=21)
-output_data_node_cfg = Config.configure_data_node("output")
+historical_temperature_cfg = Config.configure_data_node("historical_temperature")
+date_to_forecast_cfg = Config.configure_data_node("date_to_forecast")
+predictions_cfg = Config.configure_data_node("predictions")
 
 # Configuration of tasks
-task_cfg = Config.configure_task("double",
-                                 double,
-                                 input_data_node_cfg,
-                                 output_data_node_cfg)
+predictions_cfg = Config.configure_task("predict",
+                                        predict,
+                                        [historical_temperature_cfg, date_to_forecast_cfg],
+                                        predictions_cfg)
 
 # Configuration of scenario
 scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario", 
-                                                    task_configs=[task_cfg])
+                                                    task_configs=[predictions_cfg])
 
 
 if __name__ == '__main__':
@@ -175,9 +195,10 @@ if __name__ == '__main__':
 
     # Creation of the scenario and execution
     scenario = tp.create_scenario(scenario_cfg)
+    scenario.historical_temperature.write(data)
     tp.submit(scenario)
 
-    print("Value at the end of task", scenario.output.read())
+    print("Value at the end of task", scenario.predictions.read())
 
     scenario_md = """
 <|{scenario}|scenario_selector|>
@@ -187,3 +208,4 @@ if __name__ == '__main__':
 
     tp.Gui(scenario_md).run()
 ``` 
+    
