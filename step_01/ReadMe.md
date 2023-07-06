@@ -115,6 +115,7 @@ tp.Core().run()
 # Creation of the scenario and execution
 scenario = tp.create_scenario(scenario_cfg)
 scenario.historical_temperature.write(data)
+scenario.date_to_forecast.write(dt.datetime.now())
 tp.submit(scenario)
 
 print("Value at the end of task", scenario.output.read())
@@ -196,6 +197,7 @@ if __name__ == '__main__':
     # Creation of the scenario and execution
     scenario = tp.create_scenario(scenario_cfg)
     scenario.historical_temperature.write(data)
+    scenario.date_to_forecast.write(dt.datetime.now())
     tp.submit(scenario)
 
     print("Value at the end of task", scenario.predictions.read())
