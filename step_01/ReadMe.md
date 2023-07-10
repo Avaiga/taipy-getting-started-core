@@ -163,6 +163,8 @@ scenario_md = """
 tp.Gui(scenario_md).run()
 ```
 
+The [Gui-Core visual elements](https://docs.taipy.io/en/latest/manuals/gui/corelements/) let you add visual elements for the Taipy backend. This way, creating a web application corresponding to your backend has never been simpler.
+
 ![](demo.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 ## Entire code
