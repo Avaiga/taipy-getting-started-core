@@ -1,4 +1,4 @@
-from taipy.core.config import Config, Frequency
+from taipy.core.config import Config, Frequency, Status
 import taipy as tp
 import datetime as dt
 import time
@@ -42,7 +42,7 @@ def callback_scenario_state(scenario, job):
         job (_type_): the job that has its status changed
     """
     print(scenario.name)
-    if job.status.value == tp.core.Status.COMPLETED:
+    if job.status == tp.core.Status.COMPLETED:
         for data_node in job.task.output.values():
             print(data_node.read())
 
