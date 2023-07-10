@@ -25,7 +25,7 @@ Let's create our first configuration. For this, we have two alternatives:
 
 - Or directly coding in Python.
 
-Let’s consider the simplest possible pipeline: a single function taking an input as a CSV dataset and generating a cleaned dataset. See below:
+Let’s consider the simplest possible pipeline: a single function taking two inputs: a dataset and a date to forecast and generating a prediction for the chosen date. See below:
 
 
 ```python
@@ -45,10 +45,7 @@ def predict(historical_temperature: pd.DataFrame, date_to_forecast: str) -> floa
 
 ![](config_01.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
-- Two Data Nodes are being configured ('input_data' and 'cleaned_data'). The 'input' Data Node points to a CSV. The *clean_data* Data Node is stored as a Pickle file (default storage format). The task links the two Data Nodes through the Python function *clean_data*.
-
-
-
+- Three Data Nodes are being configured ('historical_temperature', 'date_to_forecast' and 'predictions'). All the input Data Nodes will be written before the submission of the pipeline. The task links the three Data Nodes through the Python function *predict*. The submission write the input ('predictions'). 
 
 
 !!! example "Configuration"
