@@ -1,9 +1,10 @@
 from taipy import Config
 import taipy as tp
 import pandas as pd
+import datetime as dt
 
 
-data = pd.read_csv("https://raw.githubusercontent.com/Avaiga/taipy-getting-started-core/src/daily-min-temperatures.csv")
+data = pd.read_csv("https://raw.githubusercontent.com/Avaiga/taipy-getting-started-core/update_2_3/src/daily-min-temperatures.csv")
 
 
 # Normal function used by Taipy
@@ -44,10 +45,20 @@ if __name__ == '__main__':
 
     print("Value at the end of task", scenario.predictions.read())
 
+    def save(state):
+        state.scenario.historical_temperature.write(data)
+        state.scenario.date_to_forecast.write(state.date)
+        tp.gui.notify(state, "s", "Savec! Ready to submit")
+
+    date = None
     scenario_md = """
 <|{scenario}|scenario_selector|>
+<|{date}|date|on_change=save|active={scenario}|>
 <|{scenario}|scenario|>
 <|{scenario}|scenario_dag|>
+
+<|Refresh|button|on_action={lambda s: s.assign("scenario", scenario)}|>
+<|{scenario.predictions.read() if scenario else ''}|>
 """
 
     tp.Gui(scenario_md).run()

@@ -47,9 +47,8 @@ def predict(historical_temperature: pd.DataFrame, date_to_forecast: str) -> floa
 
 - Two Data Nodes are being configured ('input_data' and 'cleaned_data'). The 'input' Data Node points to a CSV. The *clean_data* Data Node is stored as a Pickle file (default storage format). The task links the two Data Nodes through the Python function *clean_data*.
 
-<video controls width="250">
-    <source src="/step_01/config_01.mp4" type="video/mp4">
-</video>
+
+
 
 
 !!! example "Configuration"
@@ -60,7 +59,10 @@ def predict(historical_temperature: pd.DataFrame, date_to_forecast: str) -> floa
 
         By watching the animation below, you can see how this configuration gets created using Taipy Studio. In fact, Taipy Studio is an editor of a TOML file specific to Taipy. It lets you edit and view a TOML file that will be used in our code.
 
-        ![](config_01.mp4){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
+        <video controls width="400">
+            <source src="/step_01/config_01.mp4" type="video/mp4">
+        </video>
+
 
         To use this configuration in our code (`main.py` for example), we must load it and retrieve the `scenario_cfg`. This `scenario_cfg` is the basis to instantiate our scenarios.
 
@@ -141,17 +143,27 @@ Add these few lines to the code of your script. This creates a web application t
 - see the configuration used by the scenario.
 
 ```python
+def save(state):
+    # write values of Data Node to submit scenario
+    state.scenario.historical_temperature.write(data)
+    state.scenario.date_to_forecast.write(state.date)
+    tp.gui.notify(state, "s", "Savec! Ready to submit")
+
+date = None
 scenario_md = """
 <|{scenario}|scenario_selector|>
+<|{date}|date|on_change=save|active={scenario}|>
 <|{scenario}|scenario|>
 <|{scenario}|scenario_dag|>
+
+<|Refresh|button|on_action={lambda s: s.assign("scenario", scenario)}|>
+<|{scenario.predictions.read() if scenario else ''}|>
 """
 
 tp.Gui(scenario_md).run()
 ```
 
-[Put a gif here]
-
+![](demo.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 ## Entire code
 
@@ -202,10 +214,20 @@ if __name__ == '__main__':
 
     print("Value at the end of task", scenario.predictions.read())
 
+    def save(state):
+        state.scenario.historical_temperature.write(data)
+        state.scenario.date_to_forecast.write(state.date)
+        tp.gui.notify(state, "s", "Savec! Ready to submit")
+
+    date = None
     scenario_md = """
 <|{scenario}|scenario_selector|>
+<|{date}|date|on_change=save|active={scenario}|>
 <|{scenario}|scenario|>
 <|{scenario}|scenario_dag|>
+
+<|Refresh|button|on_action={lambda s: s.assign("scenario", scenario)}|>
+<|{scenario.predictions.read() if scenario else ''}|>
 """
 
     tp.Gui(scenario_md).run()
