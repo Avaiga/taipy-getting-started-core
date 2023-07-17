@@ -3,15 +3,14 @@
 # Scopes
 
 *Time to complete: 15 minutes; Level: Intermediate*
-Requirements: Cycle, Scenario, Data Node, Task
 
-[Scopes](https://docs.taipy.io/en/latest/manuals/core/concepts/scope/) determine how Data Nodes are shared between cycles, scenarios, and pipelines. The developer may decide to:
+[Scopes](https://docs.taipy.io/en/latest/manuals/core/concepts/scope/) determine how Data Nodes are shared between cycles and scenarios. The developer may decide:
 
-- `Scope.SCENARIO` (_default_): Having one data node for each scenario. Pipelines share the same Data Node within a scenario. 
+- `Scope.SCENARIO` (_default_): Having one data node for each scenario.
 
-- `Scope.CYCLE`: Extend the scope by sharing data nodes across all scenarios of a given cycle. Data Nodes are shared across all the scenarios/pipelines/cycles.
+- `Scope.CYCLE`: Extend the scope by sharing data nodes across all scenarios of a given cycle.
 
-- `Scope.GLOBAL`: Finally, extend the scope globally (across all scenarios of all cycles). For example, the initial/historical dataset is usually shared by all the scenarios/pipelines/cycles.It is unique in the entire application.
+- `Scope.GLOBAL`: Finally, extend the scope globally (across all scenarios of all cycles). For example, the initial/historical dataset is usually shared by all the scenarios/pipelines/cycles. It is unique in the entire application.
 
 ![](config_05.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
@@ -21,7 +20,7 @@ Requirements: Cycle, Scenario, Data Node, Task
 
         Modifying the scope of a Data Node is as simple as changing its Scope parameter in the configuration. 
 
-        The configuration is taken in the previous step, so you can copy the last TOML Config file directly.
+        The configuration is taken in the previous step, so you can copy the last TOML Config file directly or take it [here](../src/config_04.toml).
 
         ![](config_05.gif){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
@@ -47,6 +46,8 @@ Requirements: Cycle, Scenario, Data Node, Task
 
         month_values_cfg = Config.configure_data_node(id="month_data",
                                                        scope=Scope.CYCLE)
+
+        ...
         ```
 
 
@@ -74,7 +75,7 @@ scenario_1.month.write(10)
 scenario_3.month.write(9)
 print("Scenario 1: month", scenario_1.month.read())
 print("Scenario 2: month", scenario_2.month.read())
-print("Scenario 3: month", scenario_2.month.read())
+print("Scenario 3: month", scenario_3.month.read())
 ```
 
 Results:
@@ -148,7 +149,7 @@ if __name__ == '__main__':
     print("Scenario 1: month", scenario_1.month.read())
     print("Scenario 2: month", scenario_2.month.read())
 
-    print("\nScenario 1: submit")
+    print("\nScenario 1 & 2: submit")
     scenario_1.submit()
     scenario_2.submit()
     print("Value", scenario_1.nb_of_values.read())

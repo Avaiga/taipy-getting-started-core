@@ -19,6 +19,7 @@ input_cfg = Config.configure_data_node("input", default_data=21)
 intermediate_cfg = Config.configure_data_node("intermediate")
 output_cfg = Config.configure_data_node("output")
 
+
 # Configuration of tasks
 first_task_cfg = Config.configure_task("double",
                                     double,
@@ -29,8 +30,6 @@ second_task_cfg = Config.configure_task("add",
                                     add,
                                     intermediate_cfg,
                                     output_cfg)
-
-
 
 
 def callback_scenario_state(scenario, job):

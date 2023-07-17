@@ -1,11 +1,11 @@
 # Cycles
 
 *Time to complete: 15 minutes; Level: Intermediate*
-Requirements: Scenario, Data Node, Task
 
-[Cycles](https://docs.taipy.io/en/latest/manuals/core/concepts/cycle/) have been introduced to reflect business situations our customers frequently encounter. 
+[Cycles](https://docs.taipy.io/en/latest/manuals/core/concepts/cycle/) have been introduced to reflect business situations our customers frequently encounter and can be extremely useful. 
 
 For instance, a large fast food chain wants to generate sales forecasts for its stores every week. When creating a given scenario, it needs to be attached to a given week. And often, a single one will be published amongst all the scenarios generated for a given week. This kind of 'official' scenario is referred to as the 'Primary' scenario in Taipy Core.
+
 
 Note that Cycles can be ignored entirely if the business problem has no time frequency. 
 
@@ -22,13 +22,14 @@ def filter_by_month(df, month):
     return df
 ```
 
+
 Then to introduce Cycles, you need to set the frequency (predefined attribute) of the scenario to Monthly (as described below).
+
 
 ![](config_04.svg){ width=700 style="margin:auto;display:block;border: 4px solid rgb(210,210,210);border-radius:7px" }
 
 
 !!! example "Configuration"
-
 
     === "Taipy Studio"
 
@@ -38,7 +39,7 @@ Then to introduce Cycles, you need to set the frequency (predefined attribute) o
         
         - Add the frequency property for the scenario and put "MONTHLY:FREQUENCY" (DAYLY, WEEKLY, MONTHLY, YEARLY)
         
-        - Load the new configuration in the code
+        - Load the new [configuration](../src/config_04.toml) in the code
 
     === "Python configuration"
 
@@ -58,17 +59,17 @@ Then to introduce Cycles, you need to set the frequency (predefined attribute) o
 
         scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
                                                             task_configs=[task_filter_cfg,
-                                                             task_count_values_cfg],
+                                                                          task_count_values_cfg],
                                                             frequency=Frequency.MONTHLY)
-
 
         ```
 
 
-
 As you can see, a Cycle is activated once you have set the desired frequency of the scenario. In this code snippet, since we have specified `frequency=Frequency.MONTHLY`, the corresponding scenario is automatically attached to the correct period (month) when it is created. 
 
+
 The Cycle which a Scenario belongs to is based on the _creation_date_ (`datetime.datetime.now()` by default) of the scenario. It can be "attached" to a specific cycle by manually setting its _creation_date_, as we are doing in the following example.
+
 
 ```python
 tp.Core().run()
@@ -101,12 +102,12 @@ Results:
 ```
 Month Data Node of Scenario 1 10
 Month Data Node of Scenario 2 10
-[2022-12-22 16:20:04,746][Taipy][INFO] job JOB_filter_by_month_a4d3c4a7-5ec9-4cca-8a1b-578c910e255a is completed.
-[2022-12-22 16:20:04,833][Taipy][INFO] job JOB_count_values_a81b2f60-e9f9-4848-aa58-272810a0b755 is completed.
-[2022-12-22 16:20:05,026][Taipy][INFO] job JOB_filter_by_month_22a3298b-ac8d-4b55-b51f-5fab0971cc9e is completed.
-[2022-12-22 16:20:05,084][Taipy][INFO] job JOB_count_values_a52b910a-4024-443e-8ea2-f3cdda6c1c9d is completed.
-[2022-12-22 16:20:05,317][Taipy][INFO] job JOB_filter_by_month_8643e5cf-e863-434f-a1ba-18222d6faab8 is completed.
-[2022-12-22 16:20:05,376][Taipy][INFO] job JOB_count_values_72ab71be-f923-4898-a8a8-95ec351c24d9 is completed.
+[2022-12-22 16:20:04,746][Taipy][INFO] job JOB_filter_by_month_... is completed.
+[2022-12-22 16:20:04,833][Taipy][INFO] job JOB_count_values_... is completed.
+[2022-12-22 16:20:05,026][Taipy][INFO] job JOB_filter_by_month_... is completed.
+[2022-12-22 16:20:05,084][Taipy][INFO] job JOB_count_values_... is completed.
+[2022-12-22 16:20:05,317][Taipy][INFO] job JOB_filter_by_month_... is completed.
+[2022-12-22 16:20:05,376][Taipy][INFO] job JOB_count_values_... is completed.
 ```
 
 ## Primary scenarios

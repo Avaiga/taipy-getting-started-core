@@ -43,7 +43,7 @@ if __name__ == '__main__':
     scenario = tp.create_scenario(scenario_cfg, creation_date=dt.datetime(2022,10,7), name="Scenario 2022/10/7")
     scenario.submit()
 
-    print("Nb of values of scenario 1:", scenario.nb_of_values.read())
+    print("Nb of values of scenario:", scenario.nb_of_values.read())
 
     data_node = None
 

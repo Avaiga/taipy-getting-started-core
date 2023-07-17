@@ -4,7 +4,6 @@
 
 *Time to complete: 15 minutes; Level: Beginner*
 
-
 Let's discuss some of the essential functions that come along with Taipy.
 
 - [`<Data Node>.write(<new value>)`](https://docs.taipy.io/en/latest/manuals/core/entities/data-node-mgt/#read-write-a-data-node): this instruction changes the data of a Data Node.
@@ -112,6 +111,7 @@ import taipy as tp
 def double(nb):
     return nb * 2
 
+# Configuration in Python
 input_data_node_cfg = Config.configure_data_node("input", default_data=21)
 output_data_node_cfg = Config.configure_data_node("output")
 
@@ -123,7 +123,6 @@ task_cfg = Config.configure_task("double",
 scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
                                                     task_configs=[task_cfg])
 
-Config.export('config_02.toml')
 
 if __name__ == '__main__':
     tp.Core().run()
@@ -145,6 +144,7 @@ if __name__ == '__main__':
     scenario = tp.get(scenario.id)
     tp.delete(scenario.id)
 
+    scenario = None
     data_node = None
 
     tp.Gui("""<|{scenario}|scenario_selector|>

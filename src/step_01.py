@@ -4,7 +4,7 @@ import pandas as pd
 import datetime as dt
 
 
-data = pd.read_csv("https://raw.githubusercontent.com/Avaiga/taipy-getting-started-core/update_2_3/src/daily-min-temperatures.csv")
+data = pd.read_csv("https://raw.githubusercontent.com/Avaiga/taipy-getting-started-core/src/daily-min-temperatures.csv")
 
 
 # Normal function used by Taipy
@@ -32,6 +32,7 @@ predictions_cfg = Config.configure_task("predict",
 scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario", 
                                                     task_configs=[predictions_cfg])
 
+Config.export('config_01.toml')
 
 if __name__ == '__main__':
     # Run of the Core
@@ -48,7 +49,7 @@ if __name__ == '__main__':
     def save(state):
         state.scenario.historical_temperature.write(data)
         state.scenario.date_to_forecast.write(state.date)
-        tp.gui.notify(state, "s", "Savec! Ready to submit")
+        tp.gui.notify(state, "s", "Saved! Ready to submit")
 
     date = None
     scenario_md = """

@@ -22,14 +22,14 @@ output_cfg = Config.configure_data_node("output")
 
 # Configuration of tasks
 first_task_cfg = Config.configure_task("double",
-                                    double,
-                                    input_cfg,
-                                    intermediate_cfg)
+                                       double,
+                                       input_cfg,
+                                       intermediate_cfg)
 
 second_task_cfg = Config.configure_task("add",
-                                    add,
-                                    intermediate_cfg,
-                                    output_cfg)
+                                        add,
+                                        intermediate_cfg,
+                                        output_cfg)
 
 # Configuration of the pipeline and scenario
 scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",

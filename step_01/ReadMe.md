@@ -25,7 +25,7 @@ Let's create our first configuration. For this, we have two alternatives:
 
 - Or directly coding in Python.
 
-Let’s consider the simplest possible pipeline: a single function taking two inputs: a dataset and a date to forecast and generating a prediction for the chosen date. See below:
+Let’s consider the simplest possible pipeline: a single function taking two inputs: a dataset and a date to forecast and generate a prediction for the chosen date. See below:
 
 
 ```python
@@ -83,27 +83,27 @@ def predict(historical_temperature: pd.DataFrame, date_to_forecast: str) -> floa
         predictions_cfg = Config.configure_data_node("predictions")
 
         # Configuration of tasks
-        predictions_cfg = Config.configure_task("predict",
-                                            predict,
-                                            [historical_temperature_cfg, date_to_forecast_cfg],
-                                            predictions_cfg)
+        predictions_cfg = Config.configure_task(id="predict",
+                                                function=predict,
+                                                input=[historical_temperature_cfg, date_to_forecast_cfg],
+                                                output=predictions_cfg)
 
         # Configuration of scenario
         scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario", 
-                                                        task_configs=[predictions_cfg])
+                                                            task_configs=[predictions_cfg])
         ```
 
 The configuration is done! Let's use it to create scenarios and submit them.
 
 First, launch Taipy Core in your code (`tp.Core().run()`). Then, you can play with Taipy: 
 
-- creating scenarios,
+- create scenarios,
 
-- submitting them,
+- submit them,
 
-- writing your data nodes,
+- write your data nodes,
 
-- reading your data nodes.
+- read your data nodes.
 
 Creating a scenario (`tp.create_scenario(<Scenario Config>)`) creates all its related entities (_tasks_, _Data Nodes_, etc). These entities are being created thanks to the previous configuration. Still, no scenario has been run yet. `tp.submit(<Scenario>)` is the line of code that runs all the scenario-related pipelines and tasks.
 
@@ -123,8 +123,8 @@ print("Value at the end of task", scenario.output.read())
 Results:
 
 ```
-[2022-12-22 16:20:02,740][Taipy][INFO] job JOB_double_699613f8-7ff4-471b-b36c-d59fb6688905 is completed.
-Value at the end of task 42
+[2022-12-22 16:20:02,740][Taipy][INFO] job JOB_predict_... is completed.
+Value at the end of task 23.45
 ```    
 
 ## Gui-Core visual elements
@@ -144,7 +144,7 @@ def save(state):
     # write values of Data Node to submit scenario
     state.scenario.historical_temperature.write(data)
     state.scenario.date_to_forecast.write(state.date)
-    tp.gui.notify(state, "s", "Savec! Ready to submit")
+    tp.gui.notify(state, "s", "Saved! Ready to submit")
 
 date = None
 scenario_md = """
@@ -216,7 +216,7 @@ if __name__ == '__main__':
     def save(state):
         state.scenario.historical_temperature.write(data)
         state.scenario.date_to_forecast.write(state.date)
-        tp.gui.notify(state, "s", "Savec! Ready to submit")
+        tp.gui.notify(state, "s", "Saved! Ready to submit")
 
     date = None
     scenario_md = """

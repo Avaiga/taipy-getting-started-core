@@ -66,16 +66,12 @@ if __name__ == '__main__':
     print("\nScenario 2: first submit")
     scenario_2.submit()
     print("Value", scenario_2.nb_of_values.read())
+    
     print("Scenario 2: second submit")
     scenario_2.submit()
     print("Value", scenario_2.nb_of_values.read())
 
     print("\nScenario 3: submit")
     scenario_3.month.write(9)
-    scenario_3.submit()
-    print("Value", scenario_3.nb_of_values.read())
-
-    print("Scenario 3: change in historical data")
-    scenario_3.historical_data.write(pd.read_csv('time_series_2.csv'))
     scenario_3.submit()
     print("Value", scenario_3.nb_of_values.read())
