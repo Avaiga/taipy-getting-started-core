@@ -33,13 +33,12 @@ task_count_values_cfg = Config.configure_task(id="count_values",
                                                  input=month_values_cfg,
                                                  output=nb_of_values_cfg)
 
-pipeline_cfg = Config.configure_pipeline(id="my_pipeline",
-                                         task_configs=[task_filter_cfg,
-                                                       task_count_values_cfg])
 
-scenario_cfg = Config.configure_scenario(id="my_scenario",
-                                         pipeline_configs=[pipeline_cfg],
-                                         frequency=Frequency.MONTHLY)
+
+scenario_cfg = Config.configure_scenario_from_tasks(id="my_scenario",
+                                                    task_configs=[task_filter_cfg,
+                                                                  task_count_values_cfg],
+                                                    frequency=Frequency.MONTHLY)
 
 Config.export('config_05.toml')
 
@@ -67,16 +66,12 @@ if __name__ == '__main__':
     print("\nScenario 2: first submit")
     scenario_2.submit()
     print("Value", scenario_2.nb_of_values.read())
+    
     print("Scenario 2: second submit")
     scenario_2.submit()
     print("Value", scenario_2.nb_of_values.read())
 
     print("\nScenario 3: submit")
     scenario_3.month.write(9)
-    scenario_3.submit()
-    print("Value", scenario_3.nb_of_values.read())
-
-    print("Scenario 3: change in historical data")
-    scenario_3.historical_data.write(pd.read_csv('time_series_2.csv'))
     scenario_3.submit()
     print("Value", scenario_3.nb_of_values.read())

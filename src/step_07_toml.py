@@ -26,9 +26,6 @@ if __name__=="__main__":
     scenario_1.submit()
     scenario_2.submit()
 
-
-if __name__=="__main__":
-
     scenario_1 = tp.create_scenario(scenario_cfg)
     scenario_1.submit(wait=True)
     scenario_1.submit(wait=True, timeout=5)
